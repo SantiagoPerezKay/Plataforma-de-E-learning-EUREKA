@@ -11,4 +11,4 @@ const getProducts = () => {
 
 export { getProducts };
 
-// Ejemplo
+// Ejemplo 2
