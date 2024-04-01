@@ -19,11 +19,49 @@ export default function Register() {
 
           {/* Name */}
           <label className="block" htmlFor="name">Nombre</label>
-          <input className="w-full" id="name" type="text" />
+          <input 
+              className="w-full" 
+              id="name" 
+              type="text"
+              {...register("name", {
+                required: {
+                  value: true,
+                  message: "El nombre es requerido",
+                },
+                pattern: {
+                  value: /^[a-zA-Z\s]{2,30}$/,
+                  message: "Nombre no válido",
+                },
+              })}
+            />
+            {errors.name && (
+              <span className="block text-red-600 text-xs">
+                {errors.name.message}
+              </span>
+            )}
 
           {/* LastName */}
           <label className="block" htmlFor="lastName">Apellido</label>
-          <input className="w-full" id="lastName" type="text" />
+          <input 
+              className="w-full" 
+              id="lastName" 
+              type="text"
+              {...register("lastName", {
+                required: {
+                  value: true,
+                  message: "El apellido es requerido",
+                },
+                pattern: {
+                  value: /^[a-zA-Z\s]{2,30}$/,
+                  message: "Apellido no válido",
+                },
+              })}
+            />
+            {errors.lastName && (
+              <span className="block text-red-600 text-xs">
+                {errors.lastName.message}
+              </span>
+            )}
 
           {/* Email */}
           <label className="block" htmlFor="email">Correo</label>
