@@ -1,6 +1,6 @@
 package com.s1411mjava.edtech.entity;
 
-import com.s1411mjava.edtech.enums.Rol;
+import com.s1411mjava.edtech.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +19,6 @@ public class User {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private Rol rol;
+    private Role role;
 
 }

@@ -1,5 +1,5 @@
 package com.s1411mjava.edtech.enums;
 
-public enum Rol {
+public enum Role {
     STUDENT, TEACHER
 }
