@@ -10,3 +10,5 @@ const getProducts = () => {
 };
 
 export { getProducts };
+
+// Ejemplo
