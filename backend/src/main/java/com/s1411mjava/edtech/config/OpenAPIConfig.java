@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
                 description = "All the information you need to consume this API"
         ),
         servers = @Server(
-                url = "/",
+                url = "/api/v1",
                 description = "Default server URL"
         )
 )
