@@ -5,6 +5,8 @@ import com.s1411mjava.edtech.dtos.RegistryDto;
 import com.s1411mjava.edtech.dtos.TokenDto;
 import com.s1411mjava.edtech.dtos.UserDto;
 import com.s1411mjava.edtech.entity.User;
+import com.s1411mjava.edtech.enums.Role;
+import com.s1411mjava.edtech.exception.RoleNameNotValidException;
 import com.s1411mjava.edtech.mapper.UserMapper;
 import com.s1411mjava.edtech.repository.UserRepository;
 import com.s1411mjava.edtech.security.config.SecurityConfig;
@@ -33,12 +35,23 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public RegistryDto register(UserDto userDto) {
 
+        userDto.setRole(userDto.getRole().toUpperCase());
+
+        if(!userDto.getRole().equals(Role.STUDENT.name()) && !userDto.getRole().equals(Role.TEACHER.name())){
+            throw new RoleNameNotValidException();
+        }
+
         User user = this.userMapper.toEntity(userDto);
         user.setPassword(SecurityConfig.passwordEncoder().encode(userDto.getPassword()));
 
         this.userRepository.save(user);
 
-        return new RegistryDto(user.getEmail());
+        Authentication auth = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getEmail(), userDto.getPassword()));
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+
+        String token = this.jwtService.generateToken(userDetails);
+
+        return new RegistryDto(user.getEmail(), token);
     }
 
     @Override
