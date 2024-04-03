@@ -9,4 +9,5 @@ import lombok.Data;
 public class RegistryDto {
 
     private String email;
+    private String token;
 }
