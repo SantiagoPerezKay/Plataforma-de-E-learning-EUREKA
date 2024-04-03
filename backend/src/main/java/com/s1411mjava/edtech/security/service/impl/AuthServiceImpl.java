@@ -32,6 +32,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public RegistryDto register(UserDto userDto) {
+
         User user = this.userMapper.toEntity(userDto);
         user.setPassword(SecurityConfig.passwordEncoder().encode(userDto.getPassword()));
 
