@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import succeed from './img/shield-check.svg'
 // import { Redirect } from 'react-router-dom';
 
 function Login() {
   // colocar el endpoint
-  const url = '';
+  const url = 'https://s14-11-m-java.onrender.com/api/v1/swagger-ui/index.html';
 
   // paramétros del UseForm
   const {
@@ -15,7 +16,8 @@ function Login() {
 
 
   // como se envía el form
-  const serverSubmit = async () => {
+  const serverSubmit = async (e) => {
+    e.preventDefault()
     let user = ''  //esto no me gusta mucho, ver como funciona, necesita useState?
    
     //recoge los datos del useForm
@@ -27,6 +29,7 @@ function Login() {
     try {
       // envía los datos y pide el token con los datos del useForm
       const response = await axios.post(url, user);
+      console.log(user);   
       console.log(response.data);   
 
       // otra forma, probar con el endpoint
@@ -66,10 +69,12 @@ function Login() {
 
   return (
     
-    <div className="login">
+    <div className="login flex justify-evenly">
+        <div className="login-left">
+          <h2 className="font-bold text-center m-8">Ingresa a tu cuenta</h2>
           <form className="login-form space-y-6" onSubmit={serverSubmit}>
             <div className="login-email">
-              <label htmlFor="email" className="login-label">EMAIL:</label>
+              <label htmlFor="email" className="login-label text-sm">EMAIL:</label>
               <input
                   id="email"
                   name="email"
@@ -96,7 +101,7 @@ function Login() {
 
             </div>
             <div className="login-pass">
-              <label htmlFor="password" className="login-label">CONTRASEÑA:</label>
+              <label htmlFor="password" className="login-label text-xs">CONTRASEÑA:</label>
               <input
                   id="password"
                   name="password"
@@ -132,12 +137,24 @@ function Login() {
             <div>
               <button
                   type="submit"
-                  className="flex w-80 justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-40 justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-auto"
               >
                 INICIAR SESION
               </button>
             </div>
           </form>
+        </div>
+        <div className="line h-100 border border-gray-900"></div>
+        <div className="login-right">
+        <h2 className="font-bold text-center m-8">¿Necesitas una cuenta?</h2>
+        <div className="flex justify-between w-60"><p>Acceso ilimitado</p><img src={succeed} width='32' /></div>
+        <div className="flex justify-between w-60"><p>Cientos de cursos</p><img src={succeed} width='32' /></div>
+        <div className="flex justify-between w-60"><p>Certificaciones</p><img src={succeed} width='32' /></div>
+        <div className="flex justify-between w-60"><p>Material gráfico</p><img src={succeed} width='32' /></div>
+        <div className="flex content-center m-8"><button className="flex w-40 justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          REGISTRARSE
+        </button></div>
+        </div>
     </div>
   )
 }
