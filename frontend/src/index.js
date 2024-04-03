@@ -4,6 +4,8 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
 /* Components */
+import Footer from "./components/footer/Footer";
+import NavBar from "./components/navBar/NavBar";
 import LogOutButton from "./components/LogOutButton/LogOutButton";
 
-export { Home, Login, Register, LogOutButton };
+export { Home, Login, Register, LogOutButton, Footer, NavBar };
