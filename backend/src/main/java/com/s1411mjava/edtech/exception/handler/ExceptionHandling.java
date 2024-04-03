@@ -1,5 +1,6 @@
 package com.s1411mjava.edtech.exception.handler;
 
+import com.s1411mjava.edtech.exception.DuplicatedResourceException;
 import com.s1411mjava.edtech.exception.RoleNameNotValidException;
 import com.s1411mjava.edtech.exception.dto.ExceptionDto;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -95,6 +96,17 @@ public class ExceptionHandling {
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 ex.getMessage(),
                 detail
+        );
+    }
+
+    @ExceptionHandler(DuplicatedResourceException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleDuplicatedException(DuplicatedResourceException ex){
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
         );
     }
 }
