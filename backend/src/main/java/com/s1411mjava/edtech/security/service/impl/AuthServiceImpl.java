@@ -6,6 +6,7 @@ import com.s1411mjava.edtech.dtos.TokenDto;
 import com.s1411mjava.edtech.dtos.UserDto;
 import com.s1411mjava.edtech.entity.User;
 import com.s1411mjava.edtech.enums.Role;
+import com.s1411mjava.edtech.exception.DuplicatedResourceException;
 import com.s1411mjava.edtech.exception.RoleNameNotValidException;
 import com.s1411mjava.edtech.mapper.UserMapper;
 import com.s1411mjava.edtech.repository.UserRepository;
@@ -39,6 +40,10 @@ public class AuthServiceImpl implements AuthService {
 
         if(!userDto.getRole().equals(Role.STUDENT.name()) && !userDto.getRole().equals(Role.TEACHER.name())){
             throw new RoleNameNotValidException();
+        }
+
+        if (userRepository.existsByEmail(userDto.getEmail())){
+            throw new DuplicatedResourceException("Email already in use");
         }
 
         User user = this.userMapper.toEntity(userDto);
