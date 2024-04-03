@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "git-flow": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
+    "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.3",
     "redux": "^5.0.1"
   },
