@@ -1,13 +1,22 @@
 package com.s1411mjava.edtech.security.service.impl;
 
+import com.s1411mjava.edtech.dtos.LoginDto;
 import com.s1411mjava.edtech.dtos.RegistryDto;
+import com.s1411mjava.edtech.dtos.TokenDto;
 import com.s1411mjava.edtech.dtos.UserDto;
 import com.s1411mjava.edtech.entity.User;
 import com.s1411mjava.edtech.mapper.UserMapper;
 import com.s1411mjava.edtech.repository.UserRepository;
 import com.s1411mjava.edtech.security.config.SecurityConfig;
 import com.s1411mjava.edtech.security.service.AuthService;
+import io.jsonwebtoken.security.Password;
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
@@ -18,6 +27,9 @@ public class AuthServiceImpl implements AuthService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
 
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
+
     @Override
     public RegistryDto register(UserDto userDto) {
         User user = this.userMapper.toEntity(userDto);
@@ -27,4 +39,16 @@ public class AuthServiceImpl implements AuthService {
 
         return new RegistryDto(user.getEmail());
     }
+
+    @Override
+    public TokenDto login(LoginDto loginDto) {
+        if(!userRepository.existsByEmail(loginDto.getEmail())){
+            throw new UsernameNotFoundException("UserNotFound");
+        }
+        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        return new TokenDto(jwtService.generateToken(userDetails));
+    }
+
+
 }
