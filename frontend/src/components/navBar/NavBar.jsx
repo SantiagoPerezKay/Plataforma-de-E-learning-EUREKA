@@ -1,16 +1,20 @@
 import { useState } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import userCircle from "./img/user-circle.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isLogued, setIsLogued] = useState(false);
   const navigate = useNavigate();
   return (
     <div className="navbar flex justify-around items-center my-4">
-      <div className="navbar-logo py-4 px-12 border border-gray-400">
-        Logo EUREKA!
-      </div>
+      <Link
+        to={''}
+      >
+        <div className="navbar-logo py-4 px-12 border border-gray-400">
+          Logo EUREKA!
+        </div>
+      </Link>
       <div className="navbar-menu">
         <ul className="flex">
           <li className="mx-4">Inicio</li>
