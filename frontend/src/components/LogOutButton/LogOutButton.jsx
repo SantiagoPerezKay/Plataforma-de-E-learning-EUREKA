@@ -1,17 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import useAuth from "../../api/auth";
 
 const LogOutButton = () => {
-  const navigate = useNavigate();
+  const { authLogout } = useAuth();
 
-  const logOutHandler = () => {
-    navigate("/login");
-  };
   return (
     <button
-      onClick={logOutHandler}
-      className="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-4 rounded-lg"
+      onClick={authLogout}
+      className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
     >
-      LOG OUT
+      Log Out
     </button>
   );
 };
