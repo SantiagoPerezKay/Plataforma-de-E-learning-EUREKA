@@ -70,7 +70,7 @@ clone git https://github.com/No-Country/s14-11-m-java.git
 - Si estás usando IntelliJ ide, puedes ejecutarlo con el botón verde ejecutar/reproducir, pero no olvides cargar las variables de entorno.
 
 - En caso contrario, para ejecutar el proyecto a través de la línea de comando:
-```golpecito
+```bash
 mvnw spring-boot:run
 ```
 
