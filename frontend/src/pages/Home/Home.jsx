@@ -1,12 +1,12 @@
 import Footer from "../../components/footer/Footer";
-import HeroMain from "../../components/heroMain/HeroMain";
 import NavBar from "../../components/navBar/NavBar";
+import { Outlet} from "react-router";
 
 const Home = () => {
   return (
     <>
       <NavBar />
-      <HeroMain />
+      <Outlet/>
       <Footer />
     </>
   );
