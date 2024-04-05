@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 export default function Register() {
   const {
@@ -9,12 +10,31 @@ export default function Register() {
       reset
     } = useForm();
 
-    const onSubmit = handleSubmit((data)=> {
+    const onSubmit = handleSubmit(async(data)=> {
+      const body = {
+        "firstName": data.firstName,
+        "lastName": data.lastName,
+        "email": data.email,
+        "password": data.password,
+        "role": data.role
+      }
+
+      try {
+        console.log('aqui onSubmit')
+        const response = await axios.post('https://s14-11-m-java.onrender.com/api/v1/auth/register', body);
+        console.log(response.data);
+
+
+      } catch (error) {
+        console.log(error);
+      }
+
       console.log(data)
       alert("Enviando datos...")
 
       reset()
     })
+
   return (
     <>
       <div className="bg-slate-200 p-3 max-w-2xl my-0 mx-auto">
@@ -27,7 +47,7 @@ export default function Register() {
               className="w-full outline-none" 
               id="name" 
               type="text"
-              {...register("name", {
+              {...register("firstName", {
                 required: {
                   value: true,
                   message: "El nombre es requerido",
@@ -46,9 +66,9 @@ export default function Register() {
                 },
               })}
             />
-            {errors.name && (
+            {errors.firstName && (
               <span className="block text-red-600 text-xs">
-                {errors.name.message}
+                {errors.firstName.message}
               </span>
             )}
 
