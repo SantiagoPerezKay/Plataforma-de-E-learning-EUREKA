@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import succeed from './img/shield-check.svg'
-// import { Redirect } from 'react-router-dom';
+// import { navigate } from 'react-router-dom';
 
 function Login() {
   // colocar el endpoint
@@ -16,39 +16,26 @@ function Login() {
 
 
   // como se envía el form
-  const serverSubmit = async (e) => {
-    e.preventDefault()
-    let user = ''  //esto no me gusta mucho, ver como funciona, necesita useState?
-   
-    //recoge los datos del useForm
-    handleSubmit((data)=> {
-      console.log(data)
-      user = data
-    })
+  const onSubmit = handleSubmit(async(data)=> {
   
     try {
       // envía los datos y pide el token con los datos del useForm
-      const response = await axios.post(url, user);
-      console.log(user);   
+      const response = await axios.post(url, data);
       console.log(response.data);   
 
-      // otra forma, probar con el endpoint
-      // let response
-      // axios.post("https://reqres.in/api/users", userData).then((response) => {
-      //   response = response.data;
-      // });
-
       //guarda el token en localStorage
-      localStorage.setItem('jwt', response.data.token);
-      console.log('Has iniciado sesión correctamente')
+      localStorage.setItem('token', response.data.token);
+  
+      // redirige a la página que necesite
+      // if(response.data.rol = "STUDENT"){navigate("/dashboard#student")}
+      // if(response.data.rol = "TEACHER"){navigate("/dashboard#teacher")}
 
-      // redirige a la página que necesite, le puse raíz porque es lo que tenemos por ahora
-      // return <Redirect to="/" />
+
     } catch (error) {
       handleError(error);
       // mostrar error con un alert
     }
-  };
+  });
 
   // como manejar el error del fetch, esto se ejecuta en el handleSubmit
   const handleError = (error) => {
@@ -72,7 +59,7 @@ function Login() {
     <div className="login flex flex-wrap justify-evenly w-full 2xl:w-[60%] 2xl:mx-auto">
         <div className="login-left max-md:mb-8">
           <h2 className="font-bold text-center m-8">Ingresa a tu cuenta</h2>
-          <form className="login-form space-y-6" onSubmit={serverSubmit}>
+          <form className="login-form space-y-6" onSubmit={onSubmit}>
             <div className="login-email">
               <label htmlFor="email" className="login-label text-xs ml-2">EMAIL:</label>
               <input
