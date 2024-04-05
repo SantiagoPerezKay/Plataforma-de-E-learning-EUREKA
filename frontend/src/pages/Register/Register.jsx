@@ -1,16 +1,22 @@
 import { useForm } from "react-hook-form";
-import axios from 'axios';
+
+import useAuth from "../../api/auth";
 
 export default function Register() {
+
+  const {
+    authRegistro
+  } = useAuth();
+
   const {
       register,
       handleSubmit,
       formState: { errors },
-      watch,
-      reset
+      watch
     } = useForm();
 
-    const onSubmit = handleSubmit(async(data)=> {
+    const onSubmit = handleSubmit(async (data)=> {
+
       const body = {
         "firstName": data.firstName,
         "lastName": data.lastName,
@@ -20,19 +26,10 @@ export default function Register() {
       }
 
       try {
-        console.log('aqui onSubmit')
-        const response = await axios.post('https://s14-11-m-java.onrender.com/api/v1/auth/register', body);
-        console.log(response.data);
-
-
+        await authRegistro(body);
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
-
-      console.log(data)
-      alert("Enviando datos...")
-
-      reset()
     })
 
   return (

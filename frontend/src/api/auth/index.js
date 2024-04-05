@@ -19,19 +19,19 @@ const useAuth = () => {
 
   const authRegistro = async (dataUser) => {
     try {
-      const { data } = await axios.post("URL_REGISTER_BACKEND", dataUser);
-      localStorage.setItem("jwt", data.token);
-      dispatch(setCredentials(data));
+      const response = await axios.post('https://s14-11-m-java.onrender.com/api/v1/auth/register', dataUser);
+      localStorage.setItem("jwt", response.data.token);
+      dispatch(setCredentials(response.data));
     } catch (error) {
       throw new Error(error.message);
     }
   };
 
-  const authLogout = async () => {
+  const authLogout = () => {
     try {
       localStorage.removeItem("jwt");
 
-      await dispatch(logOut());
+      dispatch(logOut());
 
       navigate("/login");
     } catch (error) {
