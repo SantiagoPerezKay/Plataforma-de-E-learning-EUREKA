@@ -7,7 +7,7 @@ const NavBar = () => {
   const [isLogued, setIsLogued] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="navbar flex justify-around items-center my-4">
+    <div className="navbar flex flex-wrap justify-around items-center my-4 w-full overflow-hidden">
       <Link
         to={''}
       >
@@ -22,7 +22,7 @@ const NavBar = () => {
           <li className="mx-4">Equipo</li>
         </ul>
       </div>
-      <div className="navbar-user">
+      <div className="navbar-user max-md:hidden">
         {!isLogued && (
           <div className="flex gap-2">
             <button

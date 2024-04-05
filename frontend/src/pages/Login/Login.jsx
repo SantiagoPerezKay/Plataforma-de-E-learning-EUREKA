@@ -5,7 +5,7 @@ import succeed from './img/shield-check.svg'
 
 function Login() {
   // colocar el endpoint
-  const url = 'https://s14-11-m-java.onrender.com/api/v1/swagger-ui/index.html';
+  const url = 'https://s14-11-m-java.onrender.com/api/v1/auth/login';
 
   // paramétros del UseForm
   const {
@@ -39,7 +39,7 @@ function Login() {
       // });
 
       //guarda el token en localStorage
-      localStorage.setItem('jwt', response.data.jwtToken);
+      localStorage.setItem('jwt', response.data.token);
       console.log('Has iniciado sesión correctamente')
 
       // redirige a la página que necesite, le puse raíz porque es lo que tenemos por ahora
@@ -69,19 +69,19 @@ function Login() {
 
   return (
     
-    <div className="login flex justify-evenly">
-        <div className="login-left">
+    <div className="login flex flex-wrap justify-evenly w-full 2xl:w-[60%] 2xl:mx-auto">
+        <div className="login-left max-md:mb-8">
           <h2 className="font-bold text-center m-8">Ingresa a tu cuenta</h2>
           <form className="login-form space-y-6" onSubmit={serverSubmit}>
             <div className="login-email">
-              <label htmlFor="email" className="login-label text-sm">EMAIL:</label>
+              <label htmlFor="email" className="login-label text-xs ml-2">EMAIL:</label>
               <input
                   id="email"
                   name="email"
                   type="email"
                   placeholder="Ingresa tu email"
                   autoComplete="email"
-                  className="block w-80 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500"
+                  className="block w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
                   {...register("email", {
                     required: {
                       value: true,
@@ -94,21 +94,21 @@ function Login() {
                   })}
               />
               {errors.email && (
-                <span className="block text-red-600 text-xs">
+                <span className="block text-red-600 text-xs absolute">
                   {errors.email.message}
                 </span>
               )}
 
             </div>
             <div className="login-pass">
-              <label htmlFor="password" className="login-label text-xs">CONTRASEÑA:</label>
+              <label htmlFor="password" className="login-label text-xs ml-2">CONTRASEÑA:</label>
               <input
                   id="password"
                   name="password"
                   type="password"
                   placeholder="Ingresa tu contraseña"
                   autoComplete="current-password"
-                  className="block w-80 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500"
+                  className="block w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
                   {...register("password", {
                     required: {
                       value: true,
@@ -129,7 +129,7 @@ function Login() {
                   })}
               />
                 {errors.password && (
-                  <span className="block text-red-600 text-xs">
+                  <span className="block text-red-600 text-xs absolute">
                     {errors.password.message}
                   </span>
                 )}
@@ -144,7 +144,7 @@ function Login() {
             </div>
           </form>
         </div>
-        <div className="line h-100 border border-gray-900"></div>
+        <div className="line max-md:h-0 max-md:w-full md:h-100 md:w-0 border border-gray-300 m-4"></div>
         <div className="login-right">
         <h2 className="font-bold text-center m-8">¿Necesitas una cuenta?</h2>
         <div className="flex justify-between w-60"><p>Acceso ilimitado</p><img src={succeed} width='32' /></div>
