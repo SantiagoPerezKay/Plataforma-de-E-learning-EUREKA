@@ -31,7 +31,6 @@ const useAuth = () => {
     try {
       localStorage.removeItem("jwt");
       dispatch(logOut());
-      navigate("/login");
     } catch (error) {
       console.error("Error during logout:", error);
     }

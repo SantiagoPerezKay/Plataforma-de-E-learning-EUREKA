@@ -2,7 +2,10 @@ import { useForm } from "react-hook-form";
 import succeed from './img/shield-check.svg'
 import useAuth from "../../api/auth";
 
+import { useNavigate } from "react-router-dom";
+
 function Login() {
+  const navigate = useNavigate();
   // cargamos la funcion de llamado a la api al endpoint de login
   const {
     authLogin
@@ -19,6 +22,7 @@ function Login() {
   const onSubmit = handleSubmit( async (data)=> {
     try {
       await authLogin(data);
+      navigate("/dashboard/student");
     } catch (error) {
       handleError(error)
     }

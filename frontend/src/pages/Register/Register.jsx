@@ -2,7 +2,11 @@ import { useForm } from "react-hook-form";
 
 import useAuth from "../../api/auth";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Register() {
+
+  const navigate = useNavigate();
 
   const {
     authRegistro
@@ -27,6 +31,7 @@ export default function Register() {
 
       try {
         await authRegistro(body);
+        navigate("/dashboard/student");
       } catch (error) {
         console.log(error.message);
       }
