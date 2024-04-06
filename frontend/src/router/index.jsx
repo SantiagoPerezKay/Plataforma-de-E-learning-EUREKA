@@ -1,15 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
 
 //pages
-import { Login, Register, Home , LandingPage } from "../index";
+import { 
+  Login, 
+  Register, 
+  Home, 
+  LandingPage,
+  RutaProtegida,
+  NavBar 
+} from "../index";
 
 const router = createBrowserRouter([
   {
-    path:'',
+    path:'/',
     element:<Home/>,
     children:[
       {
-        path: "",
+        path: "/",
         element: <LandingPage/>,
       },
       {
@@ -20,6 +27,16 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
+    ]
+  },
+  {
+    path:'dashboard',
+    element:<RutaProtegida/>,
+    children:[
+      {
+        path: "student",
+        element: <NavBar/>,
+      }
     ]
   }
 ]);

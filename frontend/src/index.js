@@ -9,4 +9,16 @@ import NavBar from "./components/navBar/NavBar";
 import LogOutButton from "./components/LogOutButton/LogOutButton";
 import LandingPage from "./pages/Landing/LandingPage"
 
-export { Home, Login, Register, LogOutButton, Footer, NavBar, LandingPage };
+/* Layouts */
+import RutaProtegida from "./layouts/RutaProtegida";
+
+export { 
+    Home, 
+    Login, 
+    Register, 
+    LogOutButton, 
+    Footer, 
+    NavBar, 
+    LandingPage,
+    RutaProtegida
+};

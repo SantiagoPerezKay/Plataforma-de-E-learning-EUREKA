@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import userCircle from "./img/user-circle.svg";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,10 +6,18 @@ import { useNavigate, Link } from "react-router-dom";
 const NavBar = () => {
   const [isLogued, setIsLogued] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const token = localStorage.getItem('jwt');
+    if(token){
+      setIsLogued(true)
+    }
+  },[])
+
   return (
     <div className="navbar flex flex-wrap justify-around items-center my-4 w-full overflow-hidden">
       <Link
-        to={''}
+        to={'/'}
       >
         <div className="navbar-logo py-4 px-12 border border-gray-400">
           Logo EUREKA!
@@ -45,7 +53,9 @@ const NavBar = () => {
         )}
         {isLogued && (
           <div className="flex gap-4">
-            <LogOutButton />
+            <LogOutButton 
+              changeState={()=> setIsLogued(false)}
+            />
             <img src={userCircle} width="60" />
           </div>
         )}

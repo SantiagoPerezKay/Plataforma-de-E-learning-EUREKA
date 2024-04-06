@@ -9,7 +9,7 @@ const useAuth = () => {
 
   const authLogin = async (dataUser) => {
     try {
-      const { data } = await axios.post("URL_LOGIN_BACKEND", dataUser);
+      const { data } = await axios.post('https://s14-11-m-java.onrender.com/api/v1/auth/login', dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
     } catch (error) {
@@ -19,9 +19,9 @@ const useAuth = () => {
 
   const authRegistro = async (dataUser) => {
     try {
-      const response = await axios.post('https://s14-11-m-java.onrender.com/api/v1/auth/register', dataUser);
-      localStorage.setItem("jwt", response.data.token);
-      dispatch(setCredentials(response.data));
+      const { data } = await axios.post('https://s14-11-m-java.onrender.com/api/v1/auth/register', dataUser);
+      localStorage.setItem("jwt", data.token);
+      dispatch(setCredentials(data));
     } catch (error) {
       throw new Error(error.message);
     }
@@ -30,10 +30,7 @@ const useAuth = () => {
   const authLogout = () => {
     try {
       localStorage.removeItem("jwt");
-
       dispatch(logOut());
-
-      navigate("/login");
     } catch (error) {
       console.error("Error during logout:", error);
     }
