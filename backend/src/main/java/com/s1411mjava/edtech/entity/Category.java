@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 
 @Entity
 @Table(name = "categories")
@@ -19,5 +21,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private Set<Course> courses;
 }
