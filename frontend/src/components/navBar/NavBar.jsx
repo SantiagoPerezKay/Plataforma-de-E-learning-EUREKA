@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import userCircle from "./img/user-circle.svg";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,6 +6,10 @@ import { useNavigate, Link } from "react-router-dom";
 const NavBar = () => {
   const [isLogued, setIsLogued] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(()=>{
+
+  },[])
   return (
     <div className="navbar flex flex-wrap justify-around items-center my-4 w-full overflow-hidden">
       <Link

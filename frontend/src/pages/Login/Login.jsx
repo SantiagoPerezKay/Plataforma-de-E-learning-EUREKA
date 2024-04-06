@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import succeed from './img/shield-check.svg'
-// import { navigate } from 'react-router-dom';
+import useAuth from "../../api/auth";
 
 function Login() {
-  // colocar el endpoint
-  const url = 'https://s14-11-m-java.onrender.com/api/v1/auth/login';
+  // cargamos la funcion de llamado a la api al endpoint de login
+  const {
+    authLogin
+  }=useAuth()
 
-  // paramétros del UseForm
   const {
     register,
     handleSubmit,
@@ -16,43 +16,25 @@ function Login() {
 
 
   // como se envía el form
-  const onSubmit = handleSubmit(async(data)=> {
-  
+  const onSubmit = handleSubmit( async (data)=> {
     try {
-      // envía los datos y pide el token con los datos del useForm
-      const response = await axios.post(url, data);
-      console.log(response.data);   
-
-      //guarda el token en localStorage
-      localStorage.setItem('token', response.data.token);
-  
-      // redirige a la página que necesite
-      // if(response.data.rol = "STUDENT"){navigate("/dashboard#student")}
-      // if(response.data.rol = "TEACHER"){navigate("/dashboard#teacher")}
-
-
+      await authLogin(data);
     } catch (error) {
-      handleError(error);
-      // mostrar error con un alert
+      handleError(error)
     }
   });
 
   // como manejar el error del fetch, esto se ejecuta en el handleSubmit
   const handleError = (error) => {
-    if (error.response) {
-      console.log(error.response.data);
-  
+    if (error.message) {
+      console.log('Error', error.message);
     } else if (error.request) {
       console.log(error.request);
-  
-    } else {
-      console.log('Error', error.message);
+    } else if (error.response){
+      console.log(error.response.data);
     }
   };
   
-
-
-
 
   return (
     
