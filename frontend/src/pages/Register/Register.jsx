@@ -3,8 +3,14 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../api/auth";
 
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Register() {
+
+  const [error,setError]= useState({
+    err:false,
+    msg:''
+  })
 
   const navigate = useNavigate();
 
