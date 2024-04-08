@@ -44,10 +44,18 @@ function Login() {
   // como manejar el error del fetch, esto se ejecuta en el handleSubmit
   const handleError = (error) => {
     if(error.detail){
-      setError({
-        state:true,
-        msg:error.detail
-      })
+      if(error.detail.password){
+        const rta = error.detail.password
+        setError({
+          state:true,
+          msg:rta
+        })
+      }else{
+        setError({
+          state:true,
+          msg:'algo salio mal,intentalo mas tarde'
+        })
+      }
     }else{
       setError({
         state:true,

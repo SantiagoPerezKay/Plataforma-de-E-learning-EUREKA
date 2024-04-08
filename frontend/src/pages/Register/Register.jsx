@@ -51,11 +51,18 @@ export default function Register() {
 
     const handleError = (error) => {
       if(error.detail){
-        const rta = error.detail.password
-        setError({
-          state:true,
-          msg:rta
-        })
+        if(error.detail.password){
+          const rta = error.detail.password
+          setError({
+            state:true,
+            msg:rta
+          })
+        }else{
+          setError({
+            state:true,
+            msg:'algo salio mal,intentalo mas tarde'
+          })
+        }
       }else{
         setError({
           state:true,
