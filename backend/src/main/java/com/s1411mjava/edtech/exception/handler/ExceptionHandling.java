@@ -1,7 +1,6 @@
 package com.s1411mjava.edtech.exception.handler;
 
-import com.s1411mjava.edtech.exception.DuplicatedResourceException;
-import com.s1411mjava.edtech.exception.RoleNameNotValidException;
+import com.s1411mjava.edtech.exception.*;
 import com.s1411mjava.edtech.exception.dto.ExceptionDto;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -45,10 +44,13 @@ public class ExceptionHandling {
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ExceptionDto handleAccessDeniedException(AccessDeniedException ex){
+        Map<String, String> detail = new HashMap<>();
+        detail.put("reason", ex.getMessage());
+
         return new ExceptionDto(
                 HttpStatus.FORBIDDEN.value(),
                 "You do not have permission to access this resource.",
-                null
+                detail
         );
     }
 
@@ -103,6 +105,39 @@ public class ExceptionHandling {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionDto handleDuplicatedException(DuplicatedResourceException ex){
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+    }
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleStudentNotFoundException(StudentNotFoundException ex){
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+    }
+
+    @ExceptionHandler(IdLessThanOneException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleIdLessThanOneException(IdLessThanOneException ex){
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+    }
+
+    @ExceptionHandler(IdNotNullException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleIdNotNullException(IdNotNullException ex){
         return new ExceptionDto(
                 HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
