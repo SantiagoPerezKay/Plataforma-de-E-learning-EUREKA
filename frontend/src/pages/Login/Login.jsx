@@ -68,8 +68,8 @@ function Login() {
     
     <div className="login flex flex-wrap justify-evenly w-full 2xl:w-[60%] 2xl:mx-auto">
         <div className="login-left max-md:mb-8">
-          <Alertas err={error}>
-            <h2 className="font-bold text-center mb-4">Ingresa a tu cuenta</h2>
+          <Alertas err={error} size='xs'>
+            <h2 className="font-bold text-center mb-4 mt-8">Ingresa a tu cuenta</h2>
             <form className="login-form space-y-6" onSubmit={onSubmit}>
               <div className="login-email">
                 <label htmlFor="email" className="login-label text-xs ml-2">EMAIL:</label>
