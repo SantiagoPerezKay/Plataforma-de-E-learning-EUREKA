@@ -27,7 +27,11 @@ const NavBar = () => {
         <ul className="flex">
           <li className="mx-4">Inicio</li>
           <li className="mx-4">Cursos</li>
-          <li className="mx-4">Equipo</li>
+          <Link
+            to={'/equipo'}
+          >
+            <li className="mx-4">Equipo</li>
+          </Link>
         </ul>
       </div>
       <div className="navbar-user max-md:hidden">

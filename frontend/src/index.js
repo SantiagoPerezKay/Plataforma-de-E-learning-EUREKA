@@ -2,6 +2,7 @@
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Equipo from "./pages/Equipo/Equipo";
 
 /* Components */
 import Footer from "./components/footer/Footer";
@@ -20,5 +21,6 @@ export {
     Footer, 
     NavBar, 
     LandingPage,
-    RutaProtegida
+    RutaProtegida,
+    Equipo
 };

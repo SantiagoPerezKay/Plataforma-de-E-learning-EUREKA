@@ -7,7 +7,8 @@ import {
   Home, 
   LandingPage,
   RutaProtegida,
-  NavBar 
+  NavBar,
+  Equipo 
 } from "../index";
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "equipo",
+        element: <Equipo/>,
       },
     ]
   },
