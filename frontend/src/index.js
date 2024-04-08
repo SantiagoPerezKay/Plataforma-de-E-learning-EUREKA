@@ -9,9 +9,11 @@ import Footer from "./components/footer/Footer";
 import NavBar from "./components/navBar/NavBar";
 import LogOutButton from "./components/LogOutButton/LogOutButton";
 import LandingPage from "./pages/Landing/LandingPage"
+import SideBarEjemplo from "./components/SideBarEjemplo/SideBarEjemplo";
 
 /* Layouts */
 import RutaProtegida from "./layouts/RutaProtegida";
+import DashboardPattern from "./layouts/DashboardPattern";
 
 export { 
     Home, 
@@ -22,5 +24,7 @@ export {
     NavBar, 
     LandingPage,
     RutaProtegida,
+    DashboardPattern,
+    SideBarEjemplo,
     Equipo
 };
