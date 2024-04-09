@@ -13,6 +13,8 @@ import LandingPage from "./pages/Landing/LandingPage"
 import SideBarEjemplo from "./components/SideBarEjemplo/SideBarEjemplo";
 import Alertas from "./components/Alertas/Alertas";
 import Spinner from "./components/Loading/Spinner"
+import SidebarCourse from "./components/SidebarCourse/SidebarCourse";
+import Course from "./components/Course/Course";
 
 /* Layouts */
 import RutaProtegida from "./layouts/RutaProtegida";
@@ -32,5 +34,7 @@ export {
     Equipo,
     DashboardCourse,
     Alertas,
-    Spinner
+    Spinner,
+    SidebarCourse,
+    Course
 };

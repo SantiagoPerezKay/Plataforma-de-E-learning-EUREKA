@@ -11,10 +11,10 @@ function DashboardPattern({
     <div>
       <NavBar/>
       <div className="w-full h-screen flex flex-row">
-        <div className="w-1/5 border">
+        <div className="w-[30%] border">
           <SideBarComponent/>
         </div>
-        <div className="w-4/5 border">
+        <div className="w-[70%] border">
           <Outlet/>
         </div>
       </div>
