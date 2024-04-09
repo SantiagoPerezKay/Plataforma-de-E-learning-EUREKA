@@ -7,7 +7,10 @@ import {
   Home, 
   LandingPage,
   RutaProtegida,
-  NavBar 
+  DashboardPattern,
+  SideBarEjemplo, 
+  Equipo,
+  DashboardCourse
 } from "../index";
 
 const router = createBrowserRouter([
@@ -27,6 +30,14 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
+      {
+        path: "equipo",
+        element: <Equipo/>,
+      },
+      {
+        path: "dashboardCourse",
+        element: <DashboardCourse/>,
+      }
     ]
   },
   {
@@ -35,7 +46,17 @@ const router = createBrowserRouter([
     children:[
       {
         path: "student",
-        element: <NavBar/>,
+        element: <DashboardPattern SideBarComponent={SideBarEjemplo}/>,
+        children:[
+          {
+            path:"mis-cursos",
+            element:<h1>Cursos inscritos</h1>
+          },
+          {
+            path:"cursos",
+            element:<h1>Cursos disponibles</h1>
+          }
+        ]
       }
     ]
   }

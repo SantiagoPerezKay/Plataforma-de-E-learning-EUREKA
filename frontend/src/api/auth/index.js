@@ -13,7 +13,7 @@ const useAuth = () => {
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
     } catch (error) {
-      throw new Error(error.message);
+      throw error.response.data;
     }
   };
 
@@ -23,7 +23,7 @@ const useAuth = () => {
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
     } catch (error) {
-      throw new Error(error.message);
+      throw error.response.data;
     }
   };
 

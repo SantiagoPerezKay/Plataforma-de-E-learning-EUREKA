@@ -170,6 +170,13 @@ const NavBar = () => {
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
               </svg>
           </li>
+          <li className="mx-4">Inicio</li>
+          <li className="mx-4">Cursos</li>
+          <Link
+            to={'/equipo'}
+          >
+            <li className="mx-4">Equipo</li>
+          </Link>
         </ul>
         {/* debería cargar los cursos que traiga la bbdd */}
         {isSubMenuOpen && (
