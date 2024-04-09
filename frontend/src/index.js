@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Equipo from "./pages/Equipo/Equipo";
+import DashboardCourse from "./pages/DashboardCourse/DashboardCourse";
 
 /* Components */
 import Footer from "./components/footer/Footer";
@@ -28,5 +29,6 @@ export {
     DashboardPattern,
     SideBarEjemplo,
     Equipo,
+    DashboardCourse,
     Alertas
 };

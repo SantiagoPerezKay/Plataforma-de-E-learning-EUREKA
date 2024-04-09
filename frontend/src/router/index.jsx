@@ -9,7 +9,8 @@ import {
   RutaProtegida,
   DashboardPattern,
   SideBarEjemplo, 
-  Equipo 
+  Equipo,
+  DashboardCourse
 } from "../index";
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
         path: "equipo",
         element: <Equipo/>,
       },
+      {
+        path: "dashboardCourse",
+        element: <DashboardCourse/>,
+      }
     ]
   },
   {
