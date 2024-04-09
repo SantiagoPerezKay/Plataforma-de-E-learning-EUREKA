@@ -6,7 +6,7 @@ import useAuth from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
 
-import {Alertas} from "../../index";
+import {Alertas,Spinner} from "../../index";
 
 function Login() {
 
@@ -14,6 +14,9 @@ function Login() {
     state:false,
     msg:''
   })
+  
+  const [loading,setLoading]=useState(false)
+
 
   const navigate = useNavigate();
   // cargamos la funcion de llamado a la api al endpoint de login
@@ -31,9 +34,11 @@ function Login() {
   // como se envía el form
   const onSubmit = handleSubmit( async (data)=> {
     try {
+      setLoading(true)
       await authLogin(data);
       navigate("/dashboard/student");
     } catch (error) {
+      setLoading(false)
       handleError(error)
       setTimeout(()=>{
         resetError()
@@ -145,7 +150,9 @@ function Login() {
                     type="submit"
                     className="flex w-40 justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-auto"
                 >
-                  INICIAR SESION
+                  {
+                    loading ? <Spinner/> : <p>INICIAR SESION</p>
+                  }
                 </button>
               </div>
             </form>
