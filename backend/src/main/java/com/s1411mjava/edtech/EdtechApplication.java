@@ -17,7 +17,7 @@ public class EdtechApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(CategoryRepository categoryRepository){
+	public CommandLineRunner initData(final CategoryRepository categoryRepository){
 		return (args) -> {
 
 			Category category1 = new Category(1L,"Negocios", new HashSet<>());
