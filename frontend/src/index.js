@@ -12,6 +12,7 @@ import LogOutButton from "./components/LogOutButton/LogOutButton";
 import LandingPage from "./pages/Landing/LandingPage"
 import SideBarEjemplo from "./components/SideBarEjemplo/SideBarEjemplo";
 import Alertas from "./components/Alertas/Alertas";
+import Spinner from "./components/Loading/Spinner"
 
 /* Layouts */
 import RutaProtegida from "./layouts/RutaProtegida";
@@ -30,5 +31,6 @@ export {
     SideBarEjemplo,
     Equipo,
     DashboardCourse,
-    Alertas
+    Alertas,
+    Spinner
 };
