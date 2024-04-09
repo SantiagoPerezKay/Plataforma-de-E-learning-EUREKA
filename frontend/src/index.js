@@ -11,6 +11,7 @@ import NavBar from "./components/navBar/NavBar";
 import LogOutButton from "./components/LogOutButton/LogOutButton";
 import LandingPage from "./pages/Landing/LandingPage"
 import SideBarEjemplo from "./components/SideBarEjemplo/SideBarEjemplo";
+import Alertas from "./components/Alertas/Alertas";
 
 /* Layouts */
 import RutaProtegida from "./layouts/RutaProtegida";
@@ -28,5 +29,6 @@ export {
     DashboardPattern,
     SideBarEjemplo,
     Equipo,
-    DashboardCourse
+    DashboardCourse,
+    Alertas
 };
