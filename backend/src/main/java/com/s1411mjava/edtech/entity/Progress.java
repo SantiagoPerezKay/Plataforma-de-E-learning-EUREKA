@@ -16,11 +16,7 @@ public class Progress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private Long content_id;
-    @Column(nullable = false)
     private boolean completed;
-    @Column(nullable = false)
-    private Long student_id;
 
     @ManyToOne
     @JoinColumn(name = "content_id")

@@ -21,8 +21,6 @@ public class Module {
     private String title;
     @Column(nullable = false)
     private int position;
-    @Column(nullable = false)
-    private Long course_id;
 
 
     @OneToMany(mappedBy = "module")

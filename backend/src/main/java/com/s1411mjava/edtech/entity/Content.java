@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "contents")
 @NoArgsConstructor
@@ -24,8 +26,6 @@ public class Content {
     @Column(nullable = false)
     private String type;
     @Column(nullable = false)
-    private Long module_id;
-    @Column(nullable = false)
     private String description;
 
 
@@ -34,7 +34,7 @@ public class Content {
     private Module module;
 
     @OneToMany(mappedBy = "content")
-    private Progress progress;
+    private List<Progress> progress;
 
 
 
