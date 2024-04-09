@@ -22,7 +22,7 @@ public class Progress {
     @Column(nullable = false)
     private Long student_id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "content_id")
     private Content content;
     @ManyToOne

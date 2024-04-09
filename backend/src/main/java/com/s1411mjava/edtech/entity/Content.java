@@ -33,7 +33,7 @@ public class Content {
     @JoinColumn(name = "module_id")
     private Module module;
 
-    @OneToOne(mappedBy = "content")
+    @OneToMany(mappedBy = "content")
     private Progress progress;
 
 
