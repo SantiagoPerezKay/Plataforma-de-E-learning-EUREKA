@@ -9,14 +9,16 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
+
 @Component
 @RequiredArgsConstructor
+@Order(2)
 public class CourseDataLoader implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(CourseDataLoader.class);
@@ -99,16 +101,16 @@ public class CourseDataLoader implements CommandLineRunner {
                 , "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWFya2V0aW5nfGVufDB8fDB8fHww", null, marketing));
 
 //Categoria DISEÑO
-Category design = categoryRepository.findById(5L).orElse(null);
+        Category design = categoryRepository.findById(5L).orElse(null);
         courses.add(new Course(21L, "Fundamentos del Diseño Gráfico", "Este curso cubre los principios básicos del diseño gráfico, incluyendo teoría del color, tipografía, composición, y uso de software de diseño como Adobe Illustrator y Photoshop."
                 , "https://images.unsplash.com/photo-1561070791-36c11767b26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRpc2UlQzMlQjFvfGVufDB8fDB8fHww", null, design));
-        courses.add(new Course(22L,"Diseño de Experiencia de Usuario (UX)", "Aprende sobre los principios de diseño centrado en el usuario, incluyendo investigación de usuarios, arquitectura de la información, prototipado y pruebas de usabilidad."
+        courses.add(new Course(22L, "Diseño de Experiencia de Usuario (UX)", "Aprende sobre los principios de diseño centrado en el usuario, incluyendo investigación de usuarios, arquitectura de la información, prototipado y pruebas de usabilidad."
                 , "https://images.unsplash.com/photo-1561070791-36c11767b26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRpc2UlQzMlQjFvfGVufDB8fDB8fHww", null, design));
-        courses.add(new Course(23L,"Diseño de Interfaz de Usuario (UI)", "Explora los fundamentos del diseño de interfaces de usuario para aplicaciones y sitios web, incluyendo diseño visual, interacción usuario-interfaz, y diseño responsivo."
+        courses.add(new Course(23L, "Diseño de Interfaz de Usuario (UI)", "Explora los fundamentos del diseño de interfaces de usuario para aplicaciones y sitios web, incluyendo diseño visual, interacción usuario-interfaz, y diseño responsivo."
                 , "https://images.unsplash.com/photo-1561070791-36c11767b26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRpc2UlQzMlQjFvfGVufDB8fDB8fHww", null, design));
-        courses.add(new Course(24L,"Diseño de Productos", "Este curso se centra en el proceso de diseño de productos físicos y digitales, desde la conceptualización hasta la fabricación, pasando por la iteración y la optimización."
+        courses.add(new Course(24L, "Diseño de Productos", "Este curso se centra en el proceso de diseño de productos físicos y digitales, desde la conceptualización hasta la fabricación, pasando por la iteración y la optimización."
                 , "https://images.unsplash.com/photo-1561070791-36c11767b26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRpc2UlQzMlQjFvfGVufDB8fDB8fHww", null, design));
-        courses.add(new Course(25L,"Diseño de Branding y Identidad Corporativa", "Aprende a crear y gestionar la identidad visual de una marca, incluyendo diseño de logotipos, paletas de colores, y elementos de marca coherentes."
+        courses.add(new Course(25L, "Diseño de Branding y Identidad Corporativa", "Aprende a crear y gestionar la identidad visual de una marca, incluyendo diseño de logotipos, paletas de colores, y elementos de marca coherentes."
                 , "https://images.unsplash.com/photo-1561070791-36c11767b26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRpc2UlQzMlQjFvfGVufDB8fDB8fHww", null, design));
 
         repository.saveAll(courses);
