@@ -30,7 +30,7 @@ public class CourseDataLoader implements CommandLineRunner {
         List<Course> courses = new ArrayList<>();
 
         // Categoría NEGOCIOS
-        Category business = categoryRepository.findById(1L).orElse(null).getCategory();
+        Category business = categoryRepository.findById(1L).orElse(null);
         courses.add(new Course(1L, "Introducción a la Gestión Empresarial", "Este curso proporciona una visión general de los conceptos básicos de la gestión empresarial, incluyendo estrategia, liderazgo, gestión de recursos humanos, marketing y finanzas."
                 , "https://images.unsplash.com/photo-1665686304312-16e3a16be0ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fG5lZ29jaW9zfGVufDB8fDB8fHww", null, business));
         courses.add(new Course(2L, "Fundamentos de Marketing Digital", "Aprenderás sobre las estrategias y herramientas fundamentales del marketing digital, incluyendo SEO, SEM, redes sociales, análisis de datos y publicidad en línea."
@@ -43,7 +43,7 @@ public class CourseDataLoader implements CommandLineRunner {
                 , "https://images.unsplash.com/photo-1665686304312-16e3a16be0ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fG5lZ29jaW9zfGVufDB8fDB8fHww", 5F, business));
 
 //        Categoria FINANZAS
-        Category finance = categoryRepository.findById(2L).orElse(null).getCategory();
+        Category finance = categoryRepository.findById(2L).orElse(null);
         courses.add(new Course(6L, "Fundamentos de Finanzas Corporativas",
                 "Este curso cubre los principios básicos de las finanzas corporativas, incluyendo la valoración de activos, la estructura de capital, el riesgo financiero y la toma de decisiones de inversión.",
                 "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", null, finance));
@@ -65,7 +65,7 @@ public class CourseDataLoader implements CommandLineRunner {
                 "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", null, finance));
 
 //        Categoria IT
-        Category it = categoryRepository.findById(3L).orElse(null).getCategory();
+        Category it = categoryRepository.findById(3L).orElse(null);
         courses.add(new Course(11L, "Introducción a la Programación", "Este curso proporciona una visión general de los conceptos básicos de la programación, incluyendo algoritmos, estructuras de datos y lógica de programación. Es ideal para principiantes que deseen aprender a programar."
                 , "https://images.unsplash.com/photo-1573165706433-60f05c787234?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fElUfGVufDB8fDB8fHww", null, it));
 
@@ -82,7 +82,7 @@ public class CourseDataLoader implements CommandLineRunner {
                 , "https://images.unsplash.com/photo-1573165706433-60f05c787234?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fElUfGVufDB8fDB8fHww", null, it));
 
 //        Categoria MARKETING
-        Category marketing = categoryRepository.findById(4L).orElse(null).getCategory();
+        Category marketing = categoryRepository.findById(4L).orElse(null);
         courses.add(new Course(16L, "Introducción al Marketing Digital", "Este curso proporciona una visión general de las estrategias y tácticas utilizadas en el marketing digital, incluyendo SEO, SEM, marketing de contenidos, redes sociales y analítica web."
                 , "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWFya2V0aW5nfGVufDB8fDB8fHww", null, marketing));
 
@@ -99,7 +99,7 @@ public class CourseDataLoader implements CommandLineRunner {
                 , "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWFya2V0aW5nfGVufDB8fDB8fHww", null, marketing));
 
 //Categoria DISEÑO
-Category design = categoryRepository.findById(5L).orElse(null).getCategory();
+Category design = categoryRepository.findById(5L).orElse(null);
         courses.add(new Course(21L, "Fundamentos del Diseño Gráfico", "Este curso cubre los principios básicos del diseño gráfico, incluyendo teoría del color, tipografía, composición, y uso de software de diseño como Adobe Illustrator y Photoshop."
                 , "https://images.unsplash.com/photo-1561070791-36c11767b26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRpc2UlQzMlQjFvfGVufDB8fDB8fHww", null, design));
         courses.add(new Course(22L,"Diseño de Experiencia de Usuario (UX)", "Aprende sobre los principios de diseño centrado en el usuario, incluyendo investigación de usuarios, arquitectura de la información, prototipado y pruebas de usabilidad."
