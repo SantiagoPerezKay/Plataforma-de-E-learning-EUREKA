@@ -36,14 +36,7 @@ const NavBar = () => {
   // menu hamburguesa
   const [openSideBar, setOpenSideBar] = useState(false);
   return (
-    <div className="navbar flex flex-wrap justify-between max-md:justify-evenly max-lg:justify-normal items-center py-4 lg:px-12 w-full 2xl:w-3/4 2xl:mx-auto">
-      <div className="hamburger  max-sm:m-0 max-md:-ml-4 mx-8 lg:hidden">
-        <img src={iconHamburger} 
-            alt="Menú Desplegable" 
-            width='30' 
-            onClick={()=>setOpenSideBar(true)}
-        />
-      </div>
+    <>
       <div className="navbar-sidebar">
         <div
           className={`${!openSideBar && "hidden"
@@ -88,9 +81,28 @@ const NavBar = () => {
               </div>
             }
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
-            <div className="mx-auto">Equipo</div>
+            <div className="mx-auto my-4">Equipo</div>
+            <div className="mx-auto">
+              <p className="text-center my-2">Cursos</p>
+              <ul>
+                <li>Negocios</li>
+                <li>Finanzas</li>
+                <li>IT</li>
+                <li>Marketing</li>
+                <li>Diseño</li>
+              </ul>
+    
+            </div>
           </div>
         </div>
+      </div>
+    <div className="navbar flex flex-wrap justify-between max-md:justify-evenly max-lg:justify-normal items-center py-4 lg:px-12 w-full 2xl:w-3/4 2xl:mx-auto">
+      <div className="hamburger  max-sm:m-0 max-md:-ml-4 mx-8 lg:hidden">
+        <img src={iconHamburger} 
+            alt="Menú Desplegable" 
+            width='30' 
+            onClick={()=>setOpenSideBar(true)}
+        />
       </div>
 
 
@@ -130,25 +142,30 @@ const NavBar = () => {
         {isSubMenuOpen && (
           <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
                   Negocios
+                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
                   Finanzas
+                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
                   IT
+                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
                   Marketing
+                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
                   Diseño
+                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
             </ul>
           </div>
@@ -170,13 +187,6 @@ const NavBar = () => {
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
               </svg>
           </li>
-          <li className="mx-4">Inicio</li>
-          <li className="mx-4">Cursos</li>
-          <Link
-            to={'/equipo'}
-          >
-            <li className="mx-4">Equipo</li>
-          </Link>
         </ul>
         {/* debería cargar los cursos que traiga la bbdd */}
         {isSubMenuOpen && (
@@ -229,7 +239,7 @@ const NavBar = () => {
               onClick={() => {
                 navigate("/login");
               }}
-              className="login flex h-12 justify-center items-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-auto"
+              className="login flex h-12 justify-center items-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               INICIAR SESION
             </button>
@@ -245,6 +255,7 @@ const NavBar = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
