@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import iconHamburger from "../components/navBar/img/cross.svg";
-import iconCross from "../components/navBar/img/hamburger.svg";
+import iconDownRow from "../components/navBar/img/down-row.svg";
+import iconUpRow from "../components/navBar/img/up-row.svg";
 
 import { 
     NavBar
@@ -40,12 +40,12 @@ function DashboardPattern({
       <NavBar/>
       <div className="w-full md:h-screen flex flex-col md:flex-row md:overflow-auto">
         <div className="relative w-full px-5 py-2 flex flex-col items-end md:w-[35%] lg:w-[30%] border md:overflow-y-scroll bg-white z-10">
-          <div className="w-8 md:hidden">
+          <div className="md:hidden">
             {
               open ? 
-              <button onClick={()=>setOpen(false)}><img src={iconHamburger} alt='icono x' /></button> 
+              <button onClick={()=>setOpen(false)}><img className="w-8" src={iconDownRow} alt='icono x' /></button> 
               : 
-              <button onClick={()=>setOpen(true)}><img src={iconCross} alt='icono hamburguesa'/></button>
+              <button onClick={()=>setOpen(true)}><img className="w-8" src={iconUpRow} alt='icono hamburguesa'/></button>
             }
           </div>
           { !open && 
@@ -54,7 +54,7 @@ function DashboardPattern({
             </div>
           }
         </div>
-        <div className="w-full md:w-[65%] lg:w-[60%] border px-10 py-2 md:overflow-y-scroll">
+        <div className="w-full md:w-[65%] lg:w-[70%] border px-10 py-2 md:overflow-y-scroll">
           <Outlet/>
         </div>
       </div>
