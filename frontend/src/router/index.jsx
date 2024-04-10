@@ -10,7 +10,6 @@ import {
   DashboardPattern,
   SideBarEjemplo,
   Equipo,
-  DashboardCourse,
   CourseCardContainer,
   SidebarCourse,
   Course
@@ -36,11 +35,7 @@ const router = createBrowserRouter([
       {
         path: "equipo",
         element: <Equipo />,
-      },
-      {
-        path: "dashboardCourse",
-        element: <DashboardCourse />,
-      },
+      }
     ],
   },
   {
@@ -59,11 +54,7 @@ const router = createBrowserRouter([
               path: "cursos",
               element: <h1>Cursos disponibles</h1>,
             },
-          ],
-       },
-          ],
-        },
-        ]
+        ],
       },
       {
         path:"curso/:id-curso",
