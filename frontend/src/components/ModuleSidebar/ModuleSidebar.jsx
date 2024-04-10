@@ -5,7 +5,7 @@ export default function ModuleSidebar({onClick, estilos}) {
   return (
     <>
       <a href='#'>
-      <div className={`flex w-full h-[4.5rem] bg-white cursor-pointer hover:bg-[#f1f1f1] ${estilos}`} onClick={onClick}>
+      <div className={`flex w-full h-[4.5rem]  bg-white cursor-pointer hover:bg-[#f1f1f1] ${estilos}`} onClick={onClick}>
         <div className="h-full w-12 flex justify-center items-center">
           <img className="h-6" src={svgCheck} alt="icono de check" />
         </div>
