@@ -1,10 +1,10 @@
 package com.s1411mjava.edtech.service;
 
-import com.s1411mjava.edtech.dtos.MyCourseDto;
+import com.s1411mjava.edtech.dtos.CourseModuleDto;
 
 import java.util.List;
 
 public interface CourseService {
 
-    List<MyCourseDto> getCoursesForUser(Long userId);
+    List<CourseModuleDto> getCourseForUser(Long courseId);
 }

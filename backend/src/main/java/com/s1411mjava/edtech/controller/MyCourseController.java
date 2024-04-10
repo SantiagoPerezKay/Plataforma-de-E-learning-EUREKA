@@ -1,7 +1,7 @@
 package com.s1411mjava.edtech.controller;
 
 
-import com.s1411mjava.edtech.dtos.MyCourseDto;
+import com.s1411mjava.edtech.dtos.CourseModuleDto;
 import com.s1411mjava.edtech.service.CourseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -23,10 +23,10 @@ import java.util.List;
 public class MyCourseController {
         private final CourseService courseService;
 
-    @Operation(description = "Get all enrollments for a student. Role: STUDENT.")
-    @GetMapping("/mycourses/{studentId}")
+    @Operation(description = "Get course for a student. Role: STUDENT.")
+    @GetMapping("/mycourses/{courseId}")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
-    public ResponseEntity<List<MyCourseDto>> findCoursesByStudent(@PathVariable Long studentId){
-        return ResponseEntity.ok(this.courseService.getCoursesForUser(studentId));
+    public ResponseEntity<List<CourseModuleDto>> findCoursesById(@PathVariable Long courseId){
+        return ResponseEntity.ok(this.courseService.getCourseForUser(courseId));
     }}

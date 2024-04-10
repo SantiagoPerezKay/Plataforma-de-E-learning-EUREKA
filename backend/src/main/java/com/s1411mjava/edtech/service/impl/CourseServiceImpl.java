@@ -1,38 +1,31 @@
 package com.s1411mjava.edtech.service.impl;
 
 
-import com.s1411mjava.edtech.dtos.EnrollmentDto;
-import com.s1411mjava.edtech.dtos.MyCourseDto;
-import com.s1411mjava.edtech.entity.Module;
-import com.s1411mjava.edtech.mapper.MyCourseMapper;
-import com.s1411mjava.edtech.repository.ModuleRepository;
+import com.s1411mjava.edtech.dtos.CourseModuleDto;
+import com.s1411mjava.edtech.entity.Course;
+import com.s1411mjava.edtech.exception.ResourceNotFoundException;
+import com.s1411mjava.edtech.mapper.CourseModuleMapper;
+import com.s1411mjava.edtech.repository.CourseRepository;
 import com.s1411mjava.edtech.service.CourseService;
-import com.s1411mjava.edtech.service.EnrollmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
 
-    private final EnrollmentService enrollmentService;
-    private final ModuleRepository moduleRepository;
-    private final MyCourseMapper myCourseMapper;
+    private final CourseRepository courseRepository;
+    private final CourseModuleMapper CourseMapper;
 
 
 
     @Override
-    public List<MyCourseDto> getCoursesForUser(Long userId) {
-        List<EnrollmentDto> enrollmentDtos = enrollmentService.findAllByStudent(userId);
-        List<Long> courseIds = Collections.singletonList(enrollmentDtos.stream().iterator().next().getCourse().getId());
-        List<List<Module>> modulesList = courseIds.stream()
-                .map(moduleRepository::findByCourseId)
-                .toList();
+    public List<CourseModuleDto> getCourseForUser(Long courseId) {
 
-        return modulesList.stream().map((List<Module> module) -> myCourseMapper.toDto((Module) module)).collect(Collectors.toList());
+        Course course = courseRepository.findById(courseId).orElseThrow(() -> new ResourceNotFoundException("Course not found"));
+        return Collections.singletonList(CourseMapper.toDto(course));
     }
 }
