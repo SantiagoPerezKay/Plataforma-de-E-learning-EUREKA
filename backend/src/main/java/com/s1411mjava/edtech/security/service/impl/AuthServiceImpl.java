@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         if (userRepository.existsByEmail(userDto.getEmail())){
-            throw new DuplicatedResourceException("Email already in use");
+            throw new DuplicatedResourceException("El correo electrónico ya se encuentra en uso");
         }
 
         User user = this.userMapper.toEntity(userDto);
@@ -62,7 +62,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public TokenDto login(LoginDto loginDto) {
         if(!userRepository.existsByEmail(loginDto.getEmail())){
-            throw new UsernameNotFoundException("UserNotFound");
+            throw new UsernameNotFoundException("Usuario no encontrado");
         }
         Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
