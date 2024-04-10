@@ -12,6 +12,8 @@ import {
   Equipo,
   DashboardCourse,
   CourseCardContainer,
+  SidebarCourse,
+  Course
 } from "../index";
 
 const router = createBrowserRouter([
@@ -49,18 +51,32 @@ const router = createBrowserRouter([
         path: "student",
         element: <DashboardPattern SideBarComponent={SideBarEjemplo} />,
         children: [
-          {
-            path: "mis-cursos",
-            element: <CourseCardContainer />,
-          },
-          {
-            path: "cursos",
-            element: <h1>Cursos disponibles</h1>,
-          },
-        ],
+            {
+              path: "mis-cursos",
+              element: <CourseCardContainer />,
+            },
+            {
+              path: "cursos",
+              element: <h1>Cursos disponibles</h1>,
+            },
+          ],
+       },
+          ],
+        },
+        ]
       },
-    ],
-  },
+      {
+        path:"curso/:id-curso",
+        element:<DashboardPattern SideBarComponent={SidebarCourse}/>,
+        children:[
+          {
+            path:":modulo-id",
+            element:<Course/>
+          }
+        ]
+      }
+    ]
+  }
 ]);
 
 export default router;
