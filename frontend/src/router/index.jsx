@@ -10,7 +10,9 @@ import {
   DashboardPattern,
   SideBarEjemplo, 
   Equipo,
-  DashboardCourse
+  DashboardCourse,
+  SidebarCourse,
+  Course
 } from "../index";
 
 const router = createBrowserRouter([
@@ -55,6 +57,16 @@ const router = createBrowserRouter([
           {
             path:"cursos",
             element:<h1>Cursos disponibles</h1>
+          }
+        ]
+      },
+      {
+        path:"curso/:id-curso",
+        element:<DashboardPattern SideBarComponent={SidebarCourse}/>,
+        children:[
+          {
+            path:":modulo-id",
+            element:<Course/>
           }
         ]
       }
