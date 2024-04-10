@@ -1,6 +1,7 @@
 package com.s1411mjava.edtech.utils;
 
 import com.s1411mjava.edtech.entity.User;
+import com.s1411mjava.edtech.enums.Role;
 import com.s1411mjava.edtech.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,7 @@ public class UserDataLoader implements CommandLineRunner {
                 .lastName("Perz")
                 .email("jperz@tmail.com")
                 .password(passwordEncoder.encode("Chiave1234!"))
+                .role(Role.STUDENT)
                 .build();
 
         User user2 = User.builder()
@@ -45,6 +47,7 @@ public class UserDataLoader implements CommandLineRunner {
                 .lastName("Chernov")
                 .email("plavchernv@tmail.com")
                 .password(passwordEncoder.encode("allQuiz@+1"))
+                .role(Role.STUDENT)
                 .build();
 
         userRepository.saveAll(List.of(user1, user2));
