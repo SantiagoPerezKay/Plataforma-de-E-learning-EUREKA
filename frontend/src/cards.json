@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Curso de Fotografía",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 2,
+    "title": "Curso de Programación Web",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 3,
+    "title": "Curso de Diseño Gráfico",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 4,
+    "title": "Curso de Marketing Digital",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 5,
+    "title": "Curso de Yoga",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 6,
+    "title": "Curso de Idiomas",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 7,
+    "title": "Curso de Costura",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 8,
+    "title": "Curso de Jardinería",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 9,
+    "title": "Curso de Primeros Auxilios",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 10,
+    "title": "Curso de Finanzas Personales",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 11,
+    "title": "Curso de Escritura Creativa",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 12,
+    "title": "Curso de Música",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 13,
+    "title": "Curso de Cocina Molecular",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 14,
+    "title": "Curso de Pintura",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 15,
+    "title": "Curso de Filosofía",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 16,
+    "title": "Curso de Fotografía de Naturaleza",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 17,
+    "title": "Curso de Autoayuda",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 18,
+    "title": "Curso de Arquitectura",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 19,
+    "title": "Curso de Escultura",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 20,
+    "title": "Curso de Ajedrez",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+]

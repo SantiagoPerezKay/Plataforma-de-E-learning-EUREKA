@@ -6,7 +6,7 @@ import {
     NavBar
 } from "../index";
 
-import { Outlet} from "react-router";
+import { Outlet } from "react-router";
 
 function DashboardPattern({
   SideBarComponent
@@ -59,7 +59,7 @@ function DashboardPattern({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default DashboardPattern;
