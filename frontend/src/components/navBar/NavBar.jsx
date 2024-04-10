@@ -37,7 +37,7 @@ const NavBar = () => {
   const [openSideBar, setOpenSideBar] = useState(false);
   return (
     <>
-      <div className="navbar-sidebar">
+      <div className="navbar-sidebar z-20">
         <div
           className={`${!openSideBar && "hidden"
           } sidebar-bg bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm`}

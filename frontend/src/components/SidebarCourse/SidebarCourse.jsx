@@ -10,7 +10,7 @@ export default function SidebarCourse() {
     };
     return (
         <>
-            <div className="w-full flex flex-col pl-6">
+            <div className="w-full flex flex-col">
                 <h2 className="text-xl p-[7px] mt-4 mb-4">Introducción al curso 6</h2>
                 {array.map((item, index)=> {
                     return <ModuleSidebar key={index} onClick={()=> handleItemClick(index)} estilos={index == isSelected ? "border-l-4 border-l-blue-700" : ""}/>          
