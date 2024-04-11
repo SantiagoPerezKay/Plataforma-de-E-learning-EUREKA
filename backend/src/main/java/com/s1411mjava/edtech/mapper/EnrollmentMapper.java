@@ -14,9 +14,7 @@ public interface EnrollmentMapper {
     Enrollment toEntity(EnrollmentDto enrollmentDto);
 
     @Mapping(target = "creationDate", dateFormat = "dd-MM-yyyy")
-    static EnrollmentDto toDto(Enrollment enrollment) {
-        return null;
-    }
+    EnrollmentDto toDto(Enrollment enrollment);
 
     List<EnrollmentDto> toDto(List<Enrollment> enrollments);
 }

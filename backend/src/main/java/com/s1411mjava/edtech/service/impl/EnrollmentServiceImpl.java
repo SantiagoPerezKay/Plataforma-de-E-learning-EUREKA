@@ -57,7 +57,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
             enrollment = enrollmentRepository.save(enrollment);
 
-            return EnrollmentMapper.toDto(enrollment);
+            return enrollmentMapper.toDto(enrollment);
         }
     }
 
