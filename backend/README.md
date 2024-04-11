@@ -79,3 +79,13 @@ mvnw spring-boot:run
 - Puede acceder a los documentos de swagger-ui para probar la API a través de http://localhost:8080/api/v1/swagger-ui/index.html
 
 - Si ha configurado un puerto diferente al 8080, utilice ese en su lugar.
+
+## Datos de prueba
+
+### Usuarios
+
+| email                 | contraseña  |
+|-----------------------|-------------|
+| jperz@tmail.com       | Chiave1234! |
+| plavchernv@tmail.com  | allQuiz@+1  |
+
