@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface EnrollmentService {
     List<EnrollmentDto> findAllByStudent();
+    void qualificationCourse(Long idEnrollment,Integer value);
 }

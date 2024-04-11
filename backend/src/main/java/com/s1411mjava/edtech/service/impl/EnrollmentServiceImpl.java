@@ -33,4 +33,31 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         return this.enrollmentMapper.toDto(this.enrollmentRepository.findAllByUser(optionalUser.get()));
     }
+
+    @Override
+    public void qualificationCourse(Long idEnrollment,Integer value) {
+        String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Optional<User> optionalUser = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail));
+
+        if(optionalUser.isEmpty()){
+            throw new AccessDeniedException("You are not authenticated");
+        }
+
+        //update value enrollment
+        enrollmentRepository.findById(idEnrollment).get().setQualification(value);
+
+        //Update avg calification course
+
+    }
+
+
+
+
+
+
+
+
+
 }
+
