@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         element:<DashboardPattern SideBarComponent={SidebarCourse}/>,
         children:[
           {
-            path:":modulo-id",
+            path:":moduloid",
             element:<Course/>
           }
         ]
