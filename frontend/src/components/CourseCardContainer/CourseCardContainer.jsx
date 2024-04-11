@@ -1,12 +1,12 @@
 import cards from "../../cards.json";
-import CourseCard from "../CourseCard/CourseCard";
+import CursoCard from "../CursoCard/CursoCard";
 
 const CourseCardContainer = () => {
   return (
-    <div>
+    <div className="grid grid-cols-3 gap-8">
       {cards.length > 0 ? (
         cards.map((card) => (
-          <CourseCard
+          <CursoCard
             key={card.id}
             title={card.title}
             description={card.description}
