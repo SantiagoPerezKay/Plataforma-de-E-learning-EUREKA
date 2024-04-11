@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProgressServiceImpl implements ProgressService {
-
     @Autowired
     private ProgressRespository progressRepository;
 
