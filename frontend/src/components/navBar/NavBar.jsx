@@ -59,9 +59,8 @@ const NavBar = () => {
             <div className="sidebar-category-container mx-auto">
               <div className="flex mt-8 align-middle">
                 <img
-                  className="sidebar-logo  "
                   src={iconUser}
-                  alt=""
+                  alt="Cerrar menu"
                   width="60"
                   />
               </div>
@@ -119,7 +118,10 @@ const NavBar = () => {
       {!isLogued && (
       <div className="navbar-menu relative">
         <ul className="flex">
-          <li className="mx-8 cursor-pointer relative group select-none">
+          <li className="mx-8 cursor-pointer relative group select-none"
+              onClick={() => navigate("/")}
+
+          >
               <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               <span className="absolute -bottom-1 right-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               Inicio
