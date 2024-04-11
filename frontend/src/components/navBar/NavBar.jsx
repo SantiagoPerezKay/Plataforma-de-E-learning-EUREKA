@@ -83,7 +83,12 @@ const NavBar = () => {
               </div>
             }
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
-            <div className="mx-auto my-4">Equipo</div>
+            <div className="mx-auto my-4"
+            // falta que cierre el menu
+                  onClick={() => navigate("/equipo")}
+            >
+              Equipo
+            </div>
             <div className="mx-auto">
               <p className="text-center my-2">Cursos</p>
               <ul>
@@ -138,7 +143,9 @@ const NavBar = () => {
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
               </svg>
           </li>
-          <li className="mx-8 cursor-pointer relative group select-none">
+          <li className="mx-8 cursor-pointer relative group select-none"
+              onClick={() => navigate("/equipo")}
+          >
               <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               <span className="absolute -bottom-1 right-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               Equipo
