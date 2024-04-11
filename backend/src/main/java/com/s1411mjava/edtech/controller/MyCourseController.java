@@ -22,7 +22,7 @@ public class MyCourseController {
         private final CourseService courseService;
 
     @Operation(description = "Get course for a student. Role: STUDENT.")
-    @GetMapping("/mycourses/{courseId}")
+    @GetMapping("/{courseId}")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<CourseModuleDto> findCoursesById(@PathVariable Long courseId){
