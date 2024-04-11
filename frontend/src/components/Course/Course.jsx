@@ -11,8 +11,8 @@ export default function Course() {
     return (
         <>
             <div className="w-full">
-                <div className="w-[90%] my-0 mx-auto">
-                    <iframe className="w-full mt-[22px]" width="740" height="460" src={data[0].contenido[params.moduloid].contenidoModule.videoUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <div className="w-full h-full mx-auto">
+                    <iframe className="w-full lg:h-96 md:h-56 h-52" src={data[0].contenido[params.moduloid].contenidoModule.videoUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     <div className='flex justify-around text-xl my-6'>
                         <NavLink className='flex hover:text-blue-700' to={`/dashboard/curso/5/${(params.moduloid > 0)? parseInt(params.moduloid) - 1 : params.moduloid}`}>
                             <span className='flex'>

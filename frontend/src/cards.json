@@ -6,7 +6,7 @@
   },
   {
     "id": 2,
-    "title": "Curso de Programación Web",
+    "title": "Curso de Diseño Web",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
@@ -16,7 +16,7 @@
   },
   {
     "id": 4,
-    "title": "Curso de Marketing Digital",
+    "title": "Curso de Marketing",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "id": 9,
-    "title": "Curso de Primeros Auxilios",
+    "title": "Curso de Artes",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "id": 16,
-    "title": "Curso de Fotografía de Naturaleza",
+    "title": "Curso de Fotografía",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "id": 18,
-    "title": "Curso de Arquitectura",
+    "title": "Curso de Liderazgo",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {

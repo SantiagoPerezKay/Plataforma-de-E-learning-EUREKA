@@ -38,7 +38,7 @@ const NavBar = () => {
   return (
     <>
       <div className={`${!openSideBar && "hidden"
-          } navbar-sidebar`}>
+          } navbar-sidebar z-30`}>
         <div
           className={`${!openSideBar && "hidden"
           } sidebar-bg bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm`}
