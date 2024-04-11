@@ -24,10 +24,17 @@ import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
     const navigate = useNavigate();
+    const handleClick = () =>{
+      if(localStorage.getItem('jwt')){
+        navigate("/dashboard/student")
+      } else {
+        navigate("/register")
+      }
+    }
   return (
     <>
       <div className="hero h-80 flex justify-center w-full 2xl:w-3/4 2xl:mx-auto overflow-hidden mb-20">
-        <div className="hero-left w-100 flex flex-col justify-center pl-8">
+        <div className="hero-left w-100 flex flex-col justify-center pl-8 max-lg:flex-1">
           <h1 className="text-3xl font-bold mb-4">
             <span className="text-blue-600">Cursos y aprendizaje en línea </span><br /> en todo el mundo
           </h1>
@@ -35,35 +42,35 @@ function LandingPage() {
             <span className="text-blue-600">Transforma tu vida</span> <br /> con nuestros cursos virtuales.
           </h2>
           <button className="callToAction flex h-12 w-40 justify-center items-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                onClick={() => navigate("/register")}
+                onClick={handleClick}
           >
             INGRESA GRATIS
           </button>
         </div>
-        <div className="hero-right hero-transform flex justify-end gap-2 ml-36 2xl:ml-[10vw] relative">
+        <div className="hero-right hero-transform flex justify-end gap-2 ml-36 2xl:ml-[10vw] relative max-sm:hidden max-lg:flex-1 max-lg:">
           <div className="hero-mask absolute w-full h-full"></div>
-          <div className="col-left flex flex-col-reverse gap-2 -mb-20">
-            <img src={image6} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={hero11} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={image3} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={hero13} className="w-[12dvw] 2xl:w-[8dvw]" />
+          <div className="col-left flex flex-col-reverse gap-2 -mb-20 max-lg:-mb-4">
+            <img src={image6} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
+            <img src={hero11} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
+            <img src={image3} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
+            <img src={hero13} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
           </div>
-          <div className="col-center flex flex-col-reverse gap-2 -mb-12">
-            <img src={image1} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={hero12} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={image5} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={hero22} className="w-[12dvw] 2xl:w-[8dvw]" />
+          <div className="col-center flex flex-col-reverse gap-2 -mb-12 max-lg:mb-0">
+            <img src={image1} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
+            <img src={hero12} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
+            <img src={image5} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
+            <img src={hero22} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[20dvw]" />
           </div>
-          <div className="col-center flex flex-col-reverse gap-2 -mb-12">
-            <img src={hero15} className="w-[15dvw] 2xl:w-[10dvw]" />
-            <img src={hero23} className="w-[15dvw] 2xl:w-[10dvw]" />
-            <img src={hero16} className="w-[15dvw] 2xl:w-[10dvw]" />
-            <img src={hero24} className="w-[15dvw] 2xl:w-[10dvw]" />
+          <div className="col-center flex flex-col-reverse gap-2 -mb-12 max-lg:mb-4">
+            <img src={hero15} className="w-[15dvw] 2xl:w-[10dvw] max-lg:w-[25dvw]" />
+            <img src={hero23} className="w-[15dvw] 2xl:w-[10dvw] max-lg:w-[25dvw]" />
+            <img src={hero16} className="w-[15dvw] 2xl:w-[10dvw] max-lg:w-[25dvw]" />
+            <img src={hero24} className="w-[15dvw] 2xl:w-[10dvw] max-lg:w-[25dvw]" />
           </div>
-          <div className="col-right flex flex-col-reverse gap-4">
-            <img src={image2} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={hero14} className="w-[12dvw] 2xl:w-[8dvw]" />
-            <img src={image4} className="w-[12dvw] 2xl:w-[8dvw]" />
+          <div className="col-right flex flex-col-reverse gap-4 max-lg:mb-4">
+            <img src={image2} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[25dvw]" />
+            <img src={hero14} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[25dvw]" />
+            <img src={image4} className="w-[12dvw] 2xl:w-[8dvw] max-lg:w-[25dvw]" />
           </div>
         </div>
       </div>

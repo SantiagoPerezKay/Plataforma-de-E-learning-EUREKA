@@ -12,13 +12,23 @@ body{
 }
 
 .hero-transform{
-    /* -webkit-box-shadow: inset 30px -42px 36px 5px rgba(255, 255, 255, 0.9);
-    -moz-box-shadow: inset 30px -42px 36px 5px rgba(255, 255, 255, 0.9); */
-    box-shadow: inset 30px -42px 36px 5px rgba(255, 255, 255, 0.5);
     -webkit-transform: perspective(150px) rotateX(15deg)
                         skewX(-20deg);
     transform: perspective(150px) rotateX(15deg)
                 skewX(-20deg);
+}
+@media (max-width: 1023.99px) {
+    .hero-transform{
+        -webkit-transform: perspective(150px) rotateX(15deg)
+                            skewX(-20deg)
+                            scale(1.3)
+                            translateY(-50px);
+        transform: perspective(150px) rotateX(15deg)
+                    skewX(-20deg)
+                    scale(1.3)
+                    translateY(-50px);
+
+    }
 }
 .hero-mask{
     background: rgb(255,255,255);
