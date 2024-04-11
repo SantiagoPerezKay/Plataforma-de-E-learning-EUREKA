@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mycourses")
@@ -27,6 +25,7 @@ public class MyCourseController {
     @GetMapping("/mycourses/{courseId}")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
-    public ResponseEntity<List<CourseModuleDto>> findCoursesById(@PathVariable Long courseId){
+    public ResponseEntity<CourseModuleDto> findCoursesById(@PathVariable Long courseId){
         return ResponseEntity.ok(this.courseService.getCourseForUser(courseId));
-    }}
+    }
+}
