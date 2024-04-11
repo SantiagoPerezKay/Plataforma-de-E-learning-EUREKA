@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/catalog")
 public class CatalogController {
     private final CatalogServiceImpl catalogServiceImpl;
-    @GetMapping("/allcatalog")
+    @GetMapping
 
     public ResponseEntity<List<CatalogDto>> findAllCatalog(){
         return ResponseEntity.ok(catalogServiceImpl.findAllCatalog());
