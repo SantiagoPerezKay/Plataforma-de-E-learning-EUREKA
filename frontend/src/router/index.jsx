@@ -12,7 +12,7 @@ import {
   Equipo,
   CourseCardContainer,
   SidebarCourse,
-  Course
+  Course,
 } from "../index";
 
 const router = createBrowserRouter([
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "equipo",
         element: <Equipo />,
-      }
+      },
     ],
   },
   {
@@ -46,28 +46,32 @@ const router = createBrowserRouter([
         path: "student",
         element: <DashboardPattern SideBarComponent={SideBarEjemplo} />,
         children: [
-            {
-              path: "mis-cursos",
-              element: <CourseCardContainer />,
-            },
-            {
-              path: "cursos",
-              element: <h1>Cursos disponibles</h1>,
-            },
+          {
+            path: "mis-cursos",
+            element: <CourseCardContainer />,
+          },
+          {
+            path: "inscripcion-cursos",
+            element: <CourseCardContainer />,
+          },
+          {
+            path: "cursos",
+            element: <h1>Cursos disponibles</h1>,
+          },
         ],
       },
       {
-        path:"curso/:id-curso",
-        element:<DashboardPattern SideBarComponent={SidebarCourse}/>,
-        children:[
+        path: "curso/:id-curso",
+        element: <DashboardPattern SideBarComponent={SidebarCourse} />,
+        children: [
           {
-            path:":moduloid",
-            element:<Course/>
-          }
-        ]
-      }
-    ]
-  }
+            path: ":moduloid",
+            element: <Course />,
+          },
+        ],
+      },
+    ],
+  },
 ]);
 
 export default router;
