@@ -60,8 +60,10 @@ const NavBar = () => {
               <div className="flex mt-8 align-middle">
                 <img
                   src={iconUser}
-                  alt="Cerrar menu"
+                  alt="Icono Usuario"
                   width="60"
+                  // debería fijarse si está logueado y llevar a dashboard o a login
+                  // onClick={}
                   />
               </div>
               {isLogued && <div className="my-4">Mi perfil</div>}
@@ -253,7 +255,11 @@ const NavBar = () => {
             <div className="h-8">
             <LogOutButton changeState={()=> setIsLogued(false)} />
             </div>
-            <img src={iconUser} width="60" />
+            <img src={iconUser}
+                  width="60" 
+                  className="cursor-pointer"
+                  onClick={()=>navigate('/dashboard/student')}
+            />
           </div>
         )}
       </div>
