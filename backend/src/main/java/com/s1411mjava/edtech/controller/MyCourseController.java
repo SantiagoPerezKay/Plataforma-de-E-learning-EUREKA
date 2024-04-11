@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyCourseController {
         private final CourseService courseService;
 
-    @Operation(description = "Get course for a student. Role: STUDENT.")
+    @Operation(
+            summary = "Get course for a student. Role: STUDENT.",
+            description = "Get course for a student. Role: STUDENT."
+    )
     @GetMapping("/{courseId}")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
