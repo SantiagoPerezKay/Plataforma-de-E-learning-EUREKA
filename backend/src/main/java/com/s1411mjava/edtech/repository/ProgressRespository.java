@@ -1,4 +1,9 @@
 package com.s1411mjava.edtech.repository;
 
-public interface ProgressRespositoy {
+import com.s1411mjava.edtech.entity.Progress;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProgressRespository extends JpaRepository<Progress,Long> {
 }
