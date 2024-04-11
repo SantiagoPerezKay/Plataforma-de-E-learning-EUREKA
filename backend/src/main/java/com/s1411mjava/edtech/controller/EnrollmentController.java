@@ -31,8 +31,8 @@ public class EnrollmentController {
     @PostMapping
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
-        public ResponseEntity<EnrollmentDto> createEnrollment(@RequestParam Long courseId, @RequestParam Long userId){
-            EnrollmentDto enrollmentDto = enrollmentService.createEnrollment(courseId, userId);
+        public ResponseEntity<EnrollmentDto> createEnrollment(@RequestParam Long courseId){
+            EnrollmentDto enrollmentDto = enrollmentService.createEnrollment(courseId);
            return ResponseEntity.status(HttpStatus.CREATED).body(enrollmentDto);
         }
     }

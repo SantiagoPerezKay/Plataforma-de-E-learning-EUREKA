@@ -42,12 +42,12 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
         @Override
-        public EnrollmentDto createEnrollment(Long courseId, Long userId) {
+        public EnrollmentDto createEnrollment(Long courseId) {
             Course course = courseRepository.findById(courseId)
                     .orElseThrow(() -> new EntityNotFoundException("Course not found with id: " + courseId));
 
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+            String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail)).orElseThrow();
 
             Enrollment enrollment = new Enrollment();
             enrollment.setCourse(course);
