@@ -21,7 +21,7 @@ public class EnrollmentController {
     private final EnrollmentService enrollmentService;
 
     @Operation(description = "Get all enrollments for a student. Role: STUDENT.")
-    @GetMapping("/students")
+    @GetMapping
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<List<EnrollmentDto>> findAllByStudent(){
