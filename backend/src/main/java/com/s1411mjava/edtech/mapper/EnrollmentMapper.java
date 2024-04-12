@@ -12,7 +12,9 @@ import java.util.List;
         uses = {CatalogMapper.class})
 public interface EnrollmentMapper {
     Enrollment toEntity(EnrollmentDto enrollmentDto);
+
     @Mapping(target = "creationDate", dateFormat = "dd-MM-yyyy")
     EnrollmentDto toDto(Enrollment enrollment);
+
     List<EnrollmentDto> toDto(List<Enrollment> enrollments);
 }
