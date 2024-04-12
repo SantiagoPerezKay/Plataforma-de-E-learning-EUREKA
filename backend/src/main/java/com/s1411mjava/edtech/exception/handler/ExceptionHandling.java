@@ -155,4 +155,15 @@ public class ExceptionHandling {
                 null
         );
     }
+
+    @ExceptionHandler(InvalidValueException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleInvalidValueException(InvalidValueException ex){
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+    }
 }
