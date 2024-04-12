@@ -97,9 +97,11 @@ const NavBar = () => {
                 <p>Mis cursos</p>
                 <ul>
                   {
-                    cursos?.map((item)=>{
-                      return <li className="my-2">{item.course.title}</li>
-                    })
+                    cursos.length !== 0 ?
+                      cursos?.map((item)=>{
+                        return <li className="my-2">{item.course.title}</li>
+                      })
+                    : <h1>No está inscripto en ningún curso</h1>
                   }
                 </ul>
               </div>
@@ -227,17 +229,20 @@ const NavBar = () => {
           <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
               {
-                cursos?.map((item)=>(
-                  <Link
-                  to={`/dashboard/curso/${item.course.id}`}
-                  >
-                    <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                      <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                      {item.course.title}
-                      <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                    </li>
-                  </Link>
-                ))
+                cursos.length !== 0 ?
+                  cursos?.map((item)=>(
+                    <Link
+                    to={`/dashboard/curso/${item.course.id}`}
+                    >
+                      <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+                        <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
+                        {item.course.title}
+                        <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
+                      </li>
+                    </Link>
+                  ))
+                :
+                <h1>No está inscripto en ningún curso</h1>
               }
             </ul>
           </div>
