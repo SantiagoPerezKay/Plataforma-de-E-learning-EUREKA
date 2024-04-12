@@ -1,6 +1,10 @@
 package com.s1411mjava.edtech.service.impl;
 
+
 import com.s1411mjava.edtech.dtos.ProgressDto;
+import com.s1411mjava.edtech.entity.Content;
+import com.s1411mjava.edtech.entity.Course;
+import com.s1411mjava.edtech.entity.Enrollment;
 import com.s1411mjava.edtech.entity.Progress;
 import com.s1411mjava.edtech.exception.IdLessThanOneException;
 import com.s1411mjava.edtech.exception.IdNotNullException;
@@ -14,7 +18,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -56,5 +63,25 @@ public class ProgressServiceImpl implements ProgressService {
         if(id < 1){
             throw new IdLessThanOneException();
         }
+    }
+
+    public void createProgressByEnrollment (Enrollment enrollment){
+
+        Course course = enrollment.getCourse();
+
+        List<Content> contentList = course.getModules().stream().flatMap(module -> module.getContents().stream())
+                .toList();
+
+        List<Progress> progressList = new ArrayList<>();
+
+        for(Content content : contentList){
+            Progress progress = new Progress();
+            progress.setCompleted(false);
+            progress.setEnrollment(enrollment);
+            progressList.add(progress);
+        }
+
+        // Crear el registro de progreso
+        progressRepository.saveAll(progressList);
     }
 }

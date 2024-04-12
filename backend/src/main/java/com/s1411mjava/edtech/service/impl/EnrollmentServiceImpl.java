@@ -9,6 +9,7 @@ import com.s1411mjava.edtech.repository.CourseRepository;
 import com.s1411mjava.edtech.repository.EnrollmentRepository;
 import com.s1411mjava.edtech.repository.UserRepository;
 import com.s1411mjava.edtech.service.EnrollmentService;
+import com.s1411mjava.edtech.service.ProgressService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
@@ -26,7 +27,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private final UserRepository userRepository;
     private final EnrollmentMapper enrollmentMapper;
     private final CourseRepository courseRepository;
-
+    private final ProgressService progressService;
 
     @Override
     public List<EnrollmentDto> findAllByStudent() {
@@ -57,6 +58,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
             enrollment = enrollmentRepository.save(enrollment);
 
+
+            progressService.createProgressByEnrollment(enrollment);
+            
             return enrollmentMapper.toDto(enrollment);
         }
     }
