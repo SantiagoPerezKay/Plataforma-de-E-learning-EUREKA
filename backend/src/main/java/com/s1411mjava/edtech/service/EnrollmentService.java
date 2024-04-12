@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface EnrollmentService {
     List<EnrollmentDto> findAllByStudent();
+    EnrollmentDto createEnrollment(Long courseId);
+
 }
