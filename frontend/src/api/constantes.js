@@ -1,10 +1,10 @@
 const BASE_URL = 'https://s14-11-m-java.onrender.com/api/v1/'
 /* CATALOG */
-const CATALOG = 'catalog/'
+const CATALOG = 'catalog'
 /* COURSE BY USER */
-const COURSES_BY_USER = 'enrollments/'
+const COURSES_BY_USER = 'enrollments'
 /* GET COURSE BY ID */
-const COURSE_BY_ID = 'mycourses/'
+const COURSE_BY_ID = 'mycourses'
 /* LOGIN */
 const LOGIN = 'auth/login'
 /* REGISTER */
