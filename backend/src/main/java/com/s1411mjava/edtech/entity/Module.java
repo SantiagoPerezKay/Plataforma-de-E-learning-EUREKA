@@ -23,7 +23,7 @@ public class Module {
     private int position;
 
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
     private List<Content> contents;
     @ManyToOne
     @JoinColumn(name = "course_id")
