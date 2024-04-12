@@ -22,7 +22,7 @@ public class EnrollmentController {
     private final EnrollmentRepository enrollmentRepository;
 
     @Operation(description = "Get all enrollments for a student. Role: STUDENT.")
-    @GetMapping("/students")
+    @GetMapping("/")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<List<EnrollmentDto>> findAllByStudent() {
@@ -30,7 +30,7 @@ public class EnrollmentController {
     }
 
     @Operation(description = "Update qualification course")
-    @PostMapping("/students/{idEnrollment}")
+    @PostMapping("{idEnrollment}")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<?> findAllByStudent(@PathVariable Long idEnrollment, @RequestParam Integer value) {
