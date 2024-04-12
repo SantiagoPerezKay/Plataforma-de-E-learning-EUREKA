@@ -47,9 +47,20 @@ public class CourseModuleDto implements Serializable {
             Long id;
             String title;
             int position;
-            String url;
-            String type;
+            String urlVideo;
+            String urlPdf;
+
             String description;
+            ProgressDto progress;
         }
+
+            @Value
+            @Data
+            public static class ProgressDto implements Serializable {
+                Long id;
+                boolean completed;
+
+            }
+
 
     }
