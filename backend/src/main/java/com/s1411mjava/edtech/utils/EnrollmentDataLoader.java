@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 @Slf4j
-@Order(5)
+//@Order(5)
 @RequiredArgsConstructor
 public class EnrollmentDataLoader implements CommandLineRunner {
 

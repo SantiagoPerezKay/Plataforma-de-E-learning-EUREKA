@@ -36,7 +36,7 @@ public class Content {
     private Module module;
 
     @OneToMany(mappedBy = "content")
-    private List<Progress> progress;
+    private List<Progress> progresses;
 
 
 
