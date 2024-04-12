@@ -27,7 +27,7 @@ const CourseCardContainer = () => {
     };
 
     fetchData();
-  }, [coursesByUser, getCatalogCourses]);
+  }, []);
 
   return (
     <>
