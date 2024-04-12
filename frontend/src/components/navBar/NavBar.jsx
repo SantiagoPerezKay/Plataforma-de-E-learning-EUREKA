@@ -6,9 +6,16 @@ import iconCross from "./img/cross.svg";
 import logo from "./img/logo.webp";
 import { useNavigate, Link } from "react-router-dom";
 
+import useCourse from "../../api/course";
+
 const NavBar = () => {
+
+  const {
+    coursesByUser
+  }=useCourse()
   // menu en desktop
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const [cursos,setCursos]=useState([])
 
   // manejo de token
   const [isLogued, setIsLogued] = useState(false);
@@ -32,6 +39,20 @@ const NavBar = () => {
       window.removeEventListener('storage', handleTokenChange);
     };
   }, []); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const catalogCourses = await coursesByUser();
+        setCursos(catalogCourses);
+
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchData();
+  },[]);
 
   // menu hamburguesa
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -75,10 +96,11 @@ const NavBar = () => {
               <div className="my-4 mx-auto">
                 <p>Mis cursos</p>
                 <ul>
-                  <li className="my-2">Curso 1</li>
-                  <li className="my-2">Curso 1</li>
-                  <li className="my-2">Curso 1</li>
-                  <li className="my-2">Curso 1</li>
+                  {
+                    cursos?.map((item)=>{
+                      return <li className="my-2">{item.course.title}</li>
+                    })
+                  }
                 </ul>
               </div>
             }
@@ -204,31 +226,19 @@ const NavBar = () => {
         {isSubMenuOpen && (
           <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 1
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 2
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 3
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 4
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 5
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
+              {
+                cursos?.map((item)=>(
+                  <Link
+                  to={`/dashboard/curso/${item.course.id}`}
+                  >
+                    <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+                      <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
+                      {item.course.title}
+                      <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
+                    </li>
+                  </Link>
+                ))
+              }
             </ul>
           </div>
         )}
