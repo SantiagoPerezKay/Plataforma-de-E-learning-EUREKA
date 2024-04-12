@@ -1,8 +1,11 @@
 package com.s1411mjava.edtech.service.impl;
 
 import com.s1411mjava.edtech.dtos.EnrollmentDto;
+import com.s1411mjava.edtech.entity.Course;
+import com.s1411mjava.edtech.entity.Enrollment;
 import com.s1411mjava.edtech.entity.User;
 import com.s1411mjava.edtech.mapper.EnrollmentMapper;
+import com.s1411mjava.edtech.repository.CourseRepository;
 import com.s1411mjava.edtech.repository.EnrollmentRepository;
 import com.s1411mjava.edtech.repository.UserRepository;
 import com.s1411mjava.edtech.service.EnrollmentService;
@@ -20,6 +23,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final UserRepository userRepository;
     private final EnrollmentMapper enrollmentMapper;
+    private final CourseRepository courseRepository;
 
     @Override
     public List<EnrollmentDto> findAllByStudent() {
@@ -35,20 +39,44 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    public void qualificationCourse(Long idEnrollment,Integer value) {
+    public EnrollmentDto qualificationCourse(Long idEnrollment, Integer value) {
         String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
         Optional<User> optionalUser = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail));
+        Enrollment enrollment = enrollmentRepository.findById(idEnrollment).orElseThrow();
 
-        if(optionalUser.isEmpty()){
+        // auth
+        optionalUser.orElseThrow(() -> new AccessDeniedException("You are not authenticated"));
+        if (!optionalUser.get().getEmail().equals(enrollment.getUser().getEmail())) {
             throw new AccessDeniedException("You are not authenticated");
         }
 
-        //update value enrollment
-        enrollmentRepository.findById(idEnrollment).get().setQualification(value);
+        // update qualification
+        enrollment.setQualification(value);
+        Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
 
-        //Update avg calification course
+        // Course
+        Course course = savedEnrollment.getCourse();
 
+        // List course
+        List<Enrollment> enrollmentsForCourse = enrollmentRepository.findAllByCourse(course);
+
+
+
+        // AVG Calculation
+        int sum = 0;
+        for (Enrollment enr : enrollmentsForCourse) {
+            if (enr.getQualification() != null) {
+                sum += enr.getQualification();
+            }
+        }
+        float avgStars = (float) sum / enrollmentsForCourse.size();
+
+        // Update AVG
+        course.setAvgStars(avgStars);
+        courseRepository.save(course);
+
+        return this.enrollmentMapper.toDto(savedEnrollment);
     }
 
 

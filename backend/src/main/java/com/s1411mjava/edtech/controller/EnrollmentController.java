@@ -31,14 +31,14 @@ public class EnrollmentController {
     }
 
 
-    @Operation(description = "Update qualification course")
+   // @Operation(description = "Update qualification course")
     @PostMapping("/students/{idEnrollment}")
-    @SecurityRequirement(name = "Bearer Authentication")
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+  //  @SecurityRequirement(name = "Bearer Authentication")
+   // @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<?> findAllByStudent(@PathVariable Long idEnrollment,@RequestParam Integer value){
-        enrollmentService.qualificationCourse(idEnrollment,value);
+
         //MODIFICAR DESPUES DE LA ENTREGA, no debe devolver una entidad sino un DTO.
-        return ResponseEntity.ok(enrollmentRepository.findById(idEnrollment));
+        return ResponseEntity.ok( enrollmentService.qualificationCourse(idEnrollment,value));
     }
 
 

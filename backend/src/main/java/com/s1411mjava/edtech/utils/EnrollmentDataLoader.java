@@ -53,7 +53,7 @@ public class EnrollmentDataLoader implements CommandLineRunner {
         for(int i = 2; i < courseList.size(); i++){
             enrollmentList.add(
                     Enrollment.builder()
-                            .user(user1)
+                            .user(user2)
                             .course(courseList.get(i))
                             .build()
             );
