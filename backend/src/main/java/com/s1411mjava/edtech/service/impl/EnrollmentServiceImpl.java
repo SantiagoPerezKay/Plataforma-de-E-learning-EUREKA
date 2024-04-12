@@ -41,38 +41,28 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Override
     public EnrollmentDto qualificationCourse(Long idEnrollment, Integer value) {
         String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-
         Optional<User> optionalUser = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail));
         Enrollment enrollment = enrollmentRepository.findById(idEnrollment).orElseThrow();
 
-        // auth
         optionalUser.orElseThrow(() -> new AccessDeniedException("You are not authenticated"));
         if (!optionalUser.get().getEmail().equals(enrollment.getUser().getEmail())) {
             throw new AccessDeniedException("You are not authenticated");
         }
 
-        // update qualification
         enrollment.setQualification(value);
         Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
-
-        // Course
         Course course = savedEnrollment.getCourse();
-
-        // List course
         List<Enrollment> enrollmentsForCourse = enrollmentRepository.findAllByCourse(course);
 
-
-
-        // AVG Calculation
         int sum = 0;
         for (Enrollment enr : enrollmentsForCourse) {
             if (enr.getQualification() != null) {
                 sum += enr.getQualification();
             }
         }
+
         float avgStars = (float) sum / enrollmentsForCourse.size();
 
-        // Update AVG
         course.setAvgStars(avgStars);
         courseRepository.save(course);
 

@@ -19,27 +19,23 @@ import java.util.List;
 @Tag(name = "Enrollments")
 public class EnrollmentController {
     private final EnrollmentService enrollmentService;
-    //esto no deberia ir aca, deberia devolver un enrollment en service CORREGIR DESPUES DE LA ENTREGA :O
     private final EnrollmentRepository enrollmentRepository;
 
     @Operation(description = "Get all enrollments for a student. Role: STUDENT.")
     @GetMapping("/students")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
-    public ResponseEntity<List<EnrollmentDto>> findAllByStudent(){
+    public ResponseEntity<List<EnrollmentDto>> findAllByStudent() {
         return ResponseEntity.ok(this.enrollmentService.findAllByStudent());
     }
 
-
-   // @Operation(description = "Update qualification course")
+    @Operation(description = "Update qualification course")
     @PostMapping("/students/{idEnrollment}")
-  //  @SecurityRequirement(name = "Bearer Authentication")
-   // @PreAuthorize("hasRole('ROLE_STUDENT')")
-    public ResponseEntity<?> findAllByStudent(@PathVariable Long idEnrollment,@RequestParam Integer value){
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    public ResponseEntity<?> findAllByStudent(@PathVariable Long idEnrollment, @RequestParam Integer value) {
 
-        //MODIFICAR DESPUES DE LA ENTREGA, no debe devolver una entidad sino un DTO.
-        return ResponseEntity.ok( enrollmentService.qualificationCourse(idEnrollment,value));
+        return ResponseEntity.ok(enrollmentService.qualificationCourse(idEnrollment, value));
     }
-
 
 }
