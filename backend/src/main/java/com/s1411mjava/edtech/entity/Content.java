@@ -21,20 +21,22 @@ public class Content {
     private String title;
     @Column(nullable = false)
     private int position;
-    @Column(nullable = false)
-    private String url;
-    @Column(nullable = false)
-    private String type;
+    @Column(name = "url_video", nullable = false)
+    private String urlVideo;
+    @Column(name = "url_pdf")
+    private String urlPdf;
+
+    @Lob
     @Column(nullable = false)
     private String description;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "module_id")
     private Module module;
 
     @OneToMany(mappedBy = "content")
-    private List<Progress> progress;
+    private List<Progress> progresses;
 
 
 

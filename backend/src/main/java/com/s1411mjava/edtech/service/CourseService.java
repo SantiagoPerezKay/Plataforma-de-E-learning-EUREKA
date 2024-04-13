@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CourseService {
 
-    List<CourseModuleDto> getCourseForUser(Long courseId);
+    CourseModuleDto getCourseForUser(Long courseId);
 }

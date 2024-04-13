@@ -6,6 +6,7 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CourseModuleMapper {
+    @Mapping(target = "modules.contents.progress", ignore = true)
     Course toEntity(CourseModuleDto courseModuleDto);
 
     @AfterMapping

@@ -76,6 +76,7 @@ public class ProgressServiceImpl implements ProgressService {
 
         for(Content content : contentList){
             Progress progress = new Progress();
+            progress.setContent(content);
             progress.setCompleted(false);
             progress.setEnrollment(enrollment);
             progressList.add(progress);

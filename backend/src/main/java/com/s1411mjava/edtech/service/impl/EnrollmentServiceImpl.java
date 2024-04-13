@@ -4,7 +4,9 @@ import com.s1411mjava.edtech.dtos.EnrollmentDto;
 import com.s1411mjava.edtech.entity.Course;
 import com.s1411mjava.edtech.entity.Enrollment;
 import com.s1411mjava.edtech.entity.User;
+import com.s1411mjava.edtech.exception.AlreadyEnrolledException;
 import com.s1411mjava.edtech.exception.InvalidValueException;
+import com.s1411mjava.edtech.exception.NotEnrolledException;
 import com.s1411mjava.edtech.mapper.EnrollmentMapper;
 import com.s1411mjava.edtech.repository.CourseRepository;
 import com.s1411mjava.edtech.repository.EnrollmentRepository;
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class EnrollmentServiceImpl implements EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final UserRepository userRepository;
@@ -54,7 +58,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<User> optionalUser = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail));
-        Enrollment enrollment = enrollmentRepository.findById(idEnrollment).orElseThrow();
+        Enrollment enrollment = enrollmentRepository.findById(idEnrollment).orElseThrow(
+                () -> new NotEnrolledException("You are not enrolled to this course")
+        );
 
         optionalUser.orElseThrow(() -> new AccessDeniedException("You are not authenticated"));
         if (!optionalUser.get().getEmail().equals(enrollment.getUser().getEmail())) {
@@ -90,6 +96,10 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail)).orElseThrow();
+
+        if(enrollmentRepository.existsByUserIdAndCourseId(user.getId(), course.getId())){
+            throw new AlreadyEnrolledException("Ya se encuentra inscripto en este curso.");
+        }
 
         Enrollment enrollment = new Enrollment();
         enrollment.setCourse(course);
