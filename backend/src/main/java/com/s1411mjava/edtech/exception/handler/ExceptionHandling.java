@@ -176,4 +176,15 @@ public class ExceptionHandling {
                 null
         );
     }
+
+    @ExceptionHandler(NotEnrolledException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleNotEnrolledException(NotEnrolledException ex){
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+    }
 }

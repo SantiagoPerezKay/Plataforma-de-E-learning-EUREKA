@@ -6,6 +6,7 @@ import com.s1411mjava.edtech.entity.Enrollment;
 import com.s1411mjava.edtech.entity.User;
 import com.s1411mjava.edtech.exception.AlreadyEnrolledException;
 import com.s1411mjava.edtech.exception.InvalidValueException;
+import com.s1411mjava.edtech.exception.NotEnrolledException;
 import com.s1411mjava.edtech.mapper.EnrollmentMapper;
 import com.s1411mjava.edtech.repository.CourseRepository;
 import com.s1411mjava.edtech.repository.EnrollmentRepository;
@@ -57,7 +58,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         String authenticatedEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<User> optionalUser = Optional.ofNullable(this.userRepository.findByEmail(authenticatedEmail));
-        Enrollment enrollment = enrollmentRepository.findById(idEnrollment).orElseThrow();
+        Enrollment enrollment = enrollmentRepository.findById(idEnrollment).orElseThrow(
+                () -> new NotEnrolledException("You are not enrolled to this course")
+        );
 
         optionalUser.orElseThrow(() -> new AccessDeniedException("You are not authenticated"));
         if (!optionalUser.get().getEmail().equals(enrollment.getUser().getEmail())) {
