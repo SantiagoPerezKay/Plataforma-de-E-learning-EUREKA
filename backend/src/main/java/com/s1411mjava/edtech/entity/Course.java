@@ -40,5 +40,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Module> modules;
 
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
     // TODO: add teacher
 }
