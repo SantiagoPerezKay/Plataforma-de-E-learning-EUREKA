@@ -26,7 +26,7 @@ public class TeacherController {
     @Operation(description = "Create a new teacher.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_TEACHER')")
-    @PostMapping("/teacher")
+    @PostMapping()
     public ResponseEntity<TeacherDto> registerTeacher(@RequestBody TeacherDto teacherDto) {
         TeacherDto createdTeacher = teacherService.createTeacher(teacherDto);
         return new ResponseEntity<>(createdTeacher, HttpStatus.CREATED);
