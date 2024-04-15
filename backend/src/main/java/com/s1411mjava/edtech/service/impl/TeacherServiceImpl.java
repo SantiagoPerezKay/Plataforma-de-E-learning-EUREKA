@@ -48,38 +48,41 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public CreatedCourseDTO createCourse(CreateCourseDTO createCourseDTO) {
 
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Teacher teacher = getTeacherByUser(getCurrentUser());
 
-        User user = userRepository.findByEmail(email);
+        Category category = getCategoryById(createCourseDTO.getCategoryId());
 
-        Teacher teacher = teacherRepository
-                .findByUser(user)
-                .orElseThrow(() -> new ResourceNotFoundException("Profesor no está registrado"));
+        Course savedCourse = createCourseFromDTO(createCourseDTO, teacher, category);
 
+        savedCourse.setModules(createModules(savedCourse, savedCourse.getModules()));
 
-        Category category = categoryRepository
-                .findById(createCourseDTO.getCategoryId())
-                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada"));
-
-        Course course = courseMapper.toEntity(createCourseDTO);
-
-        course.setTeacher(teacher);
-
-        course.setCategory(category);
-
-        Course savedCourse = courseRepository.save(course);
-
-        List<Module> moduleList = course.getModules();
-
-        moduleList.forEach(module -> module.setCourse(savedCourse));
-
-        moduleList = moduleRepository.saveAll(moduleList);
-
-        savedCourse.setModules(moduleList);
-
-        courseRepository.save(savedCourse);
+        savedCourse = courseRepository.save(savedCourse);
 
         return courseMapper.toDTO(savedCourse);
+    }
+
+    private Category getCategoryById(Long categoryId) {
+        return categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada"));
+    }
+
+    private List<Module> createModules(Course savedCourse, List<Module> modules) {
+        modules.forEach(module -> module.setCourse(savedCourse));
+        return moduleRepository.saveAll(modules);
+    }
+
+    private Teacher getTeacherByUser(User user) {
+        return teacherRepository
+                .findByUser(user)
+                .orElseThrow(() -> new ResourceNotFoundException("Profesor no registrado"));
+    }
+
+    private Course createCourseFromDTO(CreateCourseDTO createCourseDTO, Teacher teacher, Category category) {
+        Course course = courseMapper.toEntity(createCourseDTO);
+        course.setTeacher(teacher);
+        course.setCategory(category);
+        return courseRepository.save(course);
     }
 
     private TeacherDto convertToDto(Teacher teacher) {
