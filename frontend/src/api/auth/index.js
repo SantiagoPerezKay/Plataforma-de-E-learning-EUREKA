@@ -3,16 +3,20 @@ import { setCredentials, logOut } from "../../redux/slices/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import {
+  BASE_URL,
+  LOGIN,
+  REGISTER
+} from '../constantes'
+
 const useAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const authLogin = async (dataUser) => {
+    const RUTA = `${BASE_URL}${LOGIN}`
     try {
-      const { data } = await axios.post(
-        "https://s14-11-m-java.onrender.com/api/v1/auth/login",
-        dataUser
-      );
+      const { data } = await axios.post(RUTA,dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
     } catch (error) {
@@ -21,11 +25,9 @@ const useAuth = () => {
   };
 
   const authRegistro = async (dataUser) => {
+    const RUTA = `${BASE_URL}${REGISTER}`
     try {
-      const { data } = await axios.post(
-        "https://s14-11-m-java.onrender.com/api/v1/auth/register",
-        dataUser
-      );
+      const { data } = await axios.post(RUTA,dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
     } catch (error) {
