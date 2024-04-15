@@ -9,51 +9,54 @@ import { useNavigate, Link } from "react-router-dom";
 import useCourse from "../../api/course";
 
 const NavBar = () => {
-
-  const {
-    coursesByUser
-  }=useCourse()
+  
   // menu en desktop
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-  const [cursos,setCursos]=useState([])
-
+  
   // manejo de token
   const [isLogued, setIsLogued] = useState(false);
   const navigate = useNavigate();
-
+  
+  // se fija si está logueado cuando monta por primera vez el componente
   useEffect(()=>{
     const token = localStorage.getItem('jwt');
     if(token){
       setIsLogued(true)
     }
   },[])
-
+  
+  // genera un estado al local storage para futuros cambios
   useEffect(() => {
     const handleTokenChange = () => {
       const token = localStorage.getItem('jwt');
       setIsLogued(!!token);
     };
     window.addEventListener('storage', handleTokenChange);
-
+    
     return () => {
       window.removeEventListener('storage', handleTokenChange);
     };
   }, []); 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const catalogCourses = await coursesByUser();
-        setCursos(catalogCourses);
-
-      } catch (error) {
+  
+    // conexión con la BBDD
+    // defino variables y traigo funciones
+    const [cursos,setCursos]=useState([])
+    const { coursesByUser } =useCourse()
+    // llama a la API y conecta con lista
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const catalogCourses = await coursesByUser();
+          setCursos(catalogCourses);
+          
+        } catch (error) {
         console.error("Error fetching courses:", error);
       }
     };
-
+    
     fetchData();
   },[]);
-
+  
   // menu hamburguesa
   const [openSideBar, setOpenSideBar] = useState(false);
   return (
@@ -83,8 +86,8 @@ const NavBar = () => {
                   src={iconUser}
                   alt="Icono Usuario"
                   width="60"
-                  // debería fijarse si está logueado y llevar a dashboard o a login
-                  // onClick={}
+                  // debería cerrar el menu cuando da click
+                   onClick={()=>{isLogued ? window.location.href=("/dashboard/student") : window.location.href=("/login")}}
                   />
               </div>
               {isLogued && <div className="my-4">Mi perfil</div>}
@@ -93,23 +96,23 @@ const NavBar = () => {
             </div>
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
             {isLogued && 
+            // falta que cierre el menu
               <div className="my-4 mx-auto">
                 <p>Mis cursos</p>
                 <ul>
                   {
                     cursos.length !== 0 ?
                       cursos?.map((item)=>{
-                        return <li className="my-2">{item.course.title}</li>
+                        return <li className="my-2" key={item.course.title} >{item.course.title}</li>
                       })
-                    : <h1>No está inscripto en ningún curso</h1>
+                    : <p className="p-4 text-center">No está inscripto en ningún curso</p>
                   }
                 </ul>
               </div>
             }
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
             <div className="mx-auto my-4"
-            // falta que cierre el menu
-                  onClick={() => navigate("/equipo")}
+                  onClick={() =>window.location.href = "/equipo"}
             >
               Equipo
             </div>
@@ -224,25 +227,26 @@ const NavBar = () => {
               </svg>
           </li>
         </ul>
-        {/* debería cargar los cursos que traiga la bbdd */}
+        {/* carga los cursos que trae de la bbdd */}
         {isSubMenuOpen && (
           <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
               {
                 cursos.length !== 0 ?
                   cursos?.map((item)=>(
-                    <Link
-                    to={`/dashboard/curso/${item.course.id}`}
-                    >
-                      <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+                      <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none"
+                          onClick={() => {
+                            navigate(`/dashboard/curso/${item.course.id}`);
+                          }}
+                          key={item.course.id}
+                      >
                         <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
                         {item.course.title}
                         <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
                       </li>
-                    </Link>
                   ))
                 :
-                <h1>No está inscripto en ningún curso</h1>
+                <p className="py-4 text-center">No está inscripto en ningún curso</p>
               }
             </ul>
           </div>
