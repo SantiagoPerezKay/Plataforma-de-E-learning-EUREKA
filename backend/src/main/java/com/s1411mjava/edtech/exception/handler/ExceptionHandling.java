@@ -188,12 +188,23 @@ public class ExceptionHandling {
         );
     }
 
+
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionDto handleResourceNotFoundException(ResourceNotFoundException ex){
         return new ExceptionDto(
                 HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+    }
+    @ExceptionHandler(UploadFileException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ExceptionDto handleUploadFileException(UploadFileException ex){
+        return new ExceptionDto(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 ex.getMessage(),
                 null
         );
