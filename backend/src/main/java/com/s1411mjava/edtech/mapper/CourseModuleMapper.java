@@ -1,6 +1,8 @@
 package com.s1411mjava.edtech.mapper;
 
 import com.s1411mjava.edtech.dtos.CourseModuleDto;
+import com.s1411mjava.edtech.dtos.CreateCourseDTO;
+import com.s1411mjava.edtech.dtos.CreatedCourseDTO;
 import com.s1411mjava.edtech.entity.Course;
 import org.mapstruct.*;
 
@@ -23,4 +25,8 @@ public interface CourseModuleMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Course partialUpdate(CourseModuleDto courseModuleDto, @MappingTarget Course course);
+
+    Course toEntity(CreateCourseDTO createCourseDTO);
+
+    CreatedCourseDTO toDTO(Course course);
 }

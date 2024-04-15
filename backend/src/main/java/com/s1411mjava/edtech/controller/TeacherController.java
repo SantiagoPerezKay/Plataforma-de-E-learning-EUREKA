@@ -1,9 +1,12 @@
 package com.s1411mjava.edtech.controller;
+import com.s1411mjava.edtech.dtos.CreateCourseDTO;
+import com.s1411mjava.edtech.dtos.CreatedCourseDTO;
 import com.s1411mjava.edtech.dtos.TeacherDto;
 import com.s1411mjava.edtech.service.TeacherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +33,15 @@ public class TeacherController {
     public ResponseEntity<TeacherDto> registerTeacher(@RequestBody TeacherDto teacherDto) {
         TeacherDto createdTeacher = teacherService.createTeacher(teacherDto);
         return new ResponseEntity<>(createdTeacher, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/courses")
+    @Operation(description = "Create a new course.")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<CreatedCourseDTO> createCourse(@Valid @RequestBody CreateCourseDTO createCourseDTO) {
+        CreatedCourseDTO createdCourseDTO = teacherService.createCourse(createCourseDTO);
+        return new ResponseEntity<>(createdCourseDTO, HttpStatus.CREATED);
     }
 }
 
