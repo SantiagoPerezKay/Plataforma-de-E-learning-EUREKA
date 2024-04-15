@@ -24,9 +24,6 @@ public class Teacher {
     private String credentials;
     @Column(nullable = false)
     private String info;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable = false, updatable=false)
-    private Long user_id;
 
     @OneToOne
     @JoinColumn(name = "user_id")

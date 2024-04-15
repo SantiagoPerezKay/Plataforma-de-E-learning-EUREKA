@@ -26,6 +26,7 @@ public class UserDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         loadUsers();
+        loadTeachers();
     }
 
     private void loadUsers(){
@@ -52,5 +53,30 @@ public class UserDataLoader implements CommandLineRunner {
 
         userRepository.saveAll(List.of(user1, user2));
 
+    }
+
+    private void loadTeachers(){
+
+        log.info("Cargar usuarios...");
+
+        User user1 = User.builder()
+                .id(2L)
+                .firstName("Pedro")
+                .lastName("Cruz")
+                .email("pedrocruz@tmail.com")
+                .password(passwordEncoder.encode("**Kq!1234rs"))
+                .role(Role.TEACHER)
+                .build();
+
+        User user2 = User.builder()
+                .id(3L)
+                .firstName("Maria")
+                .lastName("Gonzalez")
+                .email("maria@tmail.com")
+                .password(passwordEncoder.encode("kq!1234rs"))
+                .role(Role.TEACHER)
+                .build();
+
+        userRepository.saveAll(List.of(user1, user2));
     }
 }
