@@ -42,6 +42,7 @@ const CourseCardContainer = () => {
                   key={data.id}
                   title={data.title}
                   image={data.image}
+                  id={data.id}
                 />
               ))
             ) : (
@@ -55,6 +56,7 @@ const CourseCardContainer = () => {
                 key={data.course.id}
                 title={data.course.title}
                 image={data.course.image}
+                id={data.course.id}
               />
             ))
           ) : (

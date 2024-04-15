@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const CursoCard = (props) => {
   return (
     <>
-      <Link to={"/dashboard/curso/1/4"}>
+      <Link to={`/dashboard/curso/${props.id}`}>
         <div className="w-full card-container flex flex-col items-center border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden">
           <img src={props.image} className="w-full" />
           <div className="stars flex my-2">

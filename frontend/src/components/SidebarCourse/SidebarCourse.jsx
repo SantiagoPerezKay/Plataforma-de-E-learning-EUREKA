@@ -1,10 +1,51 @@
+import { useEffect, useState } from 'react';
 import AccordionMenu from '../AccordionItem/AccordionItem';
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import datos from '../Course/data.json'
+
+import { useLocation } from 'react-router-dom';
+
+import useCourse from '../../api/course';
+
+import { useDispatch } from "react-redux";
+import { setCourse } from '../../redux/slices/course/courseSlice';
 
 export default function SidebarCourse() {
-    const data = datos[0].modules;
+    const dispatch = useDispatch()
+    const [data,setData]=useState([])
+    const location = useLocation()
+
+
+    const {
+        courseById
+    }=useCourse()
+
+    const [idCurso,setIdCurso]=useState(null)
+
+
+    useEffect(()=>{
+        console.log(location)
+        if(location){
+            const id = location.pathname.split('/')[3]
+            setIdCurso(id)
+        }
+    },[location])
+
+    useEffect(()=>{
+        if(idCurso){
+            const getInformacionCurso = async ()=>{
+                try {
+                    const cursoInformacion = await courseById(idCurso)
+                    console.log(cursoInformacion)
+                    setData(cursoInformacion)
+                    dispatch(setCourse(cursoInformacion))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            getInformacionCurso()
+        }
+    },[idCurso])
+
+
     
     /* const [isSelected, setIsSelected] = useState(null)
 

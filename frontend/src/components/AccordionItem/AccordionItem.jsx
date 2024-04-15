@@ -3,7 +3,7 @@ import datos from '../Course/data.json'
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-export const AccordionItem = ({title, content, idModule}) => {
+export const AccordionItem = ({title, content, idModule,idCurso}) => {
 
   const location = useLocation();
 
@@ -29,8 +29,8 @@ export const AccordionItem = ({title, content, idModule}) => {
       </div>
       {isOpen && (
         <div className="flex flex-col list-none text-xl">
-          {content.map(cont =>
-              <NavLink to={`/dashboard/curso/5/0/${cont.id}`}>
+          {content?.map(cont =>
+              <NavLink to={`/dashboard/curso/${idCurso}/${idModule}/${cont.id}`}>
                 <div className='flex items-center hover:bg-[#f1f1f1] h-20'>
                     <div className="h-full w-12 flex justify-center items-center">
                       <img className="h-6" src={svgCheck} alt="icono de check" />
@@ -61,11 +61,12 @@ export const AccordionItem = ({title, content, idModule}) => {
 }
 
 export default function AccordionMenu({ items }) {
+  const ID = items.id
   return (
     <div>
-      {items.map((item, index) => (
-        <NavLink to={`/dashboard/curso/5/${item.id}`}>
-          <AccordionItem key={index} title={item.title} content={item.contents} idModule={item.id}/>
+      {items.modules?.map((item, index) => (
+        <NavLink to={`/dashboard/curso/${ID}/${item.id}`}>
+          <AccordionItem key={index} title={item.title} content={item.contents} idModule={item.id} idCurso={ID}/>
         </NavLink>
       ))}
     </div>
