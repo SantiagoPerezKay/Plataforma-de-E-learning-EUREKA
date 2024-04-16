@@ -45,7 +45,7 @@ public class TeacherController {
         return new ResponseEntity<>(createdCourseDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("courses")
+    @GetMapping("/courses")
     @Operation(description = "Get courses by teacher id.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_TEACHER')")
