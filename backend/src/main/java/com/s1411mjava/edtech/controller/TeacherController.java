@@ -1,4 +1,5 @@
 package com.s1411mjava.edtech.controller;
+import com.s1411mjava.edtech.dtos.CatalogDto;
 import com.s1411mjava.edtech.dtos.CreateCourseDTO;
 import com.s1411mjava.edtech.dtos.CreatedCourseDTO;
 import com.s1411mjava.edtech.dtos.TeacherDto;
@@ -11,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/teachers")
@@ -43,5 +43,19 @@ public class TeacherController {
         CreatedCourseDTO createdCourseDTO = teacherService.createCourse(createCourseDTO);
         return new ResponseEntity<>(createdCourseDTO, HttpStatus.CREATED);
     }
+
+    @GetMapping("/courses")
+    @Operation(description = "Get courses by teacher id.")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<List<CatalogDto>> getCourses() {
+        List<CatalogDto> courses = teacherService.getCourses();
+        if (courses.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(courses);
+        }
+    }
+
 }
 
