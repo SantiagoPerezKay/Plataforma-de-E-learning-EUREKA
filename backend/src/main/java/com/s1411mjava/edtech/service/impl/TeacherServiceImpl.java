@@ -41,7 +41,8 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher = new Teacher();
         teacher.setExperience(teacherDto.getExperience());
         teacher.setCredentials(teacherDto.getCredentials());
-        teacher.setInfo(teacherDto.getInfo());
+        teacher.setLinkedin(teacherDto.getLinkedin());
+        teacher.setFile(teacherDto.getFile());
         teacher.setUser(getCurrentUser());
 
         Teacher savedTeacher = teacherRepository.save(teacher);
@@ -94,8 +95,9 @@ public class TeacherServiceImpl implements TeacherService {
         teacherDto.setId(teacher.getId());
         teacherDto.setExperience(teacher.getExperience());
         teacherDto.setCredentials(teacher.getCredentials());
-        teacherDto.setInfo(teacher.getInfo());
+        teacherDto.setLinkedin(teacher.getLinkedin());
         teacherDto.setUser_id(teacher.getUser().getId());
+        teacherDto.setFile(teacher.getFile());
 
         return teacherDto;
     }
