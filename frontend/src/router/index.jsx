@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path:"profesor/validate",
+        path:"validate-profesor",
         element:<h1>Registro de validaciones para profesor</h1>
       },
       {

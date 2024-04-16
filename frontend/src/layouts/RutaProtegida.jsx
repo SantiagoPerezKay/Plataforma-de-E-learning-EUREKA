@@ -10,6 +10,7 @@ function RutaProtegida() {
         if(token){
             setAccess(true)
         }
+        console.log('aqui ruta protegida')
     },[])
 
     return (

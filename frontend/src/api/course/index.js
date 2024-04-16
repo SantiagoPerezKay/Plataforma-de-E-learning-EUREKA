@@ -9,7 +9,6 @@ import {
 const useCourse = () => {
   const getCatalogCourses = async () => {
     const RUTA = `${BASE_URL}${CATALOG}`
-    console.log(RUTA)
     try {
       const { data } = await axios(RUTA);
       return data;

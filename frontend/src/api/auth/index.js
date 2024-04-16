@@ -11,7 +11,6 @@ import {
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const authLogin = async (dataUser) => {
     const RUTA = `${BASE_URL}${LOGIN}`
@@ -19,6 +18,7 @@ const useAuth = () => {
       const { data } = await axios.post(RUTA,dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
+      return data.token
     } catch (error) {
       throw new Error(error.message);
     }
@@ -30,6 +30,7 @@ const useAuth = () => {
       const { data } = await axios.post(RUTA,dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
+      return data.token
     } catch (error) {
       throw new Error(error.message);
     }
