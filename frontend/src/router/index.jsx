@@ -72,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path:"profesor",
-        element: <DashboardPattern SideBarComponent={<h1>SideBar profesor</h1>} />,
+        element: <DashboardPattern SideBarComponent={()=><h1>SideBar profesor</h1>} />,
         children:[
           {
             path: "mis-cursos",
