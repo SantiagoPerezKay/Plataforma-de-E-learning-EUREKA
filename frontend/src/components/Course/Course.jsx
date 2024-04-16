@@ -1,43 +1,49 @@
 import arrowLeft from './svg/arrowLeft.svg'
 import arrowRight from './svg/arrowRight.svg'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import svgDocument from './svg/svgDocument.svg'
 import { NavLink } from 'react-router-dom'
 
 import { useSelector } from 'react-redux';
 
-import useCourse from '../../api/course'
+
 import { useEffect, useState } from 'react'
+
 
 export default function Course() {
 
     const informacionCurso = useSelector((state) => state.course.curso);
-    console.log("esta es la info del curso",informacionCurso)
 
     const [infoContenido,setInfoContenido]=useState([])
+    const [infoModulo,setInfoModulo] = useState([])
 
     const params = useParams();
+    
+    const location = useLocation()
+
+    const urlSlice = location.pathname.slice(0,-1)
+    const urlContent = parseInt(location.pathname.split('/')[5])
 
     const ID_MODULO = params.moduloid
-    console.log('modulo id',ID_MODULO)
     const ID_CONTENIDO = params.contentid
-    console.log('content id',ID_CONTENIDO)
 
     useEffect(()=>{
         if(informacionCurso){
-            console.log('aqui contenido')
             const infoModulo = informacionCurso.modules?.filter( modulo => parseInt(modulo.id) === parseInt(ID_MODULO))
-            console.log('info de modulo',infoModulo)
+            setInfoModulo(infoModulo[0])
             const contentFiltered = infoModulo[0].contents.filter(contenido => parseInt(contenido.id) === parseInt(ID_CONTENIDO))
-            console.log("infoContenido",contentFiltered)
             setInfoContenido(contentFiltered[0])
         }
     })
 
 
+    console.log(infoContenido)
+
+
+
+
     return (
         <>  
-            {console.log("infoooo",infoContenido)}
             <div className="w-full">
                 <div className="w-full h-full mx-auto">
                     {/* VIDEO */}
@@ -45,13 +51,13 @@ export default function Course() {
                     
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex justify-around text-xl my-6'>
-                        <NavLink className='flex hover:text-blue-700' to={``}>
+                        <NavLink className='flex hover:text-blue-700' to={`${urlSlice}${urlContent - 1}`}>
                             <span className='flex'>
                                 <img className='w-6' src={arrowLeft}/>
                                 Anterior
                             </span>
                         </NavLink>
-                        <NavLink className='flex hover:text-blue-700' to={``}>
+                        <NavLink className='flex hover:text-blue-700' to={`${urlSlice}${urlContent + 1}`}>
                             <span className='flex'>
                                 <img className='w-6' src={arrowRight}/>
                                 Siguiente

@@ -22,7 +22,6 @@ export default function SidebarCourse() {
 
 
     useEffect(()=>{
-        console.log(location)
         if(location){
             const id = location.pathname.split('/')[3]
             setIdCurso(id)
@@ -34,7 +33,6 @@ export default function SidebarCourse() {
             const getInformacionCurso = async ()=>{
                 try {
                     const cursoInformacion = await courseById(idCurso)
-                    console.log(cursoInformacion)
                     setData(cursoInformacion)
                     dispatch(setCourse(cursoInformacion))
                 } catch (error) {
