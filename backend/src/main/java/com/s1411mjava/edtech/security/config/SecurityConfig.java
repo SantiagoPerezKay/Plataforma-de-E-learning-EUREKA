@@ -1,5 +1,9 @@
 package com.s1411mjava.edtech.security.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.s1411mjava.edtech.exception.handler.CustomAccessDeniedHandler;
+import com.s1411mjava.edtech.exception.handler.CustomAuthenticationEntryPoint;
+import com.s1411mjava.edtech.exception.handler.CustomHandlerExceptionResolver;
 import com.s1411mjava.edtech.security.filter.JwtFilter;
 import com.s1411mjava.edtech.security.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -78,6 +82,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling(handling -> handling
+                        .authenticationEntryPoint(customAuthenticationEntryPoint())
+                        .accessDeniedHandler(customAccessDeniedHandler())
+                )
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/auth/**", "/docs", "/v3/api-docs/**", "/swagger-ui/**","/catalog","/catalog/categories").permitAll()
                                 .anyRequest().authenticated()
@@ -90,4 +98,15 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+    @Bean
+    public CustomAuthenticationEntryPoint customAuthenticationEntryPoint(){
+        return new CustomAuthenticationEntryPoint(new ObjectMapper());
+    }
+
+    @Bean
+    public CustomAccessDeniedHandler customAccessDeniedHandler(){
+        return new CustomAccessDeniedHandler(new ObjectMapper());
+    }
+
 }
