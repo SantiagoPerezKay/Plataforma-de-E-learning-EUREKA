@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import {Alertas,Spinner} from "../../index";
 
-
+import { redirectLoginByRol } from "../../utils/DecodificarToken";
 
 export default function Register() {
 
@@ -43,8 +43,9 @@ export default function Register() {
 
       try {
         setLoading(true)
-        await authRegistro(body);
-        navigate("/dashboard/student");
+        const rta = await authRegistro(body)
+        const ruta = redirectLoginByRol(rta)
+        navigate(ruta)
       } catch (error) {
         setLoading(false)
         handleError(error)

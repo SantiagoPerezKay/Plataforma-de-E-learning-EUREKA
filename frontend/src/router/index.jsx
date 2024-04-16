@@ -53,11 +53,7 @@ const router = createBrowserRouter([
           {
             path: "inscripcion-cursos",
             element: <CourseCardContainer />,
-          },
-          {
-            path: "cursos",
-            element: <h1>Cursos disponibles</h1>,
-          },
+          }
         ],
       },
       {
@@ -70,6 +66,20 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path:"validate-profesor",
+        element:<h1>Registro de validaciones para profesor</h1>
+      },
+      {
+        path:"profesor",
+        element: <DashboardPattern SideBarComponent={()=><h1>SideBar profesor</h1>} />,
+        children:[
+          {
+            path: "mis-cursos",
+            element:<h1>Cursos creado por el profesor</h1>
+          }
+        ]
+      }
     ],
   },
 ]);

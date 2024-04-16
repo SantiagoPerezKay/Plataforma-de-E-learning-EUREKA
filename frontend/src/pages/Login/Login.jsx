@@ -4,9 +4,9 @@ import succeed from './img/shield-check.svg'
 import useAuth from "../../api/auth";
 
 import { useNavigate } from "react-router-dom";
-
-
 import {Alertas,Spinner} from "../../index";
+
+import { redirectLoginByRol } from "../../utils/DecodificarToken";
 
 function Login() {
 
@@ -35,8 +35,9 @@ function Login() {
   const onSubmit = handleSubmit( async (data)=> {
     try {
       setLoading(true)
-      await authLogin(data);
-      navigate("/dashboard/student");
+      const rta = await authLogin(data)
+      const ruta = redirectLoginByRol(rta)
+      navigate(ruta)
     } catch (error) {
       setLoading(false)
       handleError(error)

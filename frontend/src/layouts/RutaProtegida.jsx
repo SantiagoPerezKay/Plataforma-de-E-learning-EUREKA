@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Outlet} from "react-router";
+import { useLocation } from 'react-router-dom';
 
+import { protectRouteByRol } from '../utils/DecodificarToken';
 
 function RutaProtegida() {
+    const location = useLocation()
     const [access,setAccess]= useState(false)
 
     useEffect(()=>{
@@ -11,6 +14,13 @@ function RutaProtegida() {
             setAccess(true)
         }
     },[])
+
+    useEffect(()=>{
+        const permitir = protectRouteByRol(location.pathname)
+        if(!permitir){
+            setAccess(false)
+        }
+    },[location])
 
     return (
         <div>
