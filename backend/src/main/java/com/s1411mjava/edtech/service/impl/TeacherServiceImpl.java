@@ -1,20 +1,23 @@
 package com.s1411mjava.edtech.service.impl;
+import com.s1411mjava.edtech.dtos.CatalogDto;
 import com.s1411mjava.edtech.dtos.CreateCourseDTO;
 import com.s1411mjava.edtech.dtos.CreatedCourseDTO;
 import com.s1411mjava.edtech.dtos.TeacherDto;
 import com.s1411mjava.edtech.entity.*;
 import com.s1411mjava.edtech.entity.Module;
 import com.s1411mjava.edtech.exception.ResourceNotFoundException;
+import com.s1411mjava.edtech.mapper.CatalogMapper;
 import com.s1411mjava.edtech.mapper.CourseModuleMapper;
 import com.s1411mjava.edtech.repository.*;
 import com.s1411mjava.edtech.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +28,7 @@ public class TeacherServiceImpl implements TeacherService {
     private final CategoryRepository categoryRepository;
     private final CourseRepository courseRepository;
     private final ModuleRepository moduleRepository;
-
+    private final CatalogMapper catalogMapper;
     private final UserRepository userRepository;
 
     private final CourseModuleMapper courseMapper;
@@ -100,4 +103,28 @@ public class TeacherServiceImpl implements TeacherService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByEmail(email);
     }
+
+    @Override
+    public CatalogDto getCourses() {
+        User currentUser = getCurrentUser();
+        Teacher currentTeacher = getTeacherByUser(currentUser);
+        Long teacherId = currentTeacher.getId();
+
+        Optional<List<Course>> optionalCourses = Optional.ofNullable(courseRepository.findAllByTeacherId(teacherId));
+
+        if (optionalCourses.isPresent()) {
+            List<Course> courses = optionalCourses.get();
+            if (courses.isEmpty()) {
+                throw new ResourceNotFoundException("No courses found for teacher with ID: " + teacherId);
+            }
+            return (CatalogDto) courses.stream()
+                    .map(catalogMapper::toDto)
+                    .collect(Collectors.toList());
+        } else {
+            throw new ResourceNotFoundException("Courses not found for teacher with ID: " + teacherId);
+        }
+    }
+
+
+
 }
