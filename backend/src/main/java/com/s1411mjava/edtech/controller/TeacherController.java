@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -49,8 +48,13 @@ public class TeacherController {
     @Operation(description = "Get courses by teacher id.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_TEACHER')")
-    public ResponseEntity<List<CatalogDto>>getCourses() {
-        return ResponseEntity.ok(Collections.singletonList(teacherService.getCourses()));
+    public ResponseEntity<List<CatalogDto>> getCourses() {
+        List<CatalogDto> courses = teacherService.getCourses();
+        if (courses.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(courses);
+        }
     }
 
 }

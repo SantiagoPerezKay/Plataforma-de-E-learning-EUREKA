@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -105,7 +106,8 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public CatalogDto getCourses() {
+    @Transactional(readOnly = true)
+    public List<CatalogDto> getCourses() {
         User currentUser = getCurrentUser();
         Teacher currentTeacher = getTeacherByUser(currentUser);
         Long teacherId = currentTeacher.getId();
@@ -117,7 +119,7 @@ public class TeacherServiceImpl implements TeacherService {
             if (courses.isEmpty()) {
                 throw new ResourceNotFoundException("No courses found for teacher with ID: " + teacherId);
             }
-            return (CatalogDto) courses.stream()
+            return courses.stream()
                     .map(catalogMapper::toDto)
                     .collect(Collectors.toList());
         } else {
