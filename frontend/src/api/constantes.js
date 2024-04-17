@@ -1,6 +1,7 @@
 const BASE_URL = 'https://s14-11-m-java.onrender.com/api/v1/'
 /* CATALOG */
 const CATALOG = 'catalog'
+const CATEGORIAS =  'catalog/categories'
 /* COURSE BY USER */
 const COURSES_BY_USER = 'enrollments'
 /* GET COURSE BY ID */
@@ -16,5 +17,6 @@ export {
     COURSES_BY_USER,
     COURSE_BY_ID,
     LOGIN,
-    REGISTER
+    REGISTER,
+    CATEGORIAS
 }

@@ -1,12 +1,15 @@
 import axios from "axios";
+
 import {
   BASE_URL,
   CATALOG,
   COURSES_BY_USER,
-  COURSE_BY_ID
+  COURSE_BY_ID,
+  CATEGORIAS
 } from '../constantes'
 
 const useCourse = () => {
+
   const getCatalogCourses = async () => {
     const RUTA = `${BASE_URL}${CATALOG}`
     try {
@@ -55,7 +58,22 @@ const useCourse = () => {
     }
   };
 
-  return { getCatalogCourses, coursesByUser, courseById };
+  const getCategorias = async ()=>{
+    const RUTA = `${BASE_URL}${CATEGORIAS}`
+    try {
+      const { data } = await axios(RUTA);
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  return { 
+    getCatalogCourses, 
+    coursesByUser, 
+    courseById,
+    getCategorias 
+  };
 };
 
 export default useCourse;

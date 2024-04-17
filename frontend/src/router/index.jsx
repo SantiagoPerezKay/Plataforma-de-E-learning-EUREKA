@@ -13,6 +13,7 @@ import {
   CourseCardContainer,
   SidebarCourse,
   Course,
+  CreateCourse
 } from "../index";
 
 const router = createBrowserRouter([
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
           {
             path: "mis-cursos",
             element:<h1>Cursos creado por el profesor</h1>
+          },
+          {
+            path:"crear-curso",
+            element:<CreateCourse/>
           }
         ]
       }
