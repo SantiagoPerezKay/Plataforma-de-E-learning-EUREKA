@@ -23,7 +23,10 @@ public class Teacher {
     @Column(nullable = false)
     private String credentials;
     @Column(nullable = false)
-    private String info;
+    private String linkedin;
+    @Column(nullable = false)
+    private String file;
+
 
     @OneToOne
     @JoinColumn(name = "user_id")

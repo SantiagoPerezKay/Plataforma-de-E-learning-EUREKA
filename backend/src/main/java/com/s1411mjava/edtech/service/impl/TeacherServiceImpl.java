@@ -1,8 +1,5 @@
 package com.s1411mjava.edtech.service.impl;
-import com.s1411mjava.edtech.dtos.CatalogDto;
-import com.s1411mjava.edtech.dtos.CreateCourseDTO;
-import com.s1411mjava.edtech.dtos.CreatedCourseDTO;
-import com.s1411mjava.edtech.dtos.TeacherDto;
+import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.entity.*;
 import com.s1411mjava.edtech.entity.Module;
 import com.s1411mjava.edtech.exception.ResourceNotFoundException;
@@ -35,19 +32,21 @@ public class TeacherServiceImpl implements TeacherService {
     private final CourseModuleMapper courseMapper;
 
     @Override
-    public TeacherDto createTeacher(TeacherDto teacherDto) {
+    public TeacherOutDto createTeacher(TeacherInDto teacherInDto) {
 
 
         Teacher teacher = new Teacher();
-        teacher.setExperience(teacherDto.getExperience());
-        teacher.setCredentials(teacherDto.getCredentials());
-        teacher.setInfo(teacherDto.getInfo());
+        teacher.setExperience(teacherInDto.getExperience());
+        teacher.setCredentials(teacherInDto.getCredentials());
+        teacher.setLinkedin(teacherInDto.getLinkedin());
+        teacher.setFile(teacherInDto.getFile());
         teacher.setUser(getCurrentUser());
 
         Teacher savedTeacher = teacherRepository.save(teacher);
 
         return convertToDto(savedTeacher);
     }
+
 
     @Override
     public CreatedCourseDTO createCourse(CreateCourseDTO createCourseDTO) {
@@ -89,15 +88,16 @@ public class TeacherServiceImpl implements TeacherService {
         return courseRepository.save(course);
     }
 
-    private TeacherDto convertToDto(Teacher teacher) {
-        TeacherDto teacherDto = new TeacherDto();
-        teacherDto.setId(teacher.getId());
-        teacherDto.setExperience(teacher.getExperience());
-        teacherDto.setCredentials(teacher.getCredentials());
-        teacherDto.setInfo(teacher.getInfo());
-        teacherDto.setUser_id(teacher.getUser().getId());
+    private TeacherOutDto convertToDto(Teacher teacher) {
+        TeacherOutDto teacherOutDto = new TeacherOutDto();
+        teacherOutDto.setId(teacher.getId());
+        teacherOutDto.setExperience(teacher.getExperience());
+        teacherOutDto.setCredentials(teacher.getCredentials());
+        teacherOutDto.setLinkedin(teacher.getLinkedin());
+        teacherOutDto.setUser_id(teacher.getUser().getId());
+        teacherOutDto.setFile(teacher.getFile());
 
-        return teacherDto;
+        return teacherOutDto;
     }
 
     private User getCurrentUser(){
