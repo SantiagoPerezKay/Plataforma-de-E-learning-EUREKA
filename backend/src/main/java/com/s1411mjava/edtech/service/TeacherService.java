@@ -14,4 +14,6 @@ public interface TeacherService {
     TeacherOutDto getProfileTeacher(Long id);
 
     VerifiedDto verify();
+
+    CreatedCourseDTO getCourseById(Long courseId);
 }

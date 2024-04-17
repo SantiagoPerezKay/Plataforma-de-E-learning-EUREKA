@@ -29,4 +29,5 @@ public interface CourseModuleMapper {
     Course toEntity(CreateCourseDTO createCourseDTO);
 
     CreatedCourseDTO toDTO(Course course);
+
 }
