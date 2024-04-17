@@ -1,6 +1,7 @@
 package com.s1411mjava.edtech.controller;
 import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.service.TeacherService;
+import com.s1411mjava.edtech.service.impl.TeacherServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -53,6 +54,18 @@ public class TeacherController {
             return ResponseEntity.ok(courses);
         }
     }
+
+    @GetMapping("/{id}")
+    @Operation(description = "Get techear profile")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<TeacherOutDto> getTeacherProfile(@PathVariable Long id) {
+
+
+            return new ResponseEntity<>( teacherService.getProfileTeacher(id),HttpStatus.OK);
+
+    }
+
 
 }
 
