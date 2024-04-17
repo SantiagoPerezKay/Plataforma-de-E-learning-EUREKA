@@ -2,19 +2,22 @@ import { useEffect, useState } from "react";
 import CursoCard from "../CursoCard/CursoCard";
 import { useLocation } from "react-router-dom";
 import useCourse from "../../api/course/index";
+import { useSelector } from "react-redux";
 
 const CourseCardContainer = () => {
   const location = useLocation();
   const { coursesByUser, getCatalogCourses } = useCourse();
-  const [userData, setUserData] = useState([]);
   const [catalogData, setCatalogData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [oldPostedCourses, setOldPostedCourses] = useState([]);
+  const newPostedCourses = useSelector((state) => state.auth.userCourses);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userCourses = await coursesByUser();
-        setUserData(userCourses);
+        const response = await coursesByUser();
+        const data = response.map(({ course }) => course);
+        setOldPostedCourses(data);
 
         const catalogCourses = await getCatalogCourses();
         setCatalogData(catalogCourses);
@@ -28,6 +31,20 @@ const CourseCardContainer = () => {
 
     fetchData();
   }, []);
+
+  const postedCourses = oldPostedCourses
+    .concat(newPostedCourses)
+    .filter(
+      (course, index, self) =>
+        index ===
+        self.findIndex(
+          (c) =>
+            c.id === course.id &&
+            c.title === course.title &&
+            c.image === course.image
+        )
+    );
+  console.log(postedCourses);
   return (
     <>
       {dataLoaded ? (
@@ -49,13 +66,15 @@ const CourseCardContainer = () => {
                 No hay cursos disponibles en este momento
               </h1>
             )
-          ) : userData && Array.isArray(userData) && userData.length > 0 ? (
-            userData.map((data) => (
+          ) : postedCourses &&
+            Array.isArray(postedCourses) &&
+            postedCourses.length > 0 ? (
+            postedCourses.map((data) => (
               <CursoCard
-                key={data.course.id}
-                id={data.course.id}
-                title={data.course.title}
-                image={data.course.image}
+                key={data.id}
+                id={data.id}
+                title={data.title}
+                image={data.image}
               />
             ))
           ) : (

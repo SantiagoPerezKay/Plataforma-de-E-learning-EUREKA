@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUserCourses } from "../../redux/slices/auth/authSlice";
-import { toast } from "react-toastify";
 
 const useCourse = () => {
   const BASE_URL = import.meta.env.VITE_REACT_APP_URL;
@@ -23,7 +22,6 @@ const useCourse = () => {
   const coursesByUser = async () => {
     const RUTA = `${BASE_URL}${COURSES_BY_USER}`;
     const token = localStorage.getItem("jwt");
-
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -33,6 +31,7 @@ const useCourse = () => {
 
     try {
       const { data } = await axios(RUTA, config);
+
       return data;
     } catch (error) {
       throw new Error(error.message);
@@ -51,15 +50,8 @@ const useCourse = () => {
 
     try {
       const { data } = await axios.post(RUTA, id, config);
-      console.log(data.course);
-      if (data.status === 200) {
-        dispatch(postEnrollment(data.course));
-        console.log("OK");
-        toast.success("Producto Creado", {
-          position: toast.POSITION.BOTTOM_RIGHT,
-          autoClose: 3000,
-        });
-      }
+
+      dispatch(setUserCourses(data.course));
 
       return data;
     } catch (error) {

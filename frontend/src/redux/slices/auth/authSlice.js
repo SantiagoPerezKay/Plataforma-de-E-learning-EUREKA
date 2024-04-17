@@ -20,6 +20,7 @@ const authSlice = createSlice({
       return {
         ...state,
         token: null,
+        userCourses: [],
       };
     },
     setUserCourses: (state, action) => {
