@@ -28,7 +28,6 @@ const CourseCardContainer = () => {
 
     fetchData();
   }, []);
-
   return (
     <>
       {dataLoaded ? (
@@ -40,6 +39,7 @@ const CourseCardContainer = () => {
               catalogData.map((data) => (
                 <CursoCard
                   key={data.id}
+                  id={data.id}
                   title={data.title}
                   image={data.image}
                 />
@@ -53,6 +53,7 @@ const CourseCardContainer = () => {
             userData.map((data) => (
               <CursoCard
                 key={data.course.id}
+                id={data.course.id}
                 title={data.course.title}
                 image={data.course.image}
               />

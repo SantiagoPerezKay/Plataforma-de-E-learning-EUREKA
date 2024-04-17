@@ -3,12 +3,16 @@ import starFill from "./star-fill.svg";
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import useCourse from "../../api/course/index";
 
 const CursoCard = (props) => {
   const location = useLocation();
   const [subscribed, setSubscribed] = useState(false);
+  const { postEnrollment } = useCourse();
 
-  const handleChange = () => {
+  const handleChange = async (event) => {
+    const value = event.target.value;
+    await postEnrollment(value);
     setSubscribed(true);
   };
 
@@ -25,9 +29,13 @@ const CursoCard = (props) => {
             <img src={starLine} width="32" alt="Empty Star" />
           </div>
           <h3 className="font-bold text-center">{props.title}</h3>
-          <div onClick={handleChange}>
+          <div>
             {!subscribed ? (
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
+              <button
+                value={props.id}
+                onClick={handleChange}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2"
+              >
                 Inscribirse
               </button>
             ) : (
@@ -48,9 +56,6 @@ const CursoCard = (props) => {
             <img src={starLine} width="32" alt="Empty Star" />
           </div>
           <h3 className="font-bold text-center">{props.title}</h3>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
-            Inscribirse
-          </button>
         </div>
       )}
     </>
@@ -60,6 +65,7 @@ const CursoCard = (props) => {
 CursoCard.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default CursoCard;
