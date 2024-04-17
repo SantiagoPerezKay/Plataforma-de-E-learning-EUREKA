@@ -2,12 +2,16 @@ import { useEffect,useState } from "react"
 
 import useCourse from "../../api/course"
 import useCurso from "../../hooks/useCurso"
+import useProfesor from "../../api/profesor"
+
+import SubirArchivo from "../SubirArchivo/SubirArchivo"
 
 function DatosCourse({
     setStep
 }){
     const [categorias,setCategorias]=useState([])
     const [fileImagen,setFileImagen]=useState(null)
+    const [urlImg,setUrlImg]=useState(null)
     const [data,setData]=useState({
         'title':'',
         'description':'',
@@ -38,22 +42,6 @@ function DatosCourse({
         window.location.hash = '#modulo';
     }
 
-    const subirImagen = async (e)=>{
-        e.preventDefault()
-        if(fileImagen){
-            const formData = new FormData();
-            formData.append('file',fileImagen)
-            try {
-                const response = await cargarImagenUsuarioProfile(formData)
-                console.log(response)
-            } catch (error) {
-                console.log(error)
-            }
-        }else{
-            console.log('debe cargar una imagen')
-        }
-    }
-
     useEffect(()=>{
         const categorias = async ()=>{
             try {
@@ -65,6 +53,15 @@ function DatosCourse({
         }
         categorias()
     },[])
+
+    useEffect(()=>{
+        if(urlImg){
+            setData({
+                ...data,
+                'image':urlImg
+            })
+        }
+    },[fileImagen])
 
     return (
         <div className="w-[90%] mx-auto border shadow rounded-md py-5 px-5">
@@ -107,20 +104,12 @@ function DatosCourse({
                     </select>
                 </div>
                 <div className="flex flex-col gap-2">
-                    <label className="text-xl font-semibold italic">Imagen del curso</label>
-                    <div className="flex flex-row justify-between items-center">
-                        <input
-                            onChange={e=>setFileImagen(e.target.files[0])}
-                            name="image" 
-                            type="file" 
-                        />
-                        <button
-                            onClick={subirImagen}
-                            className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            subir imagen
-                        </button>
-                    </div>
+                    <SubirArchivo
+                        setUrlImg={setUrlImg}
+                        callback={setFileImagen}
+                        stateImage={fileImagen}
+                        label={'Imagen del curso'}
+                    />
                 </div>
                 <button
                     type="submit"

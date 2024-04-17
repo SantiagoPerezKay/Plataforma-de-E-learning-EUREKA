@@ -10,6 +10,8 @@ const COURSE_BY_ID = 'mycourses'
 const LOGIN = 'auth/login'
 /* REGISTER */
 const REGISTER = 'auth/register'
+/* CARGAR IMAGEN */
+const CARGAR_IMAGEN = 'files'
 
 export {
     BASE_URL,
@@ -18,5 +20,6 @@ export {
     COURSE_BY_ID,
     LOGIN,
     REGISTER,
-    CATEGORIAS
+    CATEGORIAS,
+    CARGAR_IMAGEN
 }

@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import useCurso from "../../hooks/useCurso";
+import SubirArchivo from '../SubirArchivo/SubirArchivo'
 
 function Content() {
     const [open,setOpen]=useState(false)
     const [titleContenido,setTitleContenido]=useState('')
     const [urlVideo,setUrlVideo]=useState('')
-
+    const [descripcion,setDescripcion]=useState('')
+    
+    const [fileImagen,setFileImagen]=useState(null)
+    const [urlImg,setUrlImg]=useState(null)
 
     const [idModulo,setIdModulo]=useState(null)
     const [tituloModulo,setTitleModulo]=useState('')
     const [contenido,setContenido]=useState([])
-    const [descripcion,setDescripcion]=useState('')
 
     const {
         stateModulos,
@@ -22,8 +25,10 @@ function Content() {
         e.preventDefault()
 
         const data={
+            'position':(contenido.length + 1)-1,
             'title':titleContenido,
             'urlVideo':urlVideo,
+            'urlPdf':urlImg,
             'description':descripcion,
         }
 
@@ -106,6 +111,15 @@ function Content() {
                             className="border rounded shadow py-1 px-5 outline-none"
                         />
                     </div>
+
+                    <div className="flex flex-col gap-2">
+                        <SubirArchivo
+                            setUrlImg={setUrlImg}
+                            callback={setFileImagen}
+                            stateImage={fileImagen}
+                            label={'Subir archivo'}
+                        />
+                    </div>
                     
                     <button
                         onClick={handleCrearContenido}
@@ -126,6 +140,10 @@ function Content() {
                             <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
                             <p className="font-bold text-xl">{`Descripción: ${item.description}`}</p>
                             <p className="text-lg font-semibold">{`url video : ${item.urlVideo}`}</p>
+                            {
+                                item.urlPdf && 
+                                <p className="text-lg font-semibold">{`url pdf : ${item.urlPdf}`}</p>
+                            }
                         </div>
                     ))
                 }
