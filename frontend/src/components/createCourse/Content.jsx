@@ -10,6 +10,7 @@ function Content() {
     const [idModulo,setIdModulo]=useState(null)
     const [tituloModulo,setTitleModulo]=useState('')
     const [contenido,setContenido]=useState([])
+    const [descripcion,setDescripcion]=useState('')
 
     const {
         stateModulos,
@@ -22,14 +23,15 @@ function Content() {
 
         const data={
             'title':titleContenido,
-            'urlVideo':urlVideo
+            'urlVideo':urlVideo,
+            'description':descripcion,
         }
 
         dispatch({
             type:"agrega-contenido",
             payload:{ 
                 moduloId:idModulo, 
-                contenido:data
+                contents:data
             }
         })
 
@@ -40,6 +42,7 @@ function Content() {
     const closeVentana =()=>{
         setOpen(false)
         setTitleContenido('')
+        setDescripcion('')
         setUrlVideo('')
     }
 
@@ -50,10 +53,10 @@ function Content() {
 
     useEffect(()=>{
         if(idModulo){
-            const moduloIndex = stateModulos.modulos.findIndex(modulo => parseInt(modulo.id )=== parseInt(idModulo));
+            const moduloIndex = stateModulos.modules.findIndex(modulo => parseInt(modulo.position )=== parseInt(idModulo));
             if (moduloIndex !== -1) {
-                setTitleModulo(stateModulos.modulos[moduloIndex].title)
-                setContenido(stateModulos.modulos[moduloIndex].content)
+                setTitleModulo(stateModulos.modules[moduloIndex].title)
+                setContenido(stateModulos.modules[moduloIndex].contents)
             }
         }
     },[idModulo])
@@ -78,6 +81,16 @@ function Content() {
                         <input
                             onChange={(e)=>setTitleContenido(e.target.value)}
                             value={titleContenido}
+                            name="title" 
+                            type="text" 
+                            className="border rounded shadow py-1 px-5 outline-none"
+                        />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <label className="text-xl font-semibold italic">Descripción</label>
+                        <input
+                            onChange={(e)=>setDescripcion(e.target.value)}
+                            value={descripcion}
                             name="title" 
                             type="text" 
                             className="border rounded shadow py-1 px-5 outline-none"
@@ -111,6 +124,7 @@ function Content() {
                             className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
                         >
                             <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
+                            <p className="font-bold text-xl">{`Descripción: ${item.description}`}</p>
                             <p className="text-lg font-semibold">{`url video : ${item.urlVideo}`}</p>
                         </div>
                     ))

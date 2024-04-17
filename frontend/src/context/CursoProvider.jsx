@@ -1,7 +1,7 @@
 import { createContext, useReducer, useState } from "react";
 
 const initialState = {
-    modulos:[],
+    modules:[],
 };
   
 const reducer = (state, action) => {
@@ -9,18 +9,18 @@ const reducer = (state, action) => {
       case "agrega-modulo":
         return {
             ...state,
-            modulos: [...state.modulos, action.payload]
+            modules: [...state.modules, action.payload]
         };
       case "agrega-contenido":
-        const { moduloId, contenido } = action.payload;
-        const moduloIndex = state.modulos.findIndex(modulo => parseInt(modulo.id) === parseInt(moduloId));
+        const { moduloId, contents } = action.payload;
+        const moduloIndex = state.modules.findIndex(modulo => parseInt(modulo.position) === parseInt(moduloId));
         if (moduloIndex !== -1) {
-            const copiaModulos = [...state.modulos];
+            const copiaModulos = [...state.modules];
             copiaModulos[moduloIndex] = {
             ...copiaModulos[moduloIndex],
-            content: [...copiaModulos[moduloIndex].content, contenido]
+            contents: [...copiaModulos[moduloIndex].contents, contents]
             };
-            return { ...state, modulos: copiaModulos };
+            return { ...state, modules: copiaModulos };
         }
         return state;
       default:

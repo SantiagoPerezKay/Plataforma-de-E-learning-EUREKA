@@ -77,7 +77,7 @@ function DatosCourse({
                     <label className="text-xl font-semibold italic">Categoria</label>
                     <select
                         onChange={onChangeForm}
-                        name="categoria" 
+                        name="categoryId" 
                         className="outline-none border py-1 px-5"
                     >
                         <option value=''>Elegir categoria</option>

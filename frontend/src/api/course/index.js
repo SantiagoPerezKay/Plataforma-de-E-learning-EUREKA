@@ -51,7 +51,7 @@ const useCourse = () => {
     };
 
     try {
-      const { data } = await axios(RUTA,config);
+      const { data } = await axios.post(RUTA,config,id);
       return data;
     } catch (error) {
       throw new Error(error.message);

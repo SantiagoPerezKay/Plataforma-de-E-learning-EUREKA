@@ -14,9 +14,9 @@ function Modulos() {
 
     const handleCrearModulo = ()=>{
         const data = {
-            'id':stateModulos.modulos.length + 1,
+            'position':(stateModulos.modules.length + 1)-1,
             'title':nombreModulo,
-            'content':[]
+            'contents':[]
         }
 
         dispatch({
@@ -69,15 +69,15 @@ function Modulos() {
 
             <div className="grid grid-cols-2 gap-3 mt-3 bg-slate-200 px-5 py-3">
                 {
-                    stateModulos.modulos?.map((item)=>(
+                    stateModulos.modules?.map((item)=>(
                         <div
-                            key={item.id}
-                            onClick={()=>ContenidoByModule(item.id)} 
+                            key={item.position}
+                            onClick={()=>ContenidoByModule(item.position)} 
                             className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
                         >
-                            <p className="text-center font-bold text-xl">{`Modulo ${item.id}`}</p>
+                            <p className="text-center font-bold text-xl">{`Modulo ${item.position + 1}`}</p>
                             <p className="text-lg font-semibold">{`Nombre: ${item.title}`}</p>
-                            <p className="text.lg font-semibold">{`Contenido: ${item.content.length}`}</p>
+                            <p className="text.lg font-semibold">{`Contenido: ${item.contents.length}`}</p>
                         </div>
                     ))
                 }
