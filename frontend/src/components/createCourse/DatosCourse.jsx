@@ -10,7 +10,7 @@ function DatosCourse({
     const [data,setData]=useState({
         'title':'',
         'description':'',
-        'categoria':''
+        'categoryId':''
     })
 
     const {
@@ -83,7 +83,7 @@ function DatosCourse({
                         <option value=''>Elegir categoria</option>
                         {
                             categorias?.map(item =>{
-                                return <option key={item.id}  value={item.name}>{item.name}</option>
+                                return <option key={item.id}  value={item.id}>{item.name}</option>
                             })
                         }
                     </select>
