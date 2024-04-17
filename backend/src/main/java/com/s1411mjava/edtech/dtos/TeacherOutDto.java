@@ -1,9 +1,8 @@
 package com.s1411mjava.edtech.dtos;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 @Data
-public class TeacherDto {
+public class TeacherOutDto {
     private Long id;
     private String experience;
     private String credentials;
