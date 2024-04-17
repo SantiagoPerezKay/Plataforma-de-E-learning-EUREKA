@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useCurso from "../../hooks/useCurso";
 import SubirArchivo from '../SubirArchivo/SubirArchivo'
 
+import leftArrow from '../../assets/svgs/left-row.svg'
+
 function Content() {
     const [open,setOpen]=useState(false)
     const [titleContenido,setTitleContenido]=useState('')
@@ -66,13 +68,24 @@ function Content() {
         }
     },[idModulo])
 
+    const returnModulos =()=>{
+        const urlSinHash = window.location.href.split('#')[0];
+        window.location.href = `${urlSinHash}#modulo`
+    }
+
     return (
         <>
             <div className="flex flex-row justify-between flex-wrap mt-2 items-center">
+                <button
+                    onClick={returnModulos}
+                    className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >
+                    <img src={leftArrow} alt="left-arrow"/>
+                </button>
                 <h1 className="text-xl font-bold">{`Modulo: ${tituloModulo}`}</h1>
                 <button
                     onClick={()=>setOpen(prev => !prev)}
-                    className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                     CREAR CONTENIDO
                 </button>
@@ -139,10 +152,10 @@ function Content() {
                         >
                             <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
                             <p className="font-bold text-xl">{`Descripción: ${item.description}`}</p>
-                            <p className="text-lg font-semibold">{`url video : ${item.urlVideo}`}</p>
+                            <p className="text-lg font-semibold break-words">{`url video : ${item.urlVideo}`}</p>
                             {
                                 item.urlPdf && 
-                                <p className="text-lg font-semibold">{`url pdf : ${item.urlPdf}`}</p>
+                                <p className="text-lg font-semibold break-words">{`url pdf : ${item.urlPdf}`}</p>
                             }
                         </div>
                     ))
