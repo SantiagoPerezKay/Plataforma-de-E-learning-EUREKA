@@ -5,11 +5,13 @@ import com.s1411mjava.edtech.dtos.*;
 import java.util.List;
 
 public interface TeacherService {
-    TeacherDto createTeacher(TeacherDto teacherDto);
+    TeacherOutDto createTeacher(TeacherInDto teacherInDto);
 
     CreatedCourseDTO createCourse(CreateCourseDTO createCourseDTO);
 
     List<CatalogDto> getCourses();
+
+    TeacherOutDto getProfileTeacher(Long id);
 
     VerifiedDto verify();
 }

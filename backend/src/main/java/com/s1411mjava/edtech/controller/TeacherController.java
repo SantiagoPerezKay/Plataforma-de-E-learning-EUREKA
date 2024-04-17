@@ -27,8 +27,8 @@ public class TeacherController {
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasRole('ROLE_TEACHER')")
     @PostMapping()
-    public ResponseEntity<TeacherDto> registerTeacher(@RequestBody TeacherDto teacherDto) {
-        TeacherDto createdTeacher = teacherService.createTeacher(teacherDto);
+    public ResponseEntity<TeacherOutDto> registerTeacher(@Valid @RequestBody TeacherInDto teacherInDto) {
+        TeacherOutDto createdTeacher = teacherService.createTeacher(teacherInDto);
         return new ResponseEntity<>(createdTeacher, HttpStatus.CREATED);
     }
 
@@ -52,6 +52,17 @@ public class TeacherController {
         } else {
             return ResponseEntity.ok(courses);
         }
+    }
+
+    @GetMapping("/{id}")
+    @Operation(description = "Get techear profile")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<TeacherOutDto> getTeacherProfile(@PathVariable Long id) {
+
+
+            return new ResponseEntity<>( teacherService.getProfileTeacher(id),HttpStatus.OK);
+
     }
 
     @GetMapping("/verified")
