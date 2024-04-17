@@ -1,8 +1,5 @@
 package com.s1411mjava.edtech.service.impl;
-import com.s1411mjava.edtech.dtos.CatalogDto;
-import com.s1411mjava.edtech.dtos.CreateCourseDTO;
-import com.s1411mjava.edtech.dtos.CreatedCourseDTO;
-import com.s1411mjava.edtech.dtos.TeacherDto;
+import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.entity.*;
 import com.s1411mjava.edtech.entity.Module;
 import com.s1411mjava.edtech.exception.ResourceNotFoundException;
@@ -127,6 +124,17 @@ public class TeacherServiceImpl implements TeacherService {
         }
     }
 
+    @Override
+    public VerifiedDto verify() {
+        User currentUser = getCurrentUser();
+        Optional<Teacher> optionalTeacher = this.teacherRepository.findByUser(currentUser);
 
+        VerifiedDto response = new VerifiedDto(false);
 
+        if(optionalTeacher.isPresent()){
+            response.setVerified(true);
+        }
+
+        return response;
+    }
 }
