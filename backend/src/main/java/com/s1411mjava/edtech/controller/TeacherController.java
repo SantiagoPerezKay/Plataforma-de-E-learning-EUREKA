@@ -1,7 +1,6 @@
 package com.s1411mjava.edtech.controller;
 import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.service.TeacherService;
-import com.s1411mjava.edtech.service.impl.TeacherServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -66,6 +65,12 @@ public class TeacherController {
 
     }
 
-
+    @GetMapping("/verified")
+    @Operation(description = "Validates if a user is a verified teacher.")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<VerifiedDto> verify(){
+        return ResponseEntity.ok(this.teacherService.verify());
+    }
 }
 

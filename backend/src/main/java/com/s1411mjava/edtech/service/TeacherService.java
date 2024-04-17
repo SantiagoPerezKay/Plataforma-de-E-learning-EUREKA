@@ -12,4 +12,6 @@ public interface TeacherService {
     List<CatalogDto> getCourses();
 
     TeacherOutDto getProfileTeacher(Long id);
+
+    VerifiedDto verify();
 }

@@ -1,5 +1,4 @@
 package com.s1411mjava.edtech.service.impl;
-
 import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.entity.*;
 import com.s1411mjava.edtech.entity.Module;
@@ -138,5 +137,17 @@ public class TeacherServiceImpl implements TeacherService {
         }
     }
 
+    @Override
+    public VerifiedDto verify() {
+        User currentUser = getCurrentUser();
+        Optional<Teacher> optionalTeacher = this.teacherRepository.findByUser(currentUser);
 
+        VerifiedDto response = new VerifiedDto(false);
+
+        if(optionalTeacher.isPresent()){
+            response.setVerified(true);
+        }
+
+        return response;
+    }
 }
