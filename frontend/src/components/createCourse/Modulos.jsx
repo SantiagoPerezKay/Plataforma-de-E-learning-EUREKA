@@ -67,13 +67,13 @@ function Modulos() {
                 </div>
             }
 
-            <div className="grid grid-cols-2 gap-3 mt-3">
+            <div className="grid grid-cols-2 gap-3 mt-3 bg-slate-200 px-5 py-3">
                 {
                     stateModulos.modulos?.map((item)=>(
                         <div
                             key={item.id}
                             onClick={()=>ContenidoByModule(item.id)} 
-                            className="border shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
+                            className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
                         >
                             <p className="text-center font-bold text-xl">{`Modulo ${item.id}`}</p>
                             <p className="text-lg font-semibold">{`Nombre: ${item.title}`}</p>

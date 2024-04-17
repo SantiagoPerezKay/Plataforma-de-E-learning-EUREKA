@@ -103,12 +103,12 @@ function Content() {
                 </div>
             }
 
-            <div className="grid grid-cols-1 gap-3 mt-3">
+            <div className="grid grid-cols-1 gap-3 mt-3 px-5 py-3 bg-slate-200 rounded-lg">
                 {
                     contenido?.map((item,index)=>(
                         <div
                             key={index}
-                            className="border shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
+                            className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
                         >
                             <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
                             <p className="text-lg font-semibold">{`url video : ${item.urlVideo}`}</p>
