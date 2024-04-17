@@ -1,4 +1,5 @@
 package com.s1411mjava.edtech.service.impl;
+
 import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.entity.*;
 import com.s1411mjava.edtech.entity.Module;
@@ -100,7 +101,17 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherOutDto;
     }
 
-    private User getCurrentUser(){
+    @Override
+    public TeacherOutDto getProfileTeacher(Long id) {
+        Optional<Teacher> teacher = teacherRepository.findById(id);
+        if (teacher.isEmpty()) {
+            throw new ResourceNotFoundException("Teacher Not Found Exception with id: " + id);
+        }
+        return convertToDto(teacher.get());
+    }
+
+
+    private User getCurrentUser() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByEmail(email);
     }
@@ -126,7 +137,6 @@ public class TeacherServiceImpl implements TeacherService {
             throw new ResourceNotFoundException("Courses not found for teacher with ID: " + teacherId);
         }
     }
-
 
 
 }

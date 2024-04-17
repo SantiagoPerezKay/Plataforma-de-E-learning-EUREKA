@@ -10,4 +10,6 @@ public interface TeacherService {
     CreatedCourseDTO createCourse(CreateCourseDTO createCourseDTO);
 
     List<CatalogDto> getCourses();
+
+    TeacherOutDto getProfileTeacher(Long id);
 }
