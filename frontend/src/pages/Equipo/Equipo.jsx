@@ -1,5 +1,4 @@
 import EquipoCard from './EquipoCard'
-import RegisterCredentials from '../Register/RegisterCredentials'
 import { equipo } from './helper'
 
 const Equipo = () => {
@@ -21,7 +20,6 @@ const Equipo = () => {
             </div>
           ))}
         </div>
-        <RegisterCredentials />
     </div>
 
   )

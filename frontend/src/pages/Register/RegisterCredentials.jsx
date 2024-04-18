@@ -70,7 +70,6 @@ const RegisterCredentials = () => {
             setLoading(true)
             console.log(body)
             const resp = await axios.post('https://s14-11-m-java.onrender.com/api/v1/teachers', body, config);
-            console.log(resp.data);
             navigate('/dashboard/profesor')
         } catch (error) {
         setLoading(false)
