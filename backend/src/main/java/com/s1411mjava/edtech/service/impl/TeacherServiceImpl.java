@@ -150,4 +150,23 @@ public class TeacherServiceImpl implements TeacherService {
 
         return response;
     }
+
+    @Override
+    @Transactional
+    public CreatedCourseDTO getCourseById(Long courseId) {
+
+        Optional<Course> course = courseRepository.findById(courseId);
+
+        if(course.isEmpty()){
+            throw new ResourceNotFoundException("Curso no encontrado con ID: " + courseId);
+        }
+
+        Teacher teacher = getTeacherByUser(getCurrentUser());
+
+        if(course.get().getTeacher() == null || !course.get().getTeacher().getId().equals(teacher.getId())){
+            throw new ResourceNotFoundException("No se encuentra el curso con ID: " + courseId);
+        }
+
+        return courseMapper.toDTO(course.get());
+    }
 }

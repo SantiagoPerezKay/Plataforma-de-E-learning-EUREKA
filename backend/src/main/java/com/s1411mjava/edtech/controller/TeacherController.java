@@ -72,5 +72,13 @@ public class TeacherController {
     public ResponseEntity<VerifiedDto> verify(){
         return ResponseEntity.ok(this.teacherService.verify());
     }
+
+    @GetMapping("/courses/{courseId}")
+    @Operation(description = "Get course by teacher id and course id.")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<CreatedCourseDTO> getCourseById(@PathVariable Long courseId) {
+        return new ResponseEntity<>(teacherService.getCourseById(courseId), HttpStatus.OK);
+    }
 }
 
