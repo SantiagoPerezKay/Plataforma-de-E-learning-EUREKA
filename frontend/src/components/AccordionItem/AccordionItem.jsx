@@ -25,7 +25,7 @@ export const AccordionItem = ({title, content, idModule,idCurso}) => {
       {isOpen && (
         <div className="flex flex-col list-none text-xl">
           {content?.map(cont =>
-              <NavLink to={`/dashboard/curso/${idCurso}/${idModule}/${cont.id}`}>
+              <NavLink key={cont.id} to={`/dashboard/curso/${idCurso}/${idModule}/${cont.id}`}>
                 <div className={`flex items-center hover:bg-[#f1f1f1] h-20 ${cont.id == contentLocation? "border-l-4 border-l-blue-700" : "border-none"}`}>
                     <div className="h-full w-12 flex justify-center items-center">
                       <IconCheck background={cont.progress.completed? "#03bb85" : "#fff"} />
@@ -60,8 +60,8 @@ export default function AccordionMenu({ items }) {
   return (
     <div>
       {items.modules?.map((item, index) => (
-        <NavLink to={`/dashboard/curso/${ID}/${item.id}`}>
-          <AccordionItem key={index} title={item.title} content={item.contents} idModule={item.id} idCurso={ID}/>
+        <NavLink key={item.id} to={`/dashboard/curso/${ID}/${item.id}`}>
+          <AccordionItem title={item.title} content={item.contents} idModule={item.id} idCurso={ID}/>
         </NavLink>
       ))}
     </div>

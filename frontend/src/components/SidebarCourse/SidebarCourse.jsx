@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import AccordionMenu from '../AccordionItem/AccordionItem';
-import axios from "axios";
+
 
 import { useLocation } from 'react-router-dom';
 
@@ -46,34 +46,6 @@ export default function SidebarCourse() {
         }
     },[idCurso])
 
-    {/* PROGRESS */}
-
-    const authProgress = async (id) => {
-        const URL = 'https://s14-11-m-java.onrender.com/api/v1/progresses'
-        const RUTA = `${URL}/${id}`
-        const token = localStorage.getItem("jwt");
-        const idProgress = id
-
-        try {
-            const { data } = await axios.post(RUTA,idProgress);
-            return data
-          } catch (error) {
-            throw new Error(error.message);
-          }
-    }
-
-    useEffect(()=> { 
-        if (idProgress) {
-        const modificarProgreso = async ()=>{
-            try {
-                await authProgress(idProgress)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        modificarProgreso()
-        }
-    },[idProgress])
 
 
     

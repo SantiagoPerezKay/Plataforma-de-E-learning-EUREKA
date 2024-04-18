@@ -3,6 +3,11 @@ import arrowRight from './svg/arrowRight.svg'
 import { useLocation, useParams } from 'react-router-dom'
 import svgDocument from './svg/svgDocument.svg'
 import { NavLink } from 'react-router-dom'
+import axios from "axios";
+
+import { modifyProgressById } from '../../redux/slices/course/courseSlice'
+
+import { useDispatch } from 'react-redux'
 
 import { useSelector } from 'react-redux';
 
@@ -11,6 +16,7 @@ import { useEffect, useState } from 'react'
 
 
 export default function Course() {
+    const dispatch = useDispatch()
 
     const informacionCurso = useSelector((state) => state.course.curso);
 
@@ -37,9 +43,33 @@ export default function Course() {
     })
 
 
-    console.log(infoContenido)
 
 
+    {/* PROGRESS */}
+
+    const enviarDatos = async (idProgress) => {
+        /* const URL_PROGRESS = 'https://s14-11-m-java.onrender.com/api/v1/progresses'
+        const RUTA = `${URL_PROGRESS}/${idProgress}`
+        const token = localStorage.getItem("jwt");
+
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+              'Authorization': `Bearer ${token}`,
+            },
+          };
+
+         await axios.patch(RUTA, idProgress, config)
+            .then(response => {
+              
+              console.log(response.data);
+            })
+            .catch(error => {
+              console.error(error);
+            }); */
+
+            dispatch(modifyProgressById({moduloId:ID_MODULO,contentId:ID_CONTENIDO}))
+        };
 
 
     return (
@@ -51,6 +81,7 @@ export default function Course() {
                     
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex justify-around text-xl my-6'>
+                        <buton className={"cursor-pointer"} onClick={() => enviarDatos(infoContenido.progress.id)}>Modificar progress</buton>
                         <NavLink className='flex hover:text-blue-700' to={`${urlSlice}${urlContent - 1}`}>
                             <span className='flex'>
                                 <img className='w-6' src={arrowLeft}/>
