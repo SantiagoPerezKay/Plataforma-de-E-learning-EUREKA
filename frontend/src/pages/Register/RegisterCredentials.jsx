@@ -14,6 +14,7 @@ const RegisterCredentials = () => {
 
     // lo necesario para subir archivos
     const [selectedFile, setSelectedFile] = useState('');
+    const [uploaded, setUploaded] = useState('')
     
     const handleFileChange = async (event) => {
         // cuando se elige un archivo ya lo sube al servidor
@@ -33,8 +34,10 @@ const RegisterCredentials = () => {
             const response = await axios.post('https://s14-11-m-java.onrender.com/api/v1/files', formData, config);
             console.log('Archivo subido:', response.data);
             setSelectedFile(response.data.url)
+            setUploaded('✔')
         } catch (error) {
             console.error('Ocurrió un problema al subir el archivo', error);
+            setUploaded('❌')
         }
     }
 
@@ -68,7 +71,7 @@ const RegisterCredentials = () => {
             console.log(body)
             const resp = await axios.post('https://s14-11-m-java.onrender.com/api/v1/teachers', body, config);
             console.log(resp.data);
-            // navigate('/')
+            navigate('/dashboard/profesor')
         } catch (error) {
         setLoading(false)
         handleError(error)
@@ -107,11 +110,11 @@ const RegisterCredentials = () => {
         })
     }
   return (
-    <div className="register-teacher flex flex-col align-middle">
-    <h2>Registro como Profesor</h2>
-    <h3>Adjunta tus credenciales</h3>
+    <div className="register-teacher flex flex-col items-center">
+    <h2 className="text-center text-blue-500 font-bold text-xl">Registro como Profesor</h2>
+    <h3 className="text-center font-bold text-xl">Adjunta tus credenciales</h3>
     <Alertas err={error} size='xs'>
-        <form className="cred-form space-y-6 mx-auto" onSubmit={onSubmit}>
+        <form className="cred-form space-y-6 max-md:w-[95dvw] md:w-80 mx-auto my-8" onSubmit={onSubmit}>
             {/* info que se espera 
             {
             "experience": "string",
@@ -126,7 +129,7 @@ const RegisterCredentials = () => {
                 </label>
                 <select name="experience"
                         id="experience"
-                        className="block w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
+                        className="block max-md:w-full md:w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
                         {...register("experience", {
                             required: {
                             value: true,
@@ -144,15 +147,15 @@ const RegisterCredentials = () => {
                     </span>
                 )}
             </div>
-            <div className="cred-certificados w-80">
-            <label htmlFor="credentials" className="credentials-label w-80 text-wrap text-base font-semibold leading-2">
+            <div className="cred-certificados">
+            <label htmlFor="credentials" className="credentials-label text-wrap text-base font-semibold leading-2">
                 ¿Cuentas con certificados?<br/>Especificalos para mejorar la credibilidad de tu perfil y obtener más estudiantes
             </label>
             <textarea
                 id="credentials"
                 name="credentials"
                 placeholder="Cuentanos sobre tus credenciales"
-                className="block w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
+                className="block max-md:w-full md:w-80 mx-auto  p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
                 {...register("credentials", {
                     required: {
                         value: true,
@@ -168,11 +171,11 @@ const RegisterCredentials = () => {
 
             </div>
             <div className="file">
-            <label htmlFor="file" className="file-label text-base font-semibold">Sube archivo de Credenciales:</label>
+            <label htmlFor="file" className="file-label text-base font-semibold">Sube archivo de Credenciales:</label><span className="ml-4">{uploaded}</span>
             <input type="file" onInput={handleFileChange} 
                 accept="image/jpeg, image/png, application/pdf"
                 id="file"
-                className="block w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
+                className="block max-md:w-full md:w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
                 {...register("file", {
                     required: {
                     value: true,
@@ -194,7 +197,7 @@ const RegisterCredentials = () => {
                 name="linkedin"
                 type="text"
                 placeholder="Ingresa tu LinkedIn"
-                className="block w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
+                className="block max-md:w-full md:w-80 p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 border border-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-500 rounded"
                 {...register("linkedin", {
                     required: {
                     value: true,
