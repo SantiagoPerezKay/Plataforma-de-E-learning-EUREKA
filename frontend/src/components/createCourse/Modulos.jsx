@@ -78,21 +78,29 @@ function Modulos({
                 </div>
             }
 
-            <div className="grid grid-cols-2 gap-3 mt-3 bg-slate-200 px-5 py-3">
-                {
-                    stateModulos.modules?.map((item)=>(
-                        <div
-                            key={item.position}
-                            onClick={()=>ContenidoByModule(item.position)} 
-                            className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
-                        >
-                            <p className="text-center font-bold text-xl">{`Modulo ${item.position + 1}`}</p>
-                            <p className="text-lg font-semibold">{`Nombre: ${item.title}`}</p>
-                            <p className="text.lg font-semibold">{`Contenido: ${item.contents.length}`}</p>
-                        </div>
-                    ))
-                }
-            </div>
+            {
+                stateModulos.modules.length === 0 && <h1 className="text-2xl font-bold italic text-center">Agrega un modulo</h1>
+            }
+
+            {
+                stateModulos.modules.length !== 0 &&
+                <div className="grid grid-cols-2 gap-3 mt-3 bg-slate-200 px-5 py-3">
+                    {
+                        stateModulos.modules?.map((item)=>(
+                            <div
+                                key={item.position}
+                                onClick={()=>ContenidoByModule(item.position)} 
+                                className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
+                            >
+                                <p className="text-center font-bold text-xl">{`Modulo ${item.position + 1}`}</p>
+                                <p className="text-lg font-semibold">{`Nombre: ${item.title}`}</p>
+                                <p className="text.lg font-semibold">{`Contenido: ${item.contents.length}`}</p>
+                            </div>
+                        ))
+                    }
+                </div> 
+            }
+            
         
         </div>
     )

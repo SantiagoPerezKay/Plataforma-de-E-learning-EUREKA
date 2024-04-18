@@ -143,24 +143,33 @@ function Content() {
                 </div>
             }
 
-            <div className="grid grid-cols-1 gap-3 mt-3 px-5 py-3 bg-slate-200 rounded-lg">
-                {
-                    contenido?.map((item,index)=>(
-                        <div
-                            key={index}
-                            className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
-                        >
-                            <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
-                            <p className="font-bold text-xl">{`Descripción: ${item.description}`}</p>
-                            <p className="text-lg font-semibold break-words">{`url video : ${item.urlVideo}`}</p>
-                            {
-                                item.urlPdf && 
-                                <p className="text-lg font-semibold break-words">{`url pdf : ${item.urlPdf}`}</p>
-                            }
-                        </div>
-                    ))
-                }
-            </div>
+            {
+                contenido.length === 0 && <h1 className="text-2xl font-bold italic text-center">Agrega contenido</h1> 
+            }
+
+            {
+                contenido.length !== 0 &&
+                <div className="grid grid-cols-1 gap-3 mt-3 px-5 py-3 bg-slate-200 rounded-lg">
+                    {
+                        contenido?.map((item,index)=>(
+                            <div
+                                key={index}
+                                className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
+                            >
+                                <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
+                                <p className="font-bold text-xl">{`Descripción: ${item.description}`}</p>
+                                <p className="text-lg font-semibold break-words">{`url video : ${item.urlVideo}`}</p>
+                                {
+                                    item.urlPdf && 
+                                    <p className="text-lg font-semibold break-words">{`url pdf : ${item.urlPdf}`}</p>
+                                }
+                            </div>
+                        ))
+                    }
+                </div>
+
+            }
+            
 
         </>
 
