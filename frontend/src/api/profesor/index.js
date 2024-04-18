@@ -1,12 +1,9 @@
 import axios from "axios";
 
-import {
-  BASE_URL,
-  CARGAR_IMAGEN,
-  CREAR_CURSO
-} from '../constantes'
-
 const useProfesor = () => {
+  const BASE_URL = import.meta.env.VITE_REACT_APP_URL;
+  const CARGAR_IMAGEN = import.meta.env.VITE_REACT_APP_CARGAR_IMAGEN;
+  const CREAR_CURSO = import.meta.env.VITE_REACT_APP_CREAR_CURSO;
 
   const subirImagen = async (file) => {
     const RUTA = `${BASE_URL}${CARGAR_IMAGEN}`
