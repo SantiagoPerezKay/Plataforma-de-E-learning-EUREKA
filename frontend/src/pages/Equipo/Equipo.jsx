@@ -1,4 +1,5 @@
 import EquipoCard from './EquipoCard'
+import RegisterCredentials from '../Register/RegisterCredentials'
 import { equipo } from './helper'
 
 const Equipo = () => {
@@ -13,12 +14,14 @@ const Equipo = () => {
                 foto={member.foto}
                 nombre={member.nombre}
                 rol={member.rol}
+                // colocar otros links
                 linkedin={member.linkedin}
                 pais={member.pais}
               />
             </div>
           ))}
         </div>
+        <RegisterCredentials />
     </div>
 
   )
