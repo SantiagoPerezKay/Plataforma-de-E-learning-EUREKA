@@ -49,7 +49,7 @@ function DatosCourse({
             'categoryId':parseInt(data.categoryId)
         }
 
-        /* const validate = validarDatos(dataCurso)
+        const validate = validarDatos(dataCurso)
 
         if(!validate){
             setAlert({
@@ -64,7 +64,7 @@ function DatosCourse({
                 })
             }, 4000);
             return
-        } */
+        }
 
         setInformacionCurso(dataCurso)
         setStep(prev => prev+1 )
