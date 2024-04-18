@@ -18,6 +18,8 @@ import CourseCardContainer from "./components/CourseCardContainer/CourseCardCont
 import CourseCard from "./components/CourseCard/CourseCard";
 import SidebarCourse from "./components/SidebarCourse/SidebarCourse";
 import Course from "./components/Course/Course";
+import SidebarTeacher from "./components/SidebarTeacher/SidebarTeacher";
+import TeacherCardContainer from "./components/TeacherCardContainer/TeacherCardContainer";
 
 
 /* Layouts */
@@ -43,5 +45,7 @@ export {
   CourseCardContainer,
   CourseCard,
   SidebarCourse,
-  Course
+  Course,
+  SidebarTeacher,
+  TeacherCardContainer
 };
