@@ -2,7 +2,8 @@ import axios from "axios";
 
 import {
   BASE_URL,
-  CARGAR_IMAGEN
+  CARGAR_IMAGEN,
+  CREAR_CURSO
 } from '../constantes'
 
 const useProfesor = () => {
@@ -26,8 +27,28 @@ const useProfesor = () => {
     }
   };
 
+  const crearCursoData = async (dataCurso) => {
+    const RUTA = `${BASE_URL}${CREAR_CURSO}`
+    const token = localStorage.getItem("jwt");
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const {data} = await axios.post(RUTA,dataCurso,config);
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
   return { 
-    subirImagen
+    subirImagen,
+    crearCursoData
   };
 };
 

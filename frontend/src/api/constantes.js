@@ -12,6 +12,8 @@ const LOGIN = 'auth/login'
 const REGISTER = 'auth/register'
 /* CARGAR IMAGEN */
 const CARGAR_IMAGEN = 'files'
+/* CREAR CURSO */
+const CREAR_CURSO = 'teachers/courses'
 
 export {
     BASE_URL,
@@ -21,5 +23,6 @@ export {
     LOGIN,
     REGISTER,
     CATEGORIAS,
-    CARGAR_IMAGEN
+    CARGAR_IMAGEN,
+    CREAR_CURSO
 }

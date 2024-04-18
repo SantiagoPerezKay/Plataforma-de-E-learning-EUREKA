@@ -1,4 +1,6 @@
 import { createContext, useReducer, useState } from "react";
+import useProfesor from "../api/profesor";
+
 
 const initialState = {
     modules:[],
@@ -31,15 +33,38 @@ const reducer = (state, action) => {
 const CursoContext = createContext()
 
 function CursoProvider({children}){
+
+    const {
+        crearCursoData
+    }=useProfesor()
+
     const [informacionCurso,setInformacionCurso]=useState({})
     const [stateModulos, dispatch] = useReducer(reducer, initialState);
+
+    const crearCurso = async ()=>{
+        const dataCurso = {
+            ...informacionCurso,
+            ...stateModulos
+        }
+
+        console.log(dataCurso)
+        
+        try {
+            const response = crearCursoData(dataCurso)
+            return response
+        } catch (error) {
+            console.log(error.message)
+        }
+
+    }
 
     return (
         <CursoContext.Provider
             value={{
                 setInformacionCurso,
                 stateModulos,
-                dispatch
+                dispatch,
+                crearCurso
             }}
         >
             {children}

@@ -37,7 +37,11 @@ function DatosCourse({
 
     const handleSubmit =(e)=>{
         e.preventDefault()
-        setInformacionCurso(data)
+        const dataCurso ={
+            ...data,
+            'categoryId':parseInt(data.categoryId)
+        }
+        setInformacionCurso(dataCurso)
         setStep(prev => prev+1 )
         window.location.hash = '#modulo';
     }
@@ -98,7 +102,7 @@ function DatosCourse({
                         <option value=''>Elegir categoria</option>
                         {
                             categorias?.map(item =>{
-                                return <option key={item.id}  value={item.id}>{item.name}</option>
+                                return <option key={item.id}  value={parseInt(item.id)}>{item.name}</option>
                             })
                         }
                     </select>

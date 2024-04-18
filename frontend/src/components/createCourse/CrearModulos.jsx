@@ -19,7 +19,7 @@ function CrearModulos({
         <div className="w-[90%] bg-slate-100 mx-auto border shadow rounded-md py-5 px-5">
         <h1 className="text-2xl font-bold italic text-center">Crear módulos y contenido</h1>
         {
-            ruta.includes('modulo') && <Modulos/>
+            ruta.includes('modulo') && <Modulos setStep={setStep}/>
         }
         {
             ruta.includes('content') && <Content/>

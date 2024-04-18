@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import DatosCourse from "./DatosCourse";
 import CrearModulos from "./CrearModulos";
+import UltimoPaso from "./UltimoPaso";
 
 import CursoProvider from "../../context/CursoProvider";
 
@@ -17,6 +18,9 @@ function CreateCourse() {
                 }
                 {
                     step === 2 && <CrearModulos setStep={setStep}/>
+                }
+                {
+                    step === 3 && <UltimoPaso/>
                 }
             </div>
         </CursoProvider>
