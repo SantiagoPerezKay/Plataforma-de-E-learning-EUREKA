@@ -2,6 +2,7 @@
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import RegisterCredentials from "./pages/Register/RegisterCredentials";
 import Equipo from "./pages/Equipo/Equipo";
 import DashboardCourse from "./pages/DashboardCourse/DashboardCourse";
 
@@ -32,6 +33,7 @@ export {
   Home,
   Login,
   Register,
+  RegisterCredentials,
   LogOutButton,
   Footer,
   NavBar,

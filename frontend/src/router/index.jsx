@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import {
   Login,
   Register,
+  RegisterCredentials,
   Home,
   LandingPage,
   RutaProtegida,
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path:"validate-profesor",
-        element:<h1>Registro de validaciones para profesor</h1>
+        element:<RegisterCredentials />
       },
       {
         path:"profesor",

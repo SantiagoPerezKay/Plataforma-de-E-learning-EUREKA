@@ -13,6 +13,7 @@ const Equipo = () => {
                 foto={member.foto}
                 nombre={member.nombre}
                 rol={member.rol}
+                // colocar otros links
                 linkedin={member.linkedin}
                 pais={member.pais}
               />
