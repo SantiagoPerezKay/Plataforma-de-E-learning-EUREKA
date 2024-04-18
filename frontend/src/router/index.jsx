@@ -14,6 +14,8 @@ import {
   SidebarCourse,
   Course,
   CreateCourse
+  SidebarTeacher,
+  TeacherCardContainer
 } from "../index";
 
 const router = createBrowserRouter([
@@ -73,11 +75,11 @@ const router = createBrowserRouter([
       },
       {
         path:"profesor",
-        element: <DashboardPattern SideBarComponent={()=><h1>SideBar profesor</h1>} />,
+        element: <DashboardPattern SideBarComponent={SidebarTeacher} />,
         children:[
           {
             path: "mis-cursos",
-            element:<h1>Cursos creado por el profesor</h1>
+            element:<TeacherCardContainer />
           },
           {
             path:"crear-curso",

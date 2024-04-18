@@ -50,6 +50,7 @@ const useCourse = () => {
     try {
       const { data } = await axios(RUTA, config);
       return data;
+      console.log(data)
     } catch (error) {
       throw new Error(error.message);
     }
