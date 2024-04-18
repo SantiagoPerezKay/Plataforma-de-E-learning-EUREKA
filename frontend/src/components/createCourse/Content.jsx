@@ -84,7 +84,7 @@ function Content() {
                 </button>
                 <h1 className="text-xl font-bold">{`Modulo: ${tituloModulo}`}</h1>
                 <button
-                    onClick={()=>setOpen(prev => !prev)}
+                    onClick={()=>setOpen(true)}
                     className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                     CREAR CONTENIDO
@@ -133,13 +133,20 @@ function Content() {
                             label={'Subir archivo'}
                         />
                     </div>
-                    
-                    <button
-                        onClick={handleCrearContenido}
-                        className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    >
-                        CREAR
-                    </button>
+                    <div>
+                        <button
+                            onClick={handleCrearContenido}
+                            className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            CREAR
+                        </button>
+                        <button
+                            onClick={()=>setOpen(false)}
+                            className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            CANCELAR
+                        </button>
+                    </div>
                 </div>
             }
 
