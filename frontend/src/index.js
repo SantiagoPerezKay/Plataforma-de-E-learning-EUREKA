@@ -47,7 +47,7 @@ export {
   CourseCard,
   SidebarCourse,
   Course,
-  CreateCourse
+  CreateCourse,
   SidebarTeacher,
   TeacherCardContainer
 };
