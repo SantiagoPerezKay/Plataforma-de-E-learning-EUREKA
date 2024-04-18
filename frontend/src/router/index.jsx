@@ -13,7 +13,7 @@ import {
   CourseCardContainer,
   SidebarCourse,
   Course,
-  CreateCourse
+  CreateCourse,
   SidebarTeacher,
   TeacherCardContainer
 } from "../index";
