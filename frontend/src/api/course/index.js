@@ -32,6 +32,7 @@ const useCourse = () => {
     try {
       const { data } = await axios(RUTA, config);
 
+      dispatch(setUserCourses(data));
       return data;
     } catch (error) {
       throw new Error(error.message);
@@ -50,7 +51,7 @@ const useCourse = () => {
 
     try {
       const { data } = await axios.post(RUTA, id, config);
-
+      console.log(data);
       dispatch(setUserCourses(data.course));
 
       return data;

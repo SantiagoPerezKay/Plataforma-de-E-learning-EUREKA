@@ -4,7 +4,7 @@ const stateSlice = {
   token: null,
   userCourses: [],
 };
-console.log(stateSlice.userCourses);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: stateSlice,
@@ -24,9 +24,26 @@ const authSlice = createSlice({
       };
     },
     setUserCourses: (state, action) => {
+      if (Array.isArray(action.payload)) {
+        return {
+          ...state,
+          userCourses: action.payload.map(({ course }) => course),
+        };
+      }
+
+      let filteredArray = [...state.userCourses, action.payload].filter(
+        (course, index, self) =>
+          index ===
+          self.findIndex(
+            (c) =>
+              c.id === course.id &&
+              c.title === course.title &&
+              c.image === course.image
+          )
+      );
       return {
         ...state,
-        userCourses: [...state.userCourses, action.payload],
+        userCourses: filteredArray,
       };
     },
   },

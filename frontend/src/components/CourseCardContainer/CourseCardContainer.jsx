@@ -9,15 +9,12 @@ const CourseCardContainer = () => {
   const { coursesByUser, getCatalogCourses } = useCourse();
   const [catalogData, setCatalogData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const [oldPostedCourses, setOldPostedCourses] = useState([]);
-  const newPostedCourses = useSelector((state) => state.auth.userCourses);
+  const userCourses = useSelector((state) => state.auth.userCourses);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await coursesByUser();
-        const data = response.map(({ course }) => course);
-        setOldPostedCourses(data);
+        await coursesByUser();
 
         const catalogCourses = await getCatalogCourses();
         setCatalogData(catalogCourses);
@@ -32,19 +29,6 @@ const CourseCardContainer = () => {
     fetchData();
   }, []);
 
-  const postedCourses = oldPostedCourses
-    .concat(newPostedCourses)
-    .filter(
-      (course, index, self) =>
-        index ===
-        self.findIndex(
-          (c) =>
-            c.id === course.id &&
-            c.title === course.title &&
-            c.image === course.image
-        )
-    );
-  console.log(postedCourses);
   return (
     <>
       {dataLoaded ? (
@@ -66,10 +50,10 @@ const CourseCardContainer = () => {
                 No hay cursos disponibles en este momento
               </h1>
             )
-          ) : postedCourses &&
-            Array.isArray(postedCourses) &&
-            postedCourses.length > 0 ? (
-            postedCourses.map((data) => (
+          ) : userCourses &&
+            Array.isArray(userCourses) &&
+            userCourses.length > 0 ? (
+            userCourses.map((data) => (
               <CursoCard
                 key={data.id}
                 id={data.id}
