@@ -61,13 +61,13 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "curso/:id-curso",
+        path: "curso/:id-curso/",
         element: <DashboardPattern SideBarComponent={SidebarCourse} />,
         children: [
           {
-            path: ":moduloid",
+            path: ":moduloid/:contentid",
             element: <Course />,
-          },
+          }
         ],
       },
       {

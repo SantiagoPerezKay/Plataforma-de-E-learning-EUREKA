@@ -1,116 +1,78 @@
 [
     {
-        "idCourse": "1",
-        "titleCourse": "Curso de JavaScript desde cero",
-        "contenido" : [
+        "id": 0,
+        "title": "Curso de JavaScript desde cero",
+        "description": "string",
+        "image": "string",
+        "avgStars": 0,
+        "category": {
+            "id": 0,
+            "name": "string"
+        },
+        "modules" : [
             {
-                "idModule": "1",
-                "titleModule": "Introducción a la programación",
-                "shortDescription": "¡Aprende a programar!",
-                "viewTime" : "35",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/-rj-zxmdGHA?si=Tw9nizb-y3NdILSg",
-                    "titleVideo": "Curso de introducción a la programación",
-                    "descriptionVideo" : "¡Aprende a programar! Este curso ayuda a aquellos con poca o ninguna experiencia a iniciarse en el desarrollo de software. Te introduciremos en los fundamentos de la informática, la programación y el desarrollo de software a través de lecciones sobre temas como: razonamiento lógico, algoritmos, estructuras de datos, funciones y modularidad, contenedores y listas enlazadas, búsqueda y ordenación, cadenas y expresiones regulares, programación con objetos, clases y herencia.Bienvenido a esta serie de tutoriales en vídeo. Tanto si eres completamente nuevo en la programación como si tienes algo de experiencia pero quieres aprender más, este curso está diseñado para proporcionar una introducción a la programación en lenguaje cotidiano. Los estudiantes que completen las siguientes lecciones dominarán los fundamentos de la programación y tendrán los conocimientos necesarios para conseguir un trabajo como desarrollador de software.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
+                "id": 0,
+                "title": "Introducción a la programación",
+                "position": 0,
+                "contents": [
+                {   
+                    "id": 0,
+                    "title": "Curso de introducción a la programación",
+                    "position": 0,
+                    "urlVideo" : "https://www.youtube.com/embed/-rj-zxmdGHA?si=Tw9nizb-y3NdILSg",
+                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf",
+                    "description" : "¡Aprende a programar! Este curso ayuda a aquellos con poca o ninguna experiencia a iniciarse en el desarrollo de software. Te introduciremos en los fundamentos de la informática, la programación y el desarrollo de software a través de lecciones sobre temas como: razonamiento lógico, algoritmos, estructuras de datos, funciones y modularidad, contenedores y listas enlazadas, búsqueda y ordenación, cadenas y expresiones regulares, programación con objetos, clases y herencia.Bienvenido a esta serie de tutoriales en vídeo. Tanto si eres completamente nuevo en la programación como si tienes algo de experiencia pero quieres aprender más, este curso está diseñado para proporcionar una introducción a la programación en lenguaje cotidiano. Los estudiantes que completen las siguientes lecciones dominarán los fundamentos de la programación y tendrán los conocimientos necesarios para conseguir un trabajo como desarrollador de software.",
+                    "progress": {
+                        "id": 0,
+                        "completed": false
+                      }
+                },
+                {   
+                    "id": 1,
+                    "title": "aprendiendo javascript",
+                    "position": 1,
+                    "urlVideo" : "https://www.youtube.com/embed/-rj-zxmdGHA?si=Tw9nizb-y3NdILSg",
+                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf",
+                    "description" : "¡Aprende a programar! Este curso ayuda a aquellos con poca o ninguna experiencia a iniciarse en el desarrollo de software. Te introduciremos en los fundamentos de la informática, la programación y el desarrollo de software a través de lecciones sobre temas como: razonamiento lógico, algoritmos, estructuras de datos, funciones y modularidad, contenedores y listas enlazadas, búsqueda y ordenación, cadenas y expresiones regulares, programación con objetos, clases y herencia.Bienvenido a esta serie de tutoriales en vídeo. Tanto si eres completamente nuevo en la programación como si tienes algo de experiencia pero quieres aprender más, este curso está diseñado para proporcionar una introducción a la programación en lenguaje cotidiano. Los estudiantes que completen las siguientes lecciones dominarán los fundamentos de la programación y tendrán los conocimientos necesarios para conseguir un trabajo como desarrollador de software.",
+                    "progress": {
+                        "id": 1,
+                        "completed": false
+                      }
                 }
+            ]
             },
             {
-                "idModule": "2",
-                "titleModule": "Domina los ciclos o bucles",
-                "shortDescription": "Todo lo que necesitas saber sobre los bucles",
-                "viewTime" : "21",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/5ct-3tDiRUY?si=jhBft2XdaxoQTFgh",
-                    "titleVideo": "Domina los ciclos o bucles en Javascript",
-                    "descriptionVideo" : "Los bucles en JavaScript son estructuras de control que nos permiten ejecutar un bloque de código repetidas veces bajo ciertas condiciones. Existen varios tipos de bucles en JavaScript, cada uno con su propósito y uso específico",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
+                "id": 1,
+                "title": "Otro modulo 2",
+                "position": 1,
+                "contents": [
+                {   
+                    "id": 0,
+                    "title": "Curso de introducción a la computacion",
+                    "position": 1,
+                    "urlVideo" : "https://www.youtube.com/embed/-rj-zxmdGHA?si=Tw9nizb-y3NdILSg",
+                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf",
+                    "description" : "¡Aprende a programar! Este curso ayuda a aquellos con poca o ninguna experiencia a iniciarse en el desarrollo de software. Te introduciremos en los fundamentos de la informática, la programación y el desarrollo de software a través de lecciones sobre temas como: razonamiento lógico, algoritmos, estructuras de datos, funciones y modularidad, contenedores y listas enlazadas, búsqueda y ordenación, cadenas y expresiones regulares, programación con objetos, clases y herencia.Bienvenido a esta serie de tutoriales en vídeo. Tanto si eres completamente nuevo en la programación como si tienes algo de experiencia pero quieres aprender más, este curso está diseñado para proporcionar una introducción a la programación en lenguaje cotidiano. Los estudiantes que completen las siguientes lecciones dominarán los fundamentos de la programación y tendrán los conocimientos necesarios para conseguir un trabajo como desarrollador de software.",
+                    "progress": {
+                        "id": 1,
+                        "completed": false
+                      }
+                },
+                {   
+                    "id": 1,
+                    "title": "Curso de introducción a la programación 2",
+                    "position": 1,
+                    "urlVideo" : "https://www.youtube.com/embed/-rj-zxmdGHA?si=Tw9nizb-y3NdILSg",
+                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf",
+                    "description" : "¡Aprende a programar! Este curso ayuda a aquellos con poca o ninguna experiencia a iniciarse en el desarrollo de software. Te introduciremos en los fundamentos de la informática, la programación y el desarrollo de software a través de lecciones sobre temas como: razonamiento lógico, algoritmos, estructuras de datos, funciones y modularidad, contenedores y listas enlazadas, búsqueda y ordenación, cadenas y expresiones regulares, programación con objetos, clases y herencia.Bienvenido a esta serie de tutoriales en vídeo. Tanto si eres completamente nuevo en la programación como si tienes algo de experiencia pero quieres aprender más, este curso está diseñado para proporcionar una introducción a la programación en lenguaje cotidiano. Los estudiantes que completen las siguientes lecciones dominarán los fundamentos de la programación y tendrán los conocimientos necesarios para conseguir un trabajo como desarrollador de software.",
+                    "progress": {
+                        "id": 1,
+                        "completed": false
+                      }
                 }
-            },
-            {
-                "idModule": "3",
-                "titleModule": "Tipos de datos",
-                "shortDescription": "Objeto, Array, Number y String",
-                "viewTime" : "26",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/lcuLBCleWGE?si=TxQD2N0pNegX1eHh",
-                    "titleVideo": "Tipos de datos en Javascript | Curso de Programación con JavaScript desde cero",
-                    "descriptionVideo" : "En JavaScript, los tipos de datos se pueden clasificar en primitivos y objetos. Además de estos tipos primitivos, cualquier cosa que no sea un tipo de dato primitivo se considera un objeto. Los objetos pueden ser colecciones de datos (como los objetos literales y los arrays) o funciones con funcionalidad programable.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
-            },
-            {
-                "idModule": "4",
-                "titleModule": "Métodos de Array",
-                "shortDescription": "7 métodos de Array",
-                "viewTime" : "8",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/5yPf74sCu2k?si=U3FN_NrHFfGkSONB",
-                    "titleVideo": "7 Métodos de arrays en Javascript que debes conocer",
-                    "descriptionVideo" : "Los Arrays en JavaScript son una de las estructuras de datos más utilizadas. incorporan muchos métodos que si los conoces y sabes utilizarlos, te ayudarán a implementar soluciones sencillas y poderosas en tu código del día a día.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
-            },
-            {
-                "idModule": "5",
-                "titleModule": "El objeto THIS y el SCOPE en Javascript",
-                "shortDescription": "Entiende como funciona THIS en JavaScript",
-                "viewTime" : "5",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/5lXwdTJScK8?si=R4gTuMMSCxsIWbKR",
-                    "titleVideo": "Qué es THIS en JAVASCRIPT - Cómo funciona el Objeto THIS",
-                    "descriptionVideo" : "Aprende que hace el objeto THIS en JavaScript. Un objeto bastante peculiar que ha sido fuente de confusión durante mucho tiempo. En este video te cuento como funciona a grandes rasgos para que te quede más claro.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
-            },
-            {
-                "idModule": "6",
-                "titleModule": "Closures en JavaScript",
-                "shortDescription": "Entiende como funciona las Clousures en JavaScript",
-                "viewTime" : "9",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/xa8lhVwQBw4?si=Dl7FvInhIMbahCDu",
-                    "titleVideo": "CLOSURES en JavaScript: Qué son y cómo funcionan",
-                    "descriptionVideo" : "Las Closures o Funciones Cierre son una de las partes más importantes sobre JavaScript y que siempre nos provoca ciertas dudas. Con este vídeo te las resuelvo en menos de 10 minutos. Ya estás un paso más adelante en tu camino para dominar JavaScript!",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
-            },
-            {
-                "idModule": "7",
-                "titleModule": "Asincronía en JavaScript",
-                "shortDescription": "Callbacks, Promises, Async/Await",
-                "viewTime" : "12",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/rKK1q7nFt7M?si=ZXz4dkjVN3iGDwSz",
-                    "titleVideo": "¿Cómo funcionan las Promises y Async/Await en JavaScript?",
-                    "descriptionVideo" : "La asincronía en JavaScript es un concepto fundamental que permite ejecutar operaciones en segundo plano sin bloquear la ejecución principal del código. Esto es especialmente útil en operaciones que requieren esperar a que algo suceda, como la carga de datos de una API o la realización de tareas de larga duración, sin congelar la interfaz de usuario.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
-            },
-            {
-                "idModule": "8",
-                "titleModule": "Trabajando con APIs externas",
-                "shortDescription": "Cómo consumir un API con JavaScript",
-                "viewTime" : "15",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/2Xm9P_tXtK8?si=qOC-pKXhS-cQCbE4",
-                    "titleVideo": "Cómo consumir un API con Javascript desde la web",
-                    "descriptionVideo" : "Una página web sin JavaScript no es una aplicación. Para que sea dinámica, necesitas que pueda consumir un servicio externo como puede ser un API REST. En este video te cuento como hacerlo tanto con el método fetch de JavaScript, así como se hacía antiguamente antes de ES6 con el objeto XMLHttpRequest. Podemos utilizar librerías y frameworks, pero aquí te cuento como hacerlo de forma nativa.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
-            },
-            {
-                "idModule": "9",
-                "titleModule": "Javascript avanzado",
-                "shortDescription": "Currying, Composition, Clousures, Coalescing, Reflect API",
-                "viewTime" : "10",
-                "contenidoModule": {
-                    "videoUrl" : "https://www.youtube.com/embed/7IKXP0NldBg?si=MZ7Gx518nwQx1Vcb",
-                    "titleVideo": "5 Conceptos de JAVASCRIPT AVANZADO que te harán MEJOR DEVELOPER",
-                    "descriptionVideo" : "Te comparto 5 conceptos de programación avanzada con JavaScript para aumentar tus skills y nivel en programación.",
-                    "urlPdf" : "https://eloquentjs-es.thedojo.mx/Eloquent_JavaScript.pdf"
-                }
+            ]
             }
+           
         ]
     }
 ]

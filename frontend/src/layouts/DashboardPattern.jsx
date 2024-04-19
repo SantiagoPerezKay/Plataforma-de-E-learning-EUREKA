@@ -39,7 +39,7 @@ function DashboardPattern({
     <div className="w-full h-screen flex flex-col">
       <NavBar/>
       <div className="w-full md:h-screen flex flex-col md:flex-row md:overflow-auto">
-        <div className="relative w-full px-5 py-2 flex flex-col items-end md:w-[35%] lg:w-[30%] border md:overflow-y-scroll bg-white z-10">
+        <div className="relative w-full flex flex-col items-end md:w-[35%] lg:w-[30%] border md:overflow-y-scroll bg-white z-10">
           <div className="md:hidden">
             {
               open ? 

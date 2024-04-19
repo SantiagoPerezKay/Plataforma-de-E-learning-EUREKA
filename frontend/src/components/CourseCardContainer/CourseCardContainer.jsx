@@ -43,6 +43,7 @@ const CourseCardContainer = () => {
                   id={data.id}
                   title={data.title}
                   image={data.image}
+                  id={data.id}
                 />
               ))
             ) : (
