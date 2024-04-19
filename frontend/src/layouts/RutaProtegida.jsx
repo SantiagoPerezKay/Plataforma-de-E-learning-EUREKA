@@ -19,6 +19,7 @@ function RutaProtegida() {
 
     const location = useLocation()
     const [access,setAccess]= useState(false)
+    const [validate,setValidate]=useState(null)
 
     useEffect(()=>{
         const token = localStorage.getItem('jwt');
@@ -30,6 +31,7 @@ function RutaProtegida() {
     useEffect(()=>{
         const protectRuta =  async ()=>{
             const permitir = await protectRouteByRol(location.pathname)
+            console.log(permitir)
             if(!permitir){
                 setAccess(false)
             }
@@ -39,15 +41,16 @@ function RutaProtegida() {
 
     async function protectRouteByRol(ruta){
 
-        let validate
-
-        try {
-            const {data} = await verifyProfesor()
-            validate = data.verified
-        }catch(error) {
-            console.log(error.message)
-            validate = false
+        if(validate === null){
+            try {
+                const {data} = await verifyProfesor()
+                setValidate(data.verified)
+            }catch(error) {
+                console.log(error.message)
+                setValidate(false)
+            }
         }
+
 
         const token = localStorage.getItem('jwt')
         const data = getPayload(token)
@@ -61,7 +64,7 @@ function RutaProtegida() {
             return true
         }
     
-        if(role.includes('TEACHER')){
+        if(ruta.includes('TEACHER')){
             if(!validate){
                 return false
             }
