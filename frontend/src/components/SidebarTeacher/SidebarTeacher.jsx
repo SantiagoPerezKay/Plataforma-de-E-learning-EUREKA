@@ -19,7 +19,7 @@ export default function SidebarTeacher() {
                         </div>
                     </NavLink>
 
-                    <NavLink>
+                    <NavLink to='crear-curso'>
                         <div className="cursor-pointer flex items-center font-[600] m-2">
                             <IconCrearCursoTeacher/>
                             <label>Crear curso</label>
