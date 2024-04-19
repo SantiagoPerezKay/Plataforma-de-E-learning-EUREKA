@@ -32,68 +32,45 @@ Este módulo permite a los usuarios registrarse en EUREKA como alumnos o profeso
 
 Project Manager:
 
-Trello
+[![Trello](https://img.shields.io/badge/Trello-Project_Management-blue)](https://trello.com/)
+[![Miro](https://img.shields.io/badge/Miro-Team_Boards-lightgrey.svg)](https://miro.com/es/)
+[![Google Sheets](https://img.shields.io/badge/Google_Sheets-Deploy-green)](https://www.google.com/sheets/about/)
+[![GitHub](https://img.shields.io/badge/GitHub-Version_Control-orange.svg)](https://github.com/)
 
 UX/UI:
 
-Figma FigJam Google Forms
+[![Figma](https://img.shields.io/badge/Figma-Design-orange)](https://www.figma.com/file/ZGN1nPmv8dpcSJUNEeYZfJ/No-Country-C16-20-n?type=design&t=xTuezUbMZTxxFr0q-6)
+[![Marvel App](https://img.shields.io/badge/Marvel_App-Prototyping-green)](https://marvelapp.com/)
+[![Google Forms](https://img.shields.io/badge/Google_Forms-Surveys-yellow)](https://www.google.com/forms)
+[![Optimal Workshop](https://img.shields.io/badge/Optimal_Workshop-Product_Development-blue)](https://www.optimalworkshop.com/)
+[![Photoshop](https://img.shields.io/badge/Photoshop-Img_Editor-lightgrey)](https://www.adobe.com/products/photoshop.html)
+[![KDEnLive](https://img.shields.io/badge/KDEnLive-Video_Editor-yellow)](https://kdenlive.org/)
 
 Front End:
 
-HTML CSS JavaScript React JS Vite Tailwind CSS
+[![JavaScript](https://img.shields.io/badge/JavaScript-Scripting-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![React JS](https://img.shields.io/badge/React_JS-Library-blue)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-Bundler-green)](https://vitejs.dev/)
+[![React-Redux](https://img.shields.io/badge/React_Redux-Global_Var-blue)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Utility_Framework-blue)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deploy-green)](https://vercel.com/)
 
 Back End:
 
-Node.js Express Sequelize ORM MySQL
+[![Java](https://img.shields.io/badge/Java-Scripting-yellow)](https://docs.oracle.com/en/java/)
+[![Spring](https://img.shields.io/badge/Spring-Framework-green)](https://spring.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue.svg)](https://www.postgresql.org/)
+[![Railway](https://img.shields.io/badge/Railway-Deploy-lightgrey)](https://railway.app/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-Img_Storage-blue.svg)](https://cloudinary.com/)
 
 Testing QA:
 
-Test Monitor JMeter
+[![Google Sheets](https://img.shields.io/badge/Google_Sheets-Deploy-lightgrey)](https://www.google.com/sheets/about/)
+[![Trello](https://img.shields.io/badge/Trello-Project_Management-blue)](https://trello.com/)
+[![Postman](https://img.shields.io/badge/Postman-API_Platform-green.svg)](https://www.postman.com/)
+[![JMeter](https://img.shields.io/badge/JMeter-Performance_Test-yellow.svg)](https://jmeter.apache.org/)
+[![Selenium](https://img.shields.io/badge/Selenium-Automates_Browsers-orange.svg)](https://www.selenium.dev/)
 
-Tecnologías de Back-End
-Lenguaje: Java
-Framework: Spring
-Base de datos: PostgreSQL
-Despliegue backend: railway
-Imagenes: cloudinary | vercel store blob
-Videos: fuentes externas
-Archivos: fuentes externas
-Tecnologías de Front-End
-React: Biblioteca JavaScript para interfaces dinámicas.
-Vite: Compilador rápido para aplicaciones web modernas.
-Tailwind: Marco CSS para estilos eficientes.
-CSS Módulos: Estilos encapsulados por componente.
-Redux/Context: Gestión del estado en la aplicación.
-Vercel: Plataforma en la nube para despliegues rápidos.
-
-Tecnologías de QA 
-Las pruebas manuales serán con:
-Google Sheets
-Trello
-Postman
-JMeter
-Selenium
-
-Tecnologías de Ux|Ui
-Figma
-Marvel App
-Optimal Workshop
-Miro
-Trello
-Photoshop
-KDEnLive
-GitHub
-Google Forvms
-
-Tecnologías de PM
-Miro
-Trello
-GitHub
-Google Sheets
-
-[![Figma](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 
 ## Equipo
@@ -106,19 +83,30 @@ Google Sheets
 | `Front End`       | Emiliano Longo          | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://www.linkedin.com/in/emilianojlongo/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/emilianojlongo/)                          
 | `Front End`       | Gaston Salas          | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Gaston095) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/gastonsalas095/)    
 | `Front End`       | Tobias Olveira          | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Kobi96) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/tobias-olveira-52a0311b7/)                    |
-| `Back End`        | Eliseo Montenegro           | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/LeoToloza1/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/leonel-toloza/)              |  
-| `Back End`        | Claudia Ortiz            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/carlasarabiap) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/carlacarolinasarabiapescozo/)               | 
-| `Back End`        | Mariana Cuba           | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/LeoToloza1/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/leonel-toloza/)              |  
-| `Back End`        | Luciana Mazur            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/carlasarabiap) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/carlacarolinasarabiapescozo/)               | 
-| `Back End`        | Leandro Deferrari          | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/LeoToloza1/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/leonel-toloza/)              |  
-| `Back End`        | Santiago Perez            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/carlasarabiap) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/carlacarolinasarabiapescozo/)               | 
-| `QA Tester`       | Luz Tabraj    | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/GitMangus/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/florencia-weingartner/)
-| `QA Tester`       | Tomás Soto    | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/GitMangus/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/florencia-weingartner/)
+| `Back End`        | Eliseo Montenegro           | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/montexbjeliseo) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/eliseo-montenegro/)              |  
+| `Back End`        | Claudia Ortiz            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Ninakiau) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/claudia-ortiz-backend/)               | 
+| `Back End`        | Mariana Cuba           | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/mariana-cuba/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/mariana-cuba-72a901258/)              |  
+| `Back End`        | Luciana Mazur            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/LucianaMazur) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/lucianamazur/)               | 
+| `Back End`        | Leandro Deferrari          | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/leandrodeferrari) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/leandrodeferrari)              |  
+| `Back End`        | Santiago Perez            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/SantiagoPerezKay) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/santiago-perez-kay-636277268/)               | 
+| `QA Tester`       | Luz Tabraj    | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/luz-tabraj/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/luz-tabraj/)
+| `QA Tester`       | Tomás Soto    | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/TomasSoto/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/tom%C3%A1s-soto-038709267/)
 
 
 ## Video Demo Day
+
+<img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/>
+
 ## Prototipo
+
+ - Prototipo hecho en Figma [Link]()
+
+
 ## Deploy
+
+ - Deploy del Front End hecho en Vercel [Link](https://s14-11-m-java-e5su.vercel.app/) 
+ - Deploy del Back End hecho en Railway [Link]()
 
 ## Documentación del Proyecto
  - [Proyecto en Miro](https://miro.com/app/board/uXjVKby_wLs=/)
+ - [Documentación de errores]()
