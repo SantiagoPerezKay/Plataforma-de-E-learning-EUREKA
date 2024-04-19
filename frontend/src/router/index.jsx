@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import {
   Login,
   Register,
+  RegisterCredentials,
   Home,
   LandingPage,
   RutaProtegida,
@@ -13,6 +14,9 @@ import {
   CourseCardContainer,
   SidebarCourse,
   Course,
+  CreateCourse,
+  SidebarTeacher,
+  TeacherCardContainer
 } from "../index";
 
 const router = createBrowserRouter([
@@ -53,11 +57,7 @@ const router = createBrowserRouter([
           {
             path: "inscripcion-cursos",
             element: <CourseCardContainer />,
-          },
-          {
-            path: "cursos",
-            element: <h1>Cursos disponibles</h1>,
-          },
+          }
         ],
       },
       {
@@ -70,6 +70,24 @@ const router = createBrowserRouter([
           }
         ],
       },
+      {
+        path:"validate-profesor",
+        element:<RegisterCredentials />
+      },
+      {
+        path:"profesor",
+        element: <DashboardPattern SideBarComponent={SidebarTeacher} />,
+        children:[
+          {
+            path: "mis-cursos",
+            element:<TeacherCardContainer />
+          },
+          {
+            path:"crear-curso",
+            element:<CreateCourse/>
+          }
+        ]
+      }
     ],
   },
 ]);

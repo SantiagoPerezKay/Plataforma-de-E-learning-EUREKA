@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import CursoCard from "../CursoCard/CursoCard";
 import { useLocation } from "react-router-dom";
 import useCourse from "../../api/course/index";
+import { useSelector } from "react-redux";
 
 const CourseCardContainer = () => {
   const location = useLocation();
   const { coursesByUser, getCatalogCourses } = useCourse();
-  const [userData, setUserData] = useState([]);
   const [catalogData, setCatalogData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const userCourses = useSelector((state) => state.auth.userCourses);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userCourses = await coursesByUser();
-        setUserData(userCourses);
+        await coursesByUser();
 
         const catalogCourses = await getCatalogCourses();
         setCatalogData(catalogCourses);
@@ -40,6 +40,7 @@ const CourseCardContainer = () => {
               catalogData.map((data) => (
                 <CursoCard
                   key={data.id}
+                  id={data.id}
                   title={data.title}
                   image={data.image}
                   id={data.id}
@@ -50,13 +51,15 @@ const CourseCardContainer = () => {
                 No hay cursos disponibles en este momento
               </h1>
             )
-          ) : userData && Array.isArray(userData) && userData.length > 0 ? (
-            userData.map((data) => (
+          ) : userCourses &&
+            Array.isArray(userCourses) &&
+            userCourses.length > 0 ? (
+            userCourses.map((data) => (
               <CursoCard
-                key={data.course.id}
-                title={data.course.title}
-                image={data.course.image}
-                id={data.course.id}
+                key={data.id}
+                id={data.id}
+                title={data.title}
+                image={data.image}
               />
             ))
           ) : (

@@ -1,35 +1,32 @@
 import axios from "axios";
 import { setCredentials, logOut } from "../../redux/slices/auth/authSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-import {
-  BASE_URL,
-  LOGIN,
-  REGISTER
-} from '../constantes'
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_REACT_APP_URL;
+  const LOGIN = import.meta.env.VITE_REACT_APP_LOGIN;
+  const REGISTER = import.meta.env.VITE_REACT_APP_REGISTER;
 
   const authLogin = async (dataUser) => {
-    const RUTA = `${BASE_URL}${LOGIN}`
+    const RUTA = `${BASE_URL}${LOGIN}`;
     try {
-      const { data } = await axios.post(RUTA,dataUser);
+      const { data } = await axios.post(RUTA, dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
+      return data.token;
     } catch (error) {
       throw new Error(error.message);
     }
   };
 
   const authRegistro = async (dataUser) => {
-    const RUTA = `${BASE_URL}${REGISTER}`
+    const RUTA = `${BASE_URL}${REGISTER}`;
     try {
-      const { data } = await axios.post(RUTA,dataUser);
+      const { data } = await axios.post(RUTA, dataUser);
       localStorage.setItem("jwt", data.token);
       dispatch(setCredentials(data));
+      return data.token;
     } catch (error) {
       throw new Error(error.message);
     }
