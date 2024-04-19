@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    @Validated
+    @Transactional
     public CreatedCourseDTO createCourse(CreateCourseDTO createCourseDTO){
 
         Teacher teacher = getTeacherByUser(getCurrentUser());
