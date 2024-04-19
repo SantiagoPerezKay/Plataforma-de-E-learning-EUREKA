@@ -36,7 +36,7 @@ function Login() {
     try {
       setLoading(true)
       const rta = await authLogin(data)
-      const ruta = redirectLoginByRol(rta)
+      const ruta = await redirectLoginByRol(rta)
       navigate(ruta)
     } catch (error) {
       setLoading(false)

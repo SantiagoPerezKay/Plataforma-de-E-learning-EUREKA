@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const stateSlice = {
-    token:null
+    token:null,
+    verify:false
 }
 
 const authSlice = createSlice({
@@ -20,13 +21,21 @@ const authSlice = createSlice({
                 ...state,
                 token: null
             };
+        },
+        setVerify : (state,action)=>{
+            const {verify} = action.payload
+            return {
+                ...state,
+                verify
+            };
         }
     }
 })
 
 export const {
     setCredentials,
-    logOut
+    logOut,
+    setVerify
 } = authSlice.actions;
 
 
