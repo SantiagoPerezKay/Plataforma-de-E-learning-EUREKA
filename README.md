@@ -119,3 +119,6 @@ Google Sheets
 ## Video Demo Day
 ## Prototipo
 ## Deploy
+
+## Documentación del Proyecto
+ - [Proyecto en Miro](https://miro.com/app/board/uXjVKby_wLs=/)
