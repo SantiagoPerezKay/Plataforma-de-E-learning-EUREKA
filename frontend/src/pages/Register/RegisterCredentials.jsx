@@ -4,8 +4,7 @@ import { Alertas, Spinner } from "../../index";
 import { useState } from "react";
 import axios from "axios";
 
-
-
+import { validateProfesor } from "../../utils/DecodificarToken";
 
 const RegisterCredentials = () => {
     
@@ -65,18 +64,20 @@ const RegisterCredentials = () => {
             "credentials": data.credentials,
             "file": selectedFile,
             "linkedin": data.linkedin,
-          }
+        }
+
         try {
             setLoading(true)
             console.log(body)
             const resp = await axios.post('https://s14-11-m-java.onrender.com/api/v1/teachers', body, config);
-            navigate('/dashboard/profesor')
+            const ruta =  await validateProfesor()
+            navigate(ruta)
         } catch (error) {
-        setLoading(false)
-        handleError(error)
-        setTimeout(()=>{
-            resetError()
-        },3000)
+            setLoading(false)
+            handleError(error)
+            setTimeout(()=>{
+                resetError()
+            },3000)
         }
     });
 

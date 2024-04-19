@@ -44,7 +44,7 @@ export default function Register() {
       try {
         setLoading(true)
         const rta = await authRegistro(body)
-        const ruta = redirectLoginByRol(rta)
+        const ruta = await redirectLoginByRol(rta)
         navigate(ruta)
       } catch (error) {
         setLoading(false)
