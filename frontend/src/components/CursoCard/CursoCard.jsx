@@ -51,7 +51,7 @@ const CursoCard = (props) => {
         </div>
       ) : (
         <Link
-          to={`/dashboard/curso/${props.id}/1/1`}
+          to={`/dashboard/curso/${props.id}`}
           className="w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4"
         >
           <img src={props.image} className="w-full" alt="Course" />
