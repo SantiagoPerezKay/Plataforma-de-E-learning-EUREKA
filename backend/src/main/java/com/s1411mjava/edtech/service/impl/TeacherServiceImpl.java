@@ -2,6 +2,7 @@ package com.s1411mjava.edtech.service.impl;
 import com.s1411mjava.edtech.dtos.*;
 import com.s1411mjava.edtech.entity.*;
 import com.s1411mjava.edtech.entity.Module;
+import com.s1411mjava.edtech.exception.DuplicatedResourceException;
 import com.s1411mjava.edtech.exception.MandatoryFieldException;
 import com.s1411mjava.edtech.exception.ResourceNotFoundException;
 import com.s1411mjava.edtech.mapper.CatalogMapper;
@@ -44,6 +45,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public TeacherOutDto createTeacher(TeacherInDto teacherInDto) {
 
+        if(teacherRepository.existsByUser(getCurrentUser())){
+            throw new DuplicatedResourceException("El profesor ya se dio de alta");
+        }
 
         Teacher teacher = new Teacher();
         teacher.setExperience(teacherInDto.getExperience());
