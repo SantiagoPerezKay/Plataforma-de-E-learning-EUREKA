@@ -7,7 +7,10 @@ const useCourse = () => {
   const CATALOG = import.meta.env.VITE_REACT_APP_CATALOG;
   const COURSES_BY_USER = import.meta.env.VITE_REACT_APP_COURSES_BY_USER;
   const COURSE_BY_ID = import.meta.env.VITE_REACT_APP_COURSE_BY_ID;
+  const CATEGORIAS = import.meta.env.VITE_REACT_APP_CREAR_CATEGORIAS;
+
   const dispatch = useDispatch();
+
 
   const getCatalogCourses = async () => {
     const RUTA = `${BASE_URL}${CATALOG}`;
@@ -74,12 +77,30 @@ const useCourse = () => {
     try {
       const { data } = await axios(RUTA, config);
       return data;
+      console.log(data)
     } catch (error) {
       throw new Error(error.message);
     }
   };
 
-  return { getCatalogCourses, coursesByUser, courseById, postEnrollment };
+  const getCategorias = async ()=>{
+    const RUTA = `${BASE_URL}${CATEGORIAS}`
+    try {
+      const { data } = await axios(RUTA);
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  return { 
+    getCatalogCourses, 
+    coursesByUser, 
+    courseById,
+    getCategorias,
+    postEnrollment
+  };
+
 };
 
 export default useCourse;
