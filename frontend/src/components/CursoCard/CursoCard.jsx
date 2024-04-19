@@ -21,9 +21,9 @@ const CursoCard = (props) => {
 
   return (
     <>
-      <Link to={`/dashboard/curso/${props.id}/1/1`}>
-        <div className="w-full card-container flex flex-col items-center border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden">
-          <img src={props.image} className="w-full" />
+      {location.pathname.includes("inscripcion-cursos") ? (
+        <div className="w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4">
+          <img src={props.image} className="w-full" alt="Course" />
           <div className="stars flex my-2">
             <img src={starFill} width="32" alt="Filled Star" />
             <img src={starFill} width="32" alt="Filled Star" />
@@ -51,7 +51,7 @@ const CursoCard = (props) => {
         </div>
       ) : (
         <Link
-          to={`/dashboard/curso/${props.id}-curso`}
+          to={`/dashboard/curso/${props.id}/1/1`}
           className="w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4"
         >
           <img src={props.image} className="w-full" alt="Course" />
