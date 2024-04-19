@@ -1,13 +1,17 @@
 import { useState } from "react";
 import useProfesor from "../../api/profesor";
 
+import Spinner from '../Loading/Spinner'
+
 function SubirArchivo({
     callback,
     stateImage,
     label,
-    setUrlImg
+    setUrlImg,
+    required = false
 }) {
     const [subtmit,setSubmit]=useState(false)
+    const [loading,setLoading]=useState(false)
 
     const {
         subirImagen
@@ -18,13 +22,16 @@ function SubirArchivo({
         if(stateImage){
             const formData = new FormData();
             formData.append('file',stateImage)
+            setLoading(true)
             try {
                 const {url} = await subirImagen(formData)
                 console.log(url)
                 setUrlImg(url)
                 callback(null)
                 setSubmit(true)
+                setLoading(false)
             } catch (error) {
+                setLoading(false)
                 console.log(error)
             }
         }else{
@@ -34,7 +41,12 @@ function SubirArchivo({
 
     return (
         <>
-            <label className="text-xl font-semibold italic">{label}</label>
+            <label className="text-xl font-bold italic flex flex-row">
+                    <p>{label}</p>
+                    {
+                        required && <span className="text-red-500 ml-2">*</span>
+                    }
+            </label>
             <div className="flex flex-row justify-between items-center">
                 <input
                     onChange={(e)=>callback(e.target.files[0])}
@@ -53,7 +65,9 @@ function SubirArchivo({
                         onClick={uploadImagen}
                         className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
-                        CARGAR
+                        {
+                            loading ? <Spinner/> : <p>CARGAR</p>
+                        }
                     </button>
                     
                 }

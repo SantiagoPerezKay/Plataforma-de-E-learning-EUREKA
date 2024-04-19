@@ -4,8 +4,17 @@ import SubirArchivo from '../SubirArchivo/SubirArchivo'
 
 import leftArrow from '../../assets/svgs/left-row.svg'
 
+import validarDatos from "../../utils/ValidarDatos";
+
+import Alertas from "../Alertas/Alertas";
+
 function Content() {
     const [open,setOpen]=useState(false)
+    const [alerta,setAlerta]=useState({
+        state:false,
+        msg:''
+    })
+
     const [titleContenido,setTitleContenido]=useState('')
     const [urlVideo,setUrlVideo]=useState('')
     const [descripcion,setDescripcion]=useState('')
@@ -25,6 +34,28 @@ function Content() {
 
     const handleCrearContenido =(e)=>{
         e.preventDefault()
+
+        const dataVerify = {
+            'title':titleContenido,
+            'urlVideo':urlVideo,
+            'description':descripcion,
+        }
+
+        const verify = validarDatos(dataVerify)
+
+        if(!verify){
+            setAlerta({
+                state:true,
+                msg:'los campos marcados con * son obligatorios'
+            })
+            setTimeout(() => {
+                setAlerta({
+                    state:false,
+                    msg:''
+                })
+            }, 4000);
+            return
+        }
 
         const data={
             'position':(contenido.length + 1)-1,
@@ -84,7 +115,7 @@ function Content() {
                 </button>
                 <h1 className="text-xl font-bold">{`Modulo: ${tituloModulo}`}</h1>
                 <button
-                    onClick={()=>setOpen(prev => !prev)}
+                    onClick={()=>setOpen(true)}
                     className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                     CREAR CONTENIDO
@@ -93,54 +124,72 @@ function Content() {
 
             {
                 open && 
-                <div>
-                    <div className="flex flex-col gap-2">
-                        <label className="text-xl font-semibold italic">Titulo</label>
-                        <input
-                            onChange={(e)=>setTitleContenido(e.target.value)}
-                            value={titleContenido}
-                            name="title" 
-                            type="text" 
-                            className="border rounded shadow py-1 px-5 outline-none"
-                        />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <label className="text-xl font-semibold italic">Descripción</label>
-                        <input
-                            onChange={(e)=>setDescripcion(e.target.value)}
-                            value={descripcion}
-                            name="title" 
-                            type="text" 
-                            className="border rounded shadow py-1 px-5 outline-none"
-                        />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <label className="text-xl font-semibold italic">Url video</label>
-                        <input
-                            onChange={(e)=>setUrlVideo(e.target.value)}
-                            value={urlVideo}
-                            name="title" 
-                            type="text" 
-                            className="border rounded shadow py-1 px-5 outline-none"
-                        />
-                    </div>
+                <Alertas err={alerta} size={'md'}>
+                    <div className="bg-white flex flex-col gap-1 border-2 px-5 py-3 rounded-lg shadow-md mt-2">
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xl font-bold italic flex flex-row">
+                                <p>Titulo del contenido</p>
+                                <span className="text-red-500 ml-2">*</span>
+                            </label>
+                            <input
+                                onChange={(e)=>setTitleContenido(e.target.value)}
+                                value={titleContenido}
+                                name="title" 
+                                type="text" 
+                                className="border-2 bg-slate-200 border-gray-500 rounded-xl shadow py-1 px-5 outline-none"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xl font-bold italic flex flex-row">
+                                <p>Descripción</p>
+                                <span className="text-red-500 ml-2">*</span>
+                            </label>
+                            <input
+                                onChange={(e)=>setDescripcion(e.target.value)}
+                                value={descripcion}
+                                name="title" 
+                                type="text" 
+                                className="border-2 bg-slate-200 border-gray-500 rounded-xl shadow py-1 px-5 outline-none"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xl font-bold italic flex flex-row">
+                                <p>Enlace de video</p>
+                                <span className="text-red-500 ml-2">*</span>
+                            </label>
+                            <input
+                                onChange={(e)=>setUrlVideo(e.target.value)}
+                                value={urlVideo}
+                                name="title" 
+                                type="text" 
+                                className="border-2 bg-slate-200 border-gray-500 rounded-xl shadow py-1 px-5 outline-none"
+                            />
+                        </div>
 
-                    <div className="flex flex-col gap-2">
-                        <SubirArchivo
-                            setUrlImg={setUrlImg}
-                            callback={setFileImagen}
-                            stateImage={fileImagen}
-                            label={'Subir archivo'}
-                        />
+                        <div className="flex flex-col gap-1">
+                            <SubirArchivo
+                                setUrlImg={setUrlImg}
+                                callback={setFileImagen}
+                                stateImage={fileImagen}
+                                label={'Subir archivo'}
+                            />
+                        </div>
+                        <div>
+                            <button
+                                onClick={handleCrearContenido}
+                                className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                CREAR
+                            </button>
+                            <button
+                                onClick={()=>setOpen(false)}
+                                className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                CANCELAR
+                            </button>
+                        </div>
                     </div>
-                    
-                    <button
-                        onClick={handleCrearContenido}
-                        className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    >
-                        CREAR
-                    </button>
-                </div>
+                </Alertas>
             }
 
             {

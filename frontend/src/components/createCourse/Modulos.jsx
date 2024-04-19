@@ -2,6 +2,8 @@ import { useState } from "react"
 
 import useCurso from "../../hooks/useCurso"
 
+import Alertas from "../Alertas/Alertas"
+
 function Modulos({
     setStep
 }){
@@ -14,7 +16,26 @@ function Modulos({
     const [open,setOpen]=useState(false)
     const [nombreModulo,setNombreModulo]=useState('')
 
+    const [alerta,setAlerta]=useState({
+        state:false,
+        msg:''
+    })
+
     const handleCrearModulo = ()=>{
+        if(nombreModulo === ''){
+            setAlerta({
+                state:true,
+                msg:'todos los campos son obligatorios'
+            })
+            setTimeout(() => {
+                setAlerta({
+                    state:false,
+                    msg:''
+                })
+            }, 4000);
+            return
+        }
+
         const data = {
             'position':(stateModulos.modules.length + 1)-1,
             'title':nombreModulo,
@@ -44,7 +65,7 @@ function Modulos({
         <div className="w-full">
             <div className="flex flex-row justify-between">
                 <button
-                    onClick={()=>setOpen(prev => !prev)}
+                    onClick={()=>setOpen(true)}
                     className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                     CREAR MODULO
@@ -60,22 +81,36 @@ function Modulos({
 
             {
                 open && 
-                <div className="flex flex-col gap-2">
-                    <label className="text-xl font-semibold italic">Titulo del modulo</label>
-                    <input
-                        onChange={(e)=>setNombreModulo(e.target.value)}
-                        value={nombreModulo}
-                        name="title" 
-                        type="text" 
-                        className="border rounded shadow py-1 px-5 outline-none"
-                    />
-                    <button
-                        onClick={handleCrearModulo}
-                        className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    >
-                        CREAR
-                    </button>
-                </div>
+                <Alertas err={alerta} size={'md'}>
+                    <div className="bg-white flex flex-col gap-2 border-2 px-5 py-2 rounded-lg shadow-md mt-2">
+                        <label className="text-xl font-bold italic flex flex-row">
+                                <p>Titulo del modulo</p>
+                                <span className="text-red-500 ml-2">*</span>
+                        </label>
+                        <input
+                            onChange={(e)=>setNombreModulo(e.target.value)}
+                            value={nombreModulo}
+                            name="title" 
+                            type="text" 
+                            className="border-2 bg-slate-200 border-gray-500 rounded-xl shadow py-1 px-5 outline-none"
+                        />
+                        <div>
+                            <button
+                                onClick={handleCrearModulo}
+                                className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                CREAR
+                            </button>
+                            <button
+                                onClick={()=>setOpen(false)}
+                                className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                CANCELAR
+                            </button>
+
+                        </div>
+                    </div>
+                </Alertas>
             }
 
             {
@@ -84,13 +119,13 @@ function Modulos({
 
             {
                 stateModulos.modules.length !== 0 &&
-                <div className="grid grid-cols-2 gap-3 mt-3 bg-slate-200 px-5 py-3">
+                <div className="grid grid-cols-2 gap-3 mt-3 px-5 py-3">
                     {
                         stateModulos.modules?.map((item)=>(
                             <div
                                 key={item.position}
                                 onClick={()=>ContenidoByModule(item.position)} 
-                                className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
+                                className="border bg-white shadow-lg rounded-md p-5 hover:shadow-xl cursor-pointer"
                             >
                                 <p className="text-center font-bold text-xl">{`Modulo ${item.position + 1}`}</p>
                                 <p className="text-lg font-semibold">{`Nombre: ${item.title}`}</p>
