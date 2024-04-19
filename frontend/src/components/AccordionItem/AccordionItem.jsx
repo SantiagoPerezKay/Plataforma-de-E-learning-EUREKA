@@ -1,11 +1,14 @@
 import svgCheck from './svgCheck.svg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 import IconCheck from '../iconCheck/IconCheck';
 
+import { useSelector } from 'react-redux';
+
 export const AccordionItem = ({title, content, idModule,idCurso}) => {
+  
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,7 +31,7 @@ export const AccordionItem = ({title, content, idModule,idCurso}) => {
               <NavLink key={cont.id} to={`/dashboard/curso/${idCurso}/${idModule}/${cont.id}`}>
                 <div className={`flex items-center hover:bg-[#f1f1f1] h-20 ${cont.id == contentLocation? "border-l-4 border-l-blue-700" : "border-none"}`}>
                     <div className="h-full w-12 flex justify-center items-center">
-                      <IconCheck background={cont.progress.completed? "#03bb85" : "#fff"} />
+                      <IconCheck background={cont.progress.completed ? "#03bb85" : "#fff"} />
                     </div>
                     <li className='text-[#2d2f31]'>{cont.title}</li>
                 </div>
@@ -55,13 +58,21 @@ export const AccordionItem = ({title, content, idModule,idCurso}) => {
   );
 }
 
-export default function AccordionMenu({ items }) {
-  const ID = items.id
+export default function AccordionMenu() {
+  const [id,setId]=useState(null)
+  const informacionCurso = useSelector((state) => state.course.curso);
+  useEffect(()=>{
+    if(informacionCurso){
+      setId(informacionCurso.id)
+    }
+  },[informacionCurso])
+
+
   return (
     <div>
-      {items.modules?.map((item, index) => (
-        <NavLink key={item.id} to={`/dashboard/curso/${ID}/${item.id}`}>
-          <AccordionItem title={item.title} content={item.contents} idModule={item.id} idCurso={ID}/>
+      {informacionCurso?.modules?.map((item, index) => (
+        <NavLink key={item.id} to={`/dashboard/curso/${id}/${item.id}`}>
+          <AccordionItem title={item.title} content={item.contents} idModule={item.id} idCurso={id}/>
         </NavLink>
       ))}
     </div>

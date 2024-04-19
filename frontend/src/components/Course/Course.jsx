@@ -40,7 +40,9 @@ export default function Course() {
             const contentFiltered = infoModulo[0].contents.filter(contenido => parseInt(contenido.id) === parseInt(ID_CONTENIDO))
             setInfoContenido(contentFiltered[0])
         }
-    })
+    },[location])
+
+    console.log(ID_MODULO,ID_CONTENIDO)
 
 
 
@@ -48,7 +50,7 @@ export default function Course() {
     {/* PROGRESS */}
 
     const enviarDatos = async (idProgress) => {
-        /* const URL_PROGRESS = 'https://s14-11-m-java.onrender.com/api/v1/progresses'
+        const URL_PROGRESS = 'https://s14-11-m-java.onrender.com/api/v1/progresses'
         const RUTA = `${URL_PROGRESS}/${idProgress}`
         const token = localStorage.getItem("jwt");
 
@@ -61,14 +63,16 @@ export default function Course() {
 
          await axios.patch(RUTA, idProgress, config)
             .then(response => {
-              
-              console.log(response.data);
+                console.log(response.data);
+
+                dispatch(modifyProgressById({ 
+                moduloId:ID_MODULO, 
+                contentId:ID_CONTENIDO 
+                }))
             })
             .catch(error => {
               console.error(error);
-            }); */
-
-            dispatch(modifyProgressById({moduloId:ID_MODULO,contentId:ID_CONTENIDO}))
+            });
         };
 
 
