@@ -66,11 +66,36 @@ public class TeacherServiceImpl implements TeacherService {
 
         Category category = getCategoryById(createCourseDTO.getCategoryId());
 
+        //Aqui las validaciones
+
+        validateModules(createCourseDTO.getModules());
+
+        List<CreateCourseContentDTO> contentDTOList = createCourseDTO
+                .getModules()
+                .stream()
+                .flatMap(module -> module.getContents().stream()).toList();
+
+        validateContents(contentDTOList);
+
+        // Suponer que está todo correcto
+
         Course savedCourse = createCourseFromDTO(createCourseDTO, teacher, category);
 
-        savedCourse.setModules(createModules(savedCourse, createCourseDTO.getModules()));
+        List<Module> savedModuleList = createModules(savedCourse, createCourseDTO.getModules());
 
-        savedCourse.getModules().forEach(this::linksContents);
+        log.info("Lista de módulos: {}", savedModuleList);
+
+        List<Content> contentList = new ArrayList<>();
+
+        for (Module module : savedModuleList) {
+            contentList.addAll(linksContents(module));
+        }
+
+        contentRepository.saveAll(contentList);
+
+        savedCourse.setModules(savedModuleList);
+
+        log.info("Contenidos enlazados: {}", savedCourse.getModules());
 
         savedCourse = courseRepository.save(savedCourse);
 
@@ -87,26 +112,32 @@ public class TeacherServiceImpl implements TeacherService {
 
         List<Module> modules = new ArrayList<>();
 
-        moduleDTOs.forEach(module -> {
-
-            validateModules(module);
-
-            Module moduleEntity = moduleMapper.toEntity(module);
+        moduleDTOs.forEach(moduleDTO -> {
+            Module moduleEntity = moduleMapper.toEntity(moduleDTO);
             moduleEntity.setCourse(savedCourse);
             modules.add(moduleEntity);
         });
         return moduleRepository.saveAll(modules);
     }
 
-    private void linksContents(Module module) {
-        List<Content> contents = module.getContents();
-        contents.forEach(content -> {
+    private List<Content> linksContents(Module module) {
+
+        log.info("Modulo: {}", module);
+
+        module.getContents().forEach(content -> {
             content.setModule(module);
+            log.info("Contenidoi: {}", content);
         });
-        contentRepository.saveAll(contents);
+
+        return module.getContents();
     }
 
-    private void validateModules(CreateCourseModuleDTO module) {
+    private void validateModules(List<CreateCourseModuleDTO> modules) {
+        modules.forEach(this::validateModule);
+    }
+
+
+    private void validateModule(CreateCourseModuleDTO module) {
         BindingResult errors = new BeanPropertyBindingResult(module, "moduleDTO");
         validator.validate(module, errors);
         if (errors.hasErrors()) {
@@ -132,9 +163,16 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     private Course createCourseFromDTO(CreateCourseDTO createCourseDTO, Teacher teacher, Category category) {
-        Course course = courseMapper.toEntity(createCourseDTO);
-        course.setTeacher(teacher);
-        course.setCategory(category);
+        Course course = Course.builder()
+                .title(createCourseDTO.getTitle())
+                .image(createCourseDTO.getImage())
+                .description(createCourseDTO.getDescription())
+                .category(category)
+                .teacher(teacher)
+                .build();
+
+        log.info("Course: {}", course);
+
         return courseRepository.save(course);
     }
 
