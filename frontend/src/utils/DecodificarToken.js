@@ -1,9 +1,8 @@
-const RUTAS_BY_ROL = {
-    'ROLE_STUDENT':['student','curso'],
-    'ROLE_TEACHER':['profesor']
-}
+import useProfesor from "../api/profesor";
 
-const validate = true
+const {
+    verifyProfesor
+}=useProfesor()
 
 function getPayload(token){
     const payload = token.split(".")[1];
@@ -18,49 +17,45 @@ function getPayload(token){
     exp: 1712169028
 } */
 
+const validateProfesor = async()=>{
+    let validate
+
+    try {
+        const {data} = await verifyProfesor()
+        validate = data.verified
+    }catch(error) {
+        console.log(error.message)
+        validate = false
+    }
+
+    if(validate === true){
+        return "/dashboard/profesor";
+    }else{
+        return "/dashboard/validate-profesor"; 
+    }
 
 
-function redirectLoginByRol(token){
+}
+
+
+async function redirectLoginByRol(token){
     const data = getPayload(token)
     const role = data.role.authority
 
     if(role.includes('STUDENT')){
         return "/dashboard/student";
     }else if(role.includes('TEACHER')){
-        if(validate){
-            return "/dashboard/profesor";
-        }
-        return "/dashboard/validate-profesor";
+        const ruta =  await validateProfesor()
+        return ruta
     }else{
         return "/"
     }
 }
 
-function protectRouteByRol(ruta){
-    const token = localStorage.getItem('jwt')
-    const data = getPayload(token)
-    const role = data.role.authority
-    const rutas = RUTAS_BY_ROL[role]
-
-    if(ruta.includes('validate-profesor')){
-        if(validate){
-            return false
-        }
-        return true
-    }
-
-    if(role.includes('TEACHER')){
-        if(!validate){
-            return false
-        }
-    }
-
-    const permitido = rutas.some(rutaPermitida => ruta.includes(rutaPermitida));
-    return permitido
-}
 
 
 export {
     redirectLoginByRol,
-    protectRouteByRol
+    validateProfesor,
+    getPayload
 }
