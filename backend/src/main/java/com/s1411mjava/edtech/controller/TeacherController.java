@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class TeacherController {
     @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<CreatedCourseDTO> createCourse(@Valid @RequestBody CreateCourseDTO createCourseDTO) {
         CreatedCourseDTO createdCourseDTO = teacherService.createCourse(createCourseDTO);
+
         return new ResponseEntity<>(createdCourseDTO, HttpStatus.CREATED);
     }
 
