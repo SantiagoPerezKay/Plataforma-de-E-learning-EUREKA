@@ -71,9 +71,7 @@ export default function AccordionMenu() {
   return (
     <div>
       {informacionCurso?.modules?.map((item, index) => (
-        <NavLink key={item.id} to={`/dashboard/curso/${id}/${item.id}`}>
-          <AccordionItem title={item.title} content={item.contents} idModule={item.id} idCurso={id}/>
-        </NavLink>
+        <AccordionItem title={item.title} content={item.contents} idModule={item.id} idCurso={id}/>
       ))}
     </div>
   );

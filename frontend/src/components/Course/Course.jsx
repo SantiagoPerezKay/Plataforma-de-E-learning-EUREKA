@@ -46,9 +46,6 @@ export default function Course() {
 
 
 
-
-    {/* PROGRESS */}
-
     const enviarDatos = async (idProgress) => {
         const URL_PROGRESS = 'https://s14-11-m-java.onrender.com/api/v1/progresses'
         const RUTA = `${URL_PROGRESS}/${idProgress}`
@@ -101,11 +98,15 @@ export default function Course() {
                     </div>
 
                     <h1 className="text-[1.7rem] tracking-[0.7px] font-bold text-[#2d2f31]">{infoContenido.title}</h1>
-                    <p className="text-[1.1rem] text-[#2d2f31] font-normal">{infoContenido.description}</p>
-                    <a className='flex items-center my-10' href={infoContenido.urlPdf} target='_blank'>
-                        <img className='w-10' src={svgDocument}/>
-                        <label className='text-lg cursor-pointer hover:border-b-2 hover:border-b-gray-600'>Descargar contenido del curso</label>
-                    </a>
+                    <p className="text-[1.1rem] text-[#2d2f31] font-normal mb-5">{infoContenido.description}</p>
+                    
+                    {
+                        infoContenido.urlPdf !== null &&
+                        <a className='flex items-center my-5' href={infoContenido.urlPdf} target='_blank'>
+                            <img className='w-10' src={svgDocument}/>
+                            <label className='text-lg cursor-pointer hover:border-b-2 hover:border-b-gray-600'>Descargar contenido del curso</label>
+                        </a>
+                    }
                 </div>
             </div>
         </>

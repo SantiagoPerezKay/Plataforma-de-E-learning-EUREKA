@@ -67,10 +67,6 @@ const router = createBrowserRouter([
           {
             path: ":moduloid/:contentid",
             element: <Course />,
-          },
-           {
-            path: ":moduloid",
-            element: "",
           }
         ],
       },
