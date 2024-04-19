@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import {Alertas,Spinner} from "../../index";
 
-
+import { redirectLoginByRol } from "../../utils/DecodificarToken";
 
 export default function Register() {
 
@@ -43,8 +43,9 @@ export default function Register() {
 
       try {
         setLoading(true)
-        await authRegistro(body);
-        navigate("/dashboard/student");
+        const rta = await authRegistro(body)
+        const ruta = await redirectLoginByRol(rta)
+        navigate(ruta)
       } catch (error) {
         setLoading(false)
         handleError(error)
@@ -85,17 +86,44 @@ export default function Register() {
 
     return (
       <>
-        <div className="bg-slate-200 p-3 max-w-2xl my-0 mx-auto">
+        <div className="p-3 max-w-2xl my-0 mx-auto">
           <Alertas err={error} size='md'>
             <form onSubmit={onSubmit} className="max-w-[70%] my-0 mx-auto" noValidate>
-              <h1 className="text-3xl p-2 m-2 text-center font-bold">Formulario de registro</h1>
+              <h1 className="text-3xl p-2 m-2 text-center">¡Bienvenido a nuestra comunidad!</h1>
+
+              {/* Role */}
+              <label htmlFor="role" className="block text-[20px] font-[600]">¿Cuál es tu rol?</label>
+              <select 
+                  defaultValue={''} 
+                  id="role" 
+                  className="px-[30px] w-full outline-none border-[1px] border-[#000D13] rounded-[10px] text-base h-10"
+                  {...register("role", {
+                    required: {
+                      value: true,
+                      message: "El Rol es requerido",
+                    }
+                  })}
+                  >
+                <option value={""} disabled="disabled">
+                  Escoje uno
+                </option>
+                <option value={"STUDENT"}>Alumno</option>
+                <option value={"TEACHER"}>Profesor</option>
+              </select>
+
+              {errors.role && (
+                  <span className="block text-red-600 text-xs">
+                    {errors.role.message}
+                  </span>
+                )}
 
               {/* Name */}
-              <label className="block" htmlFor="name">Nombre</label>
+              <label className="block text-[20px] font-[600]" htmlFor="name">Nombre</label>
               <input 
-                  className="w-full outline-none" 
+                  className="py-[10px] px-[30px] w-full outline-none border-[1px] border-[#000D13] rounded-[10px] text-base h-10" 
                   id="name" 
                   type="text"
+                  placeholder="Escribe tu nombre"
                   {...register("firstName", {
                     required: {
                       value: true,
@@ -122,11 +150,12 @@ export default function Register() {
                 )}
 
               {/* LastName */}
-              <label className="block" htmlFor="lastName">Apellido</label>
+              <label className="block text-[20px] font-[600]" htmlFor="lastName">Apellido</label>
               <input 
-                  className="w-full outline-none" 
+                  className="py-[10px] px-[30px] w-full outline-none border-[1px] border-[#000D13] rounded-[10px] text-base h-10" 
                   id="lastName" 
                   type="text"
+                  placeholder="Escribe tus apellidos"
                   {...register("lastName", {
                     required: {
                       value: true,
@@ -153,11 +182,12 @@ export default function Register() {
                 )}
 
               {/* Email */}
-              <label className="block" htmlFor="email">Correo</label>
+              <label className="block text-[20px] font-[600]" htmlFor="email">Email</label>
               <input 
-                className="w-full outline-none" 
+                className="py-[10px] px-[30px] w-full outline-none border-[1px] border-[#000D13] rounded-[10px] text-base h-10" 
                 id="email" 
                 type="email"
+                placeholder="Escribe tu email"
                 {...register("email", {
                   required: {
                     value: true,
@@ -177,11 +207,12 @@ export default function Register() {
 
 
               {/* Password */}
-              <label className="block" htmlFor="password">Contraseña</label>
+              <label className="block text-[20px] font-[600]" htmlFor="password">Contraseña</label>
               <input 
-                  className="w-full outline-none" 
+                  className="py-[10px] px-[30px] w-full outline-none border-[1px] border-[#000D13] rounded-[10px] text-base h-10" 
                   id="password" 
-                  type="password" 
+                  type="password"
+                  placeholder="Escribe tu contraseña"
                   {...register("password", {
                     required: {
                       value: true,
@@ -209,11 +240,12 @@ export default function Register() {
 
 
               {/* Confirm Password */}
-              <label className="block" htmlFor="confirmPassword">Confirmar Contraseña</label>
+              <label className="block text-[20px] font-[600]" htmlFor="confirmPassword">Repite tu contraseña</label>
               <input 
-                  className="w-full outline-none" 
+                  className="py-[10px] px-[30px] w-full outline-none border-[1px] border-[#000D13] rounded-[10px] text-base h-10" 
                   id="confirmPassword" 
                   type="password"
+                  placeholder="Escribe tu contraseña"
                   {...register("confirmPassword", {
                     required: {
                       value: true,
@@ -227,33 +259,6 @@ export default function Register() {
                 {errors.confirmPassword && (
                   <span className="block text-red-600 text-xs">
                     {errors.confirmPassword.message}
-                  </span>
-                )}
-
-
-              {/* Role */}
-              <label htmlFor="role" className="block">Seleccione su rol</label>
-              <select 
-                  defaultValue={''} 
-                  id="role" 
-                  className="w-full outline-none"
-                  {...register("role", {
-                    required: {
-                      value: true,
-                      message: "El Rol es requerido",
-                    }
-                  })}
-                  >
-                <option value={""} disabled="disabled">
-                  Seleccione una opción
-                </option>
-                <option value={"STUDENT"}>Alumno</option>
-                <option value={"TEACHER"}>Profesor</option>
-              </select>
-
-              {errors.role && (
-                  <span className="block text-red-600 text-xs">
-                    {errors.role.message}
                   </span>
                 )}
 

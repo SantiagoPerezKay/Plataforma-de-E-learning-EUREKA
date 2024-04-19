@@ -2,6 +2,7 @@
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import RegisterCredentials from "./pages/Register/RegisterCredentials";
 import Equipo from "./pages/Equipo/Equipo";
 import DashboardCourse from "./pages/DashboardCourse/DashboardCourse";
 
@@ -18,6 +19,9 @@ import CourseCardContainer from "./components/CourseCardContainer/CourseCardCont
 import CourseCard from "./components/CourseCard/CourseCard";
 import SidebarCourse from "./components/SidebarCourse/SidebarCourse";
 import Course from "./components/Course/Course";
+import CreateCourse from "./components/createCourse/CreateCourse";
+import SidebarTeacher from "./components/SidebarTeacher/SidebarTeacher";
+import TeacherCardContainer from "./components/TeacherCardContainer/TeacherCardContainer";
 
 
 /* Layouts */
@@ -29,6 +33,7 @@ export {
   Home,
   Login,
   Register,
+  RegisterCredentials,
   LogOutButton,
   Footer,
   NavBar,
@@ -43,5 +48,8 @@ export {
   CourseCardContainer,
   CourseCard,
   SidebarCourse,
-  Course
+  Course,
+  CreateCourse,
+  SidebarTeacher,
+  TeacherCardContainer
 };

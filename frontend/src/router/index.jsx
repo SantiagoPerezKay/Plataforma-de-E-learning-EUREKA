@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import {
   Login,
   Register,
+  RegisterCredentials,
   Home,
   LandingPage,
   RutaProtegida,
@@ -12,7 +13,10 @@ import {
   Equipo,
   CourseCardContainer,
   SidebarCourse,
-  Course
+  Course,
+  CreateCourse,
+  SidebarTeacher,
+  TeacherCardContainer
 } from "../index";
 
 const router = createBrowserRouter([
@@ -35,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: "equipo",
         element: <Equipo />,
-      }
+      },
     ],
   },
   {
@@ -46,28 +50,46 @@ const router = createBrowserRouter([
         path: "student",
         element: <DashboardPattern SideBarComponent={SideBarEjemplo} />,
         children: [
-            {
-              path: "mis-cursos",
-              element: <CourseCardContainer />,
-            },
-            {
-              path: "cursos",
-              element: <h1>Cursos disponibles</h1>,
-            },
+          {
+            path: "mis-cursos",
+            element: <CourseCardContainer />,
+          },
+          {
+            path: "inscripcion-cursos",
+            element: <CourseCardContainer />,
+          }
         ],
       },
       {
-        path:"curso/:id-curso",
-        element:<DashboardPattern SideBarComponent={SidebarCourse}/>,
+        path: "curso/:id-curso",
+        element: <DashboardPattern SideBarComponent={SidebarCourse} />,
+        children: [
+          {
+            path: ":moduloid",
+            element: <Course />,
+          },
+        ],
+      },
+      {
+        path:"validate-profesor",
+        element:<RegisterCredentials />
+      },
+      {
+        path:"profesor",
+        element: <DashboardPattern SideBarComponent={SidebarTeacher} />,
         children:[
           {
-            path:":modulo-id",
-            element:<Course/>
+            path: "mis-cursos",
+            element:<TeacherCardContainer />
+          },
+          {
+            path:"crear-curso",
+            element:<CreateCourse/>
           }
         ]
       }
-    ]
-  }
+    ],
+  },
 ]);
 
 export default router;

@@ -4,9 +4,9 @@ import succeed from './img/shield-check.svg'
 import useAuth from "../../api/auth";
 
 import { useNavigate } from "react-router-dom";
-
-
 import {Alertas,Spinner} from "../../index";
+
+import { redirectLoginByRol } from "../../utils/DecodificarToken";
 
 function Login() {
 
@@ -35,8 +35,9 @@ function Login() {
   const onSubmit = handleSubmit( async (data)=> {
     try {
       setLoading(true)
-      await authLogin(data);
-      navigate("/dashboard/student");
+      const rta = await authLogin(data)
+      const ruta = await redirectLoginByRol(rta)
+      navigate(ruta)
     } catch (error) {
       setLoading(false)
       handleError(error)
@@ -165,9 +166,13 @@ function Login() {
         <div className="flex justify-between w-60"><p>Cientos de cursos</p><img src={succeed} width='32' /></div>
         <div className="flex justify-between w-60"><p>Certificaciones</p><img src={succeed} width='32' /></div>
         <div className="flex justify-between w-60"><p>Material gráfico</p><img src={succeed} width='32' /></div>
-        <div className="flex content-center m-8"><button className="flex w-40 justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          REGISTRARSE
-        </button></div>
+        <div className="flex content-center m-8">
+          <button onClick={()=>navigate("/register")}
+              className="flex w-40 justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 border border-blue-500 hover:text-blue-500 text-white shadow-sm hover:bg-transparent bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            REGISTRARSE
+          </button>
+        </div>
         </div>
     </div>
   )

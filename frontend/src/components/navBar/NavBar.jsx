@@ -6,39 +6,63 @@ import iconCross from "./img/cross.svg";
 import logo from "./img/logo.webp";
 import { useNavigate, Link } from "react-router-dom";
 
+import useCourse from "../../api/course";
+
 const NavBar = () => {
+  
   // menu en desktop
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
+  
   // manejo de token
   const [isLogued, setIsLogued] = useState(false);
   const navigate = useNavigate();
-
+  
+  // se fija si está logueado cuando monta por primera vez el componente
   useEffect(()=>{
     const token = localStorage.getItem('jwt');
     if(token){
       setIsLogued(true)
     }
   },[])
-
+  
+  // genera un estado al local storage para futuros cambios
   useEffect(() => {
     const handleTokenChange = () => {
       const token = localStorage.getItem('jwt');
       setIsLogued(!!token);
     };
     window.addEventListener('storage', handleTokenChange);
-
+    
     return () => {
       window.removeEventListener('storage', handleTokenChange);
     };
   }, []); 
-
+  
+    // conexión con la BBDD
+    // defino variables y traigo funciones
+    const [cursos,setCursos]=useState([])
+    const { coursesByUser } =useCourse()
+    // llama a la API y conecta con lista
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const catalogCourses = await coursesByUser();
+          setCursos(catalogCourses);
+          
+        } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+    
+    fetchData();
+  },[]);
+  
   // menu hamburguesa
   const [openSideBar, setOpenSideBar] = useState(false);
   return (
     <>
       <div className={`${!openSideBar && "hidden"
-          } navbar-sidebar`}>
+          } navbar-sidebar z-30`}>
         <div
           className={`${!openSideBar && "hidden"
           } sidebar-bg bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm`}
@@ -59,10 +83,11 @@ const NavBar = () => {
             <div className="sidebar-category-container mx-auto">
               <div className="flex mt-8 align-middle">
                 <img
-                  className="sidebar-logo  "
                   src={iconUser}
-                  alt=""
+                  alt="Icono Usuario"
                   width="60"
+                  // debería cerrar el menu cuando da click
+                   onClick={()=>{isLogued ? window.location.href=("/dashboard/student") : window.location.href=("/login")}}
                   />
               </div>
               {isLogued && <div className="my-4">Mi perfil</div>}
@@ -71,18 +96,26 @@ const NavBar = () => {
             </div>
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
             {isLogued && 
+            // falta que cierre el menu
               <div className="my-4 mx-auto">
                 <p>Mis cursos</p>
                 <ul>
-                  <li className="my-2">Curso 1</li>
-                  <li className="my-2">Curso 1</li>
-                  <li className="my-2">Curso 1</li>
-                  <li className="my-2">Curso 1</li>
+                  {
+                    cursos.length !== 0 ?
+                      cursos?.map((item)=>{
+                        return <li className="my-2" key={item.course.title} >{item.course.title}</li>
+                      })
+                    : <p className="p-4 text-center">No está inscripto en ningún curso</p>
+                  }
                 </ul>
               </div>
             }
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
-            <div className="mx-auto my-4">Equipo</div>
+            <div className="mx-auto my-4"
+                  onClick={() =>window.location.href = "/equipo"}
+            >
+              Equipo
+            </div>
             <div className="mx-auto">
               <p className="text-center my-2">Cursos</p>
               <ul>
@@ -119,7 +152,10 @@ const NavBar = () => {
       {!isLogued && (
       <div className="navbar-menu relative">
         <ul className="flex">
-          <li className="mx-8 cursor-pointer relative group select-none">
+          <li className="mx-8 cursor-pointer relative group select-none"
+              onClick={() => navigate("/")}
+
+          >
               <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               <span className="absolute -bottom-1 right-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               Inicio
@@ -134,7 +170,9 @@ const NavBar = () => {
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
               </svg>
           </li>
-          <li className="mx-8 cursor-pointer relative group select-none">
+          <li className="mx-8 cursor-pointer relative group select-none"
+              onClick={() => navigate("/equipo")}
+          >
               <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               <span className="absolute -bottom-1 right-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 group-hover:transition-all"></span>
               Equipo
@@ -189,35 +227,27 @@ const NavBar = () => {
               </svg>
           </li>
         </ul>
-        {/* debería cargar los cursos que traiga la bbdd */}
+        {/* carga los cursos que trae de la bbdd */}
         {isSubMenuOpen && (
           <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 1
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 2
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 3
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 4
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
-                  <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Curso 5
-                  <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
-              </li>
+              {
+                cursos.length !== 0 ?
+                  cursos?.map((item)=>(
+                      <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none"
+                          onClick={() => {
+                            navigate(`/dashboard/curso/${item.course.id}`);
+                          }}
+                          key={item.course.id}
+                      >
+                        <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
+                        {item.course.title}
+                        <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
+                      </li>
+                  ))
+                :
+                <p className="py-4 text-center">No está inscripto en ningún curso</p>
+              }
             </ul>
           </div>
         )}
@@ -251,7 +281,11 @@ const NavBar = () => {
             <div className="h-8">
             <LogOutButton changeState={()=> setIsLogued(false)} />
             </div>
-            <img src={iconUser} width="60" />
+            <img src={iconUser}
+                  width="60" 
+                  className="cursor-pointer"
+                  onClick={()=>navigate('/dashboard/student')}
+            />
           </div>
         )}
       </div>
