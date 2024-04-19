@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class TeacherServiceImpl implements TeacherService {
+    private final ContentRepository contentRepository;
 
     private final TeacherRepository teacherRepository;
     private final CategoryRepository categoryRepository;
@@ -69,6 +70,8 @@ public class TeacherServiceImpl implements TeacherService {
 
         savedCourse.setModules(createModules(savedCourse, createCourseDTO.getModules()));
 
+        savedCourse.getModules().forEach(this::linksContents);
+
         savedCourse = courseRepository.save(savedCourse);
 
         return courseMapper.toDTO(savedCourse);
@@ -93,6 +96,14 @@ public class TeacherServiceImpl implements TeacherService {
             modules.add(moduleEntity);
         });
         return moduleRepository.saveAll(modules);
+    }
+
+    private void linksContents(Module module) {
+        List<Content> contents = module.getContents();
+        contents.forEach(content -> {
+            content.setModule(module);
+        });
+        contentRepository.saveAll(contents);
     }
 
     private void validateModules(CreateCourseModuleDTO module) {
