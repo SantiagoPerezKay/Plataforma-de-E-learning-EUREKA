@@ -82,29 +82,29 @@ export default function Course() {
                     
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex justify-around text-xl my-6'>
-                        <buton className={"cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base bg-transparent hover:bg-[#0834C4] hover:text-white border border-[#0834C4] hover:border-transparent text-[#0834C4]"} onClick={() => enviarDatos(infoContenido.progress.id)}>Marcar como completo</buton>
+                        <buton className={"cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base bg-transparent hover:bg-internationalKleinBlue hover:text-white border border-internationalKleinBlue hover:border-transparent text-internationalKleinBlue"} onClick={() => enviarDatos(infoContenido.progress.id)}>Marcar como completo</buton>
                         <NavLink className='flex' to={`${urlSlice}${urlContent - 1}`}>
-                            <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-[#0834C4] hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                            <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 <img className='w-[20px] h-[20px]' src={arrowLeft}/>
                                 Anterior
                             </span>
                         </NavLink>
                         <NavLink className='flex' to={`${urlSlice}${urlContent + 1}`}>
-                            <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-[#0834C4] hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                            <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 Siguiente
                                 <img className='w-[20px] h-[20px]' src={arrowRight}/>
                             </span>
                         </NavLink>
                     </div>
 
-                    <h1 className="text-5xl text-center my-10 tracking-[0.7px] font-bold text-[#000D13]">{infoContenido.title}</h1>
-                    <p className="text-base max-w-[80%] mx-auto text-[#000D13] font-normal mb-5">{infoContenido.description}</p>
+                    <h1 className="text-5xl text-center my-10 tracking-[0.7px] font-bold text-swamp">{infoContenido.title}</h1>
+                    <p className="text-base max-w-[80%] mx-auto text-swamp font-normal mb-5">{infoContenido.description}</p>
                     
                     {
                         infoContenido.urlPdf !== null &&
                         <a className='flex items-center my-10 gap-4 max-w-[80%] mx-auto' href={infoContenido.urlPdf} target='_blank'>
                             <img className='w-[53px] h-[60px] cursor-pointer' src={svgDocument}/>
-                            <label className='text-2xl text-[#000D13] cursor-pointer hover:border-b-2 hover:text-gray-600 font-bold hover:border-b-gray-600'>Descargar contenido del curso</label>
+                            <label className='text-2xl text-swamp cursor-pointer hover:border-b-2 hover:text-gray-600 font-bold hover:border-b-gray-600'>Descargar contenido del curso</label>
                         </a>
                     }
                 </div>
