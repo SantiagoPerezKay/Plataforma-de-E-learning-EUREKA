@@ -1,9 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
-import iconUser from "./img/user-circle.svg";
+import iconUser from "./img/user-circle_.svg";
 import iconHamburger from "./img/hamburger.svg";
 import iconCross from "./img/cross.svg";
 import logo from "./img/logo.webp";
+import negocios from "./img/building.svg";
+import finanzas from "./img/diagram-up.svg";
+import it from "./img/laptop.svg";
+import diseno from "./img/gallery-edit.svg";
+import marketing from "./img/bag-smile.svg";
+import team from "./img/hand-shake.svg";
+import home from "./img/home.svg";
 import { useNavigate, Link } from "react-router-dom";
 
 import useCourse from "../../api/course";
@@ -12,6 +19,7 @@ const NavBar = () => {
   
   // menu en desktop
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const outsideMenuRef = useRef();
   
   // manejo de token
   const [isLogued, setIsLogued] = useState(false);
@@ -30,6 +38,7 @@ const NavBar = () => {
     const handleTokenChange = () => {
       const token = localStorage.getItem('jwt');
       setIsLogued(!!token);
+      setRol(token);
     };
     window.addEventListener('storage', handleTokenChange);
     
@@ -42,23 +51,59 @@ const NavBar = () => {
     // defino variables y traigo funciones
     const [cursos,setCursos]=useState([])
     const { coursesByUser } =useCourse()
+
     // llama a la API y conecta con lista
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
+    const fetchData = async () => {
+      try {
           const catalogCourses = await coursesByUser();
           setCursos(catalogCourses);
-          
-        } catch (error) {
-        console.error("Error fetching courses:", error);
+        
+      } catch (error) {
+          console.error("Error fetching courses:", error);
       }
     };
-    
-    fetchData();
-  },[]);
+    useEffect(() => {
+        const token = localStorage.getItem('jwt');
+        if (token) {
+          fetchData();
+          setRol(token);
+        }
+    },[]);
   
   // menu hamburguesa
   const [openSideBar, setOpenSideBar] = useState(false);
+
+    // determina si es estudiante o profesor
+    const [myRol, setMyRol] = useState("")
+    function setRol(token){
+        const payload = token.split(".")[1];
+        const data = JSON.parse(atob(payload));
+        const role = data.role.authority
+
+        if(role.includes('STUDENT')){
+          setMyRol('STUDENT')
+        }else if(role.includes('TEACHER')){
+          setMyRol('TEACHER')
+        }else {
+          setMyRol('')
+        }
+    }
+
+  // hace click en cualquier lado para cerrar el dropdown
+  useEffect(() => {
+    // Función para cerrar el menú cuando se hace clic fuera de él
+    const handleClickOutside = (event) => {
+      if (outsideMenuRef.current && !outsideMenuRef.current.contains(event.target)) {
+        setIsSubMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+    
   return (
     <>
       <div className={`${!openSideBar && "hidden"
@@ -71,7 +116,7 @@ const NavBar = () => {
 
         <div
           className={`${openSideBar ? "w-80" : "w-0"
-          } sidebar-body bg-white min-h-screen fixed top-0 left-0 transition-all duration-300`}
+          } sidebar-body ${myRol == 'STUDENT' ? 'bg-blue-100' : (myRol == 'TEACHER' ? 'bg-red-100' : 'bg-white')} min-h-screen fixed top-0 left-0 transition-all duration-300`}
         >
           <div className={`${!openSideBar && "hidden"} flex flex-col align-middle pt-1 relative`}>
             <button className="absolute top-0 -right-4 h-16 w-16 "
@@ -86,8 +131,8 @@ const NavBar = () => {
                   src={iconUser}
                   alt="Icono Usuario"
                   width="60"
-                  // debería cerrar el menu cuando da click
-                   onClick={()=>{isLogued ? window.location.href=("/dashboard/student") : window.location.href=("/login")}}
+                  // debería cerrar el menu cuando da click ${myRol == 'STUDENT' ? 'bg-blue-100' : (myRol == 'TEACHER' ? 'bg-red-100' : 'bg-white')}
+                   onClick={()=>{myRol == 'STUDENT' ? window.location.href=("/dashboard/student") : (myRol == 'TEACHER' ? window.location.href=("/dashboard/profesor") : window.location.href=("/login"))}}
                   />
               </div>
               {isLogued && <div className="my-4">Mi perfil</div>}
@@ -98,34 +143,36 @@ const NavBar = () => {
             {isLogued && 
             // falta que cierre el menu
               <div className="my-4 mx-auto">
-                <p>Mis cursos</p>
+                <i className="font-thin font mb-6">Mis cursos {myRol == 'STUDENT' ? 'inscritos:' : (myRol == 'TEACHER' ? 'creados:' : ':')}</i>
                 <ul>
                   {
                     cursos.length !== 0 ?
                       cursos?.map((item)=>{
-                        return <li className="my-2" key={item.course.title} >{item.course.title}</li>
+                        return <li className="my-2 py-2 w-60 text-center rounded border border-slate-400" key={item.course.title} >{item.course.title}</li>
                       })
-                    : <p className="p-4 text-center">No está inscripto en ningún curso</p>
+                    : <p className="p-4 text-center">No {myRol == 'STUDENT' ? 'estás inscrito' : (myRol == 'TEACHER' ? 'ha creado' : '')} en ningún curso</p>
                   }
                 </ul>
               </div>
             }
             <div className="h-0.5 w-4/5 bg-gray-400 mx-auto"></div>
-            <div className="mx-auto my-4"
-                  onClick={() =>window.location.href = "/equipo"}
-            >
-              Equipo
-            </div>
-            <div className="mx-auto">
-              <p className="text-center my-2">Cursos</p>
+            <div className="w-60 mx-auto">
+              <p className="my-4 flex justify-center gap-4"><img width='30' src={home} />Inicio</p>
+              <p><i className="font-thin text-left mb-6">Cursos:</i></p>
               <ul>
-                <li>Negocios</li>
-                <li>Finanzas</li>
-                <li>IT</li>
-                <li>Marketing</li>
-                <li>Diseño</li>
+                <li className="flex justify-center gap-4 my-4"><img width='30' src={negocios} />Negocios</li>
+                <li className="flex justify-center gap-4 my-4"><img width='30' src={finanzas} />Finanzas</li>
+                <li className="flex justify-center gap-4 my-4"><img width='30' src={it} />IT</li>
+                <li className="flex justify-center gap-4 my-4"><img width='30' src={marketing} />Marketing</li>
+                <li className="flex justify-center gap-4 my-4"><img width='30' src={diseno} />Diseño</li>
               </ul>
     
+            </div>
+            <div className="h-0.5 w-4/5 bg-gray-400 mx-auto my-4"></div>
+            <div className="w-60 flex justify-center gap-4 mx-auto font-semibold text-center"
+                  onClick={() =>window.location.href = "/equipo"}
+            ><img src={team} width='30'/>
+              Equipo de EUREKA
             </div>
           </div>
         </div>
@@ -179,31 +226,31 @@ const NavBar = () => {
           </li>
         </ul>
         {isSubMenuOpen && (
-          <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
+          <div ref={outsideMenuRef} className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 flex gap-4 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Negocios
+                  <img width='20' src={negocios} />Negocios
                   <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 flex gap-4 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Finanzas
+                  <img width='20' src={finanzas} />Finanzas
                   <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 flex gap-4 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  IT
+                  <img width='20' src={it} />IT
                   <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 flex gap-4 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Marketing
+                  <img width='20' src={marketing} />Marketing
                   <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
-              <li className="text-gray-700 block px-4 py-2 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
+              <li className="text-gray-700 block px-4 py-2 flex gap-4 text-sm cursor-pointer relative group hover:font-bold hover:bg-gray-200 transition-all select-none">
                   <span className="absolute w-0.5 h-0 bg-blue-600 left-0 group-hover:h-1/2 group-hover:transition-all"></span>
-                  Diseño
+                  <img width='20' src={diseno} />Diseño
                   <span className="absolute w-0.5 h-0 bg-blue-600 right-0 group-hover:h-1/2 group-hover:transition-all"></span>
               </li>
             </ul>
@@ -246,7 +293,7 @@ const NavBar = () => {
                       </li>
                   ))
                 :
-                <p className="py-4 text-center">No está inscripto en ningún curso</p>
+                <p className="p-4 text-center">No {myRol == 'STUDENT' ? 'estás inscrito en' : (myRol == 'TEACHER' ? 'ha creado' : '')} ningún curso</p>
               }
             </ul>
           </div>
