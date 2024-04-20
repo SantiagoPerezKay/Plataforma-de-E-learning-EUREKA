@@ -38,6 +38,7 @@ public class TeacherController {
     @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<CreatedCourseDTO> createCourse(@Valid @RequestBody CreateCourseDTO createCourseDTO) {
         CreatedCourseDTO createdCourseDTO = teacherService.createCourse(createCourseDTO);
+
         return new ResponseEntity<>(createdCourseDTO, HttpStatus.CREATED);
     }
 

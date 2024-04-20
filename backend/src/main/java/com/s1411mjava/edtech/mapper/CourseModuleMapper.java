@@ -26,6 +26,8 @@ public interface CourseModuleMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Course partialUpdate(CourseModuleDto courseModuleDto, @MappingTarget Course course);
 
+
+    @Mapping(target = "modules", ignore = true)
     Course toEntity(CreateCourseDTO createCourseDTO);
 
     CreatedCourseDTO toDTO(Course course);

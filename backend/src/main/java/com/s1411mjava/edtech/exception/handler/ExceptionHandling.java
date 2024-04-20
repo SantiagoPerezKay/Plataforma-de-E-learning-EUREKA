@@ -209,4 +209,20 @@ public class ExceptionHandling {
                 null
         );
     }
+
+    @ExceptionHandler(MandatoryFieldException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleMandatoryFieldException(MandatoryFieldException ex){
+
+        Map<String, String> detail = new HashMap<>();
+
+        ex.getErrors().getFieldErrors().forEach(error -> detail.put(error.getField(), error.getDefaultMessage()));
+
+        return new ExceptionDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                detail
+        );
+    }
 }
