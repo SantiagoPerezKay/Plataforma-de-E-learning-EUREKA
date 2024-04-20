@@ -78,33 +78,33 @@ export default function Course() {
             <div className="w-full">
                 <div className="w-full h-full mx-auto">
                     {/* VIDEO */}
-                    <iframe className="w-full lg:h-96 md:h-56 h-52" src={infoContenido.urlVideo} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    <iframe className="w-5/6 mx-auto lg:h-96 md:h-56 h-52" src={infoContenido.urlVideo} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex justify-around text-xl my-6'>
-                        <buton className={"cursor-pointer"} onClick={() => enviarDatos(infoContenido.progress.id)}>Modificar progress</buton>
-                        <NavLink className='flex hover:text-blue-700' to={`${urlSlice}${urlContent - 1}`}>
-                            <span className='flex'>
-                                <img className='w-6' src={arrowLeft}/>
+                        <buton className={"cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base bg-transparent hover:bg-[#0834C4] hover:text-white border border-[#0834C4] hover:border-transparent text-[#0834C4]"} onClick={() => enviarDatos(infoContenido.progress.id)}>Marcar como completo</buton>
+                        <NavLink className='flex' to={`${urlSlice}${urlContent - 1}`}>
+                            <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-[#0834C4] hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                                <img className='w-[20px] h-[20px]' src={arrowLeft}/>
                                 Anterior
                             </span>
                         </NavLink>
-                        <NavLink className='flex hover:text-blue-700' to={`${urlSlice}${urlContent + 1}`}>
-                            <span className='flex'>
-                                <img className='w-6' src={arrowRight}/>
+                        <NavLink className='flex' to={`${urlSlice}${urlContent + 1}`}>
+                            <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-[#0834C4] hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 Siguiente
+                                <img className='w-[20px] h-[20px]' src={arrowRight}/>
                             </span>
                         </NavLink>
                     </div>
 
-                    <h1 className="text-[1.7rem] tracking-[0.7px] font-bold text-[#2d2f31]">{infoContenido.title}</h1>
-                    <p className="text-[1.1rem] text-[#2d2f31] font-normal mb-5">{infoContenido.description}</p>
+                    <h1 className="text-5xl text-center my-10 tracking-[0.7px] font-bold text-[#000D13]">{infoContenido.title}</h1>
+                    <p className="text-base max-w-[80%] mx-auto text-[#000D13] font-normal mb-5">{infoContenido.description}</p>
                     
                     {
                         infoContenido.urlPdf !== null &&
-                        <a className='flex items-center my-5' href={infoContenido.urlPdf} target='_blank'>
-                            <img className='w-10' src={svgDocument}/>
-                            <label className='text-lg cursor-pointer hover:border-b-2 hover:border-b-gray-600'>Descargar contenido del curso</label>
+                        <a className='flex items-center my-10 gap-4 max-w-[80%] mx-auto' href={infoContenido.urlPdf} target='_blank'>
+                            <img className='w-[53px] h-[60px] cursor-pointer' src={svgDocument}/>
+                            <label className='text-2xl text-[#000D13] cursor-pointer hover:border-b-2 hover:text-gray-600 font-bold hover:border-b-gray-600'>Descargar contenido del curso</label>
                         </a>
                     }
                 </div>
