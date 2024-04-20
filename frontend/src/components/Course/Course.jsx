@@ -1,8 +1,7 @@
 import arrowLeft from './svg/arrowLeft.svg'
 import arrowRight from './svg/arrowRight.svg'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import svgDocument from './svg/svgDocument.svg'
-import { NavLink } from 'react-router-dom'
 import axios from "axios";
 
 import { modifyProgressById } from '../../redux/slices/course/courseSlice'
@@ -23,12 +22,13 @@ export default function Course() {
     const [infoContenido,setInfoContenido]=useState([])
     const [infoModulo,setInfoModulo] = useState([])
 
+    const navigate = useNavigate();
     const params = useParams();
     
     const location = useLocation()
 
     const urlSlice = location.pathname.slice(0,-1)
-    const urlContent = parseInt(location.pathname.split('/')[5])
+    // const urlContent = parseInt(location.pathname.split('/')[5])
 
     const ID_MODULO = params.moduloid
     const ID_CONTENIDO = params.contentid
@@ -43,8 +43,6 @@ export default function Course() {
     },[location])
 
     console.log(ID_MODULO,ID_CONTENIDO)
-
-
 
     const enviarDatos = async (idProgress) => {
         const URL_PROGRESS = 'https://s14-11-m-java.onrender.com/api/v1/progresses'
@@ -72,6 +70,56 @@ export default function Course() {
             });
         };
 
+    //ARMAR LA RUTA DEL CURSO
+    const urlRoot=`/dashboard/curso/${informacionCurso.id}/`
+
+    //GENERAR LA RUTA DE CADA MODULO Y DE CADA CONTENIDO (urlContent)
+    const [urlContent, setUrlContent] = useState([]);
+    function generarContents(origen) {
+        let contents = 0
+        let urlContent2 = []
+        setUrlContent([])
+        origen.modules.forEach((modulo) => {
+        //   ESTO ES POR SI SE AGREGA CONTENIDO EN EL TITULO DEL MODULO
+        //   urlContent.push(`${modulo.id}`);
+          modulo.contents.forEach(() => {
+            contents ++ 
+            urlContent2.push(`${modulo.id}/${contents}`);
+          });
+        });
+        setUrlContent(urlContent2)
+    }
+    
+    //FUNCION ENCONTRAR INDICE (indexContent)
+    const findUrlContent = () => {
+        const texto = location.pathname;
+        const presentContent = texto.replace(urlRoot, '');
+        const indexContent = urlContent.indexOf(presentContent);
+ 
+        return indexContent;
+    }
+    //FUNCION CONTENIDO ANTERIOR
+    const urlAnterior = () => {
+        let indexContent = findUrlContent()
+        if (indexContent == 0) return
+        indexContent --
+        const url = urlRoot + urlContent[indexContent]
+        navigate(url)
+    }
+
+    //FUNCION CONTENIDO SIGUIENTE
+    const urlSiguiente = () => {
+        let indexContent = findUrlContent()
+        if ((indexContent + 1) == urlContent.length) return
+        indexContent ++
+        const url = urlRoot + urlContent[indexContent]
+        navigate(url)
+    }
+    //GENERA LA RUTA DE CONTENIDOS CUANDO SE ABRE POR PRIMERA VEZ
+    useEffect(() => {
+      generarContents(informacionCurso)
+    }, [])
+    
 
     return (
         <>  
@@ -83,18 +131,18 @@ export default function Course() {
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex justify-around text-xl my-6'>
                         <buton className={"cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base bg-transparent hover:bg-internationalKleinBlue hover:text-white border border-internationalKleinBlue hover:border-transparent text-internationalKleinBlue"} onClick={() => enviarDatos(infoContenido.progress.id)}>Marcar como completo</buton>
-                        <NavLink className='flex' to={`${urlSlice}${urlContent - 1}`}>
+                        <div className='flex' onClick={urlAnterior}>
                             <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 <img className='w-[20px] h-[20px]' src={arrowLeft}/>
                                 Anterior
                             </span>
-                        </NavLink>
-                        <NavLink className='flex' to={`${urlSlice}${urlContent + 1}`}>
+                        </div>
+                        <div className='flex' onClick={urlSiguiente}>
                             <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 Siguiente
                                 <img className='w-[20px] h-[20px]' src={arrowRight}/>
                             </span>
-                        </NavLink>
+                        </div>
                     </div>
 
                     <h1 className="text-5xl text-center my-10 tracking-[0.7px] font-bold text-swamp">{infoContenido.title}</h1>
