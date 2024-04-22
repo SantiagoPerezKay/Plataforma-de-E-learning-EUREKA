@@ -10,6 +10,7 @@ import com.s1411mjava.edtech.service.CatalogService;
 import com.s1411mjava.edtech.service.EnrollmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class CatalogServiceImpl implements CatalogService {
         private final CatalogMapper catalogMapper;
 
         @Override
+        @Transactional
         public List<CatalogDto> findAllCatalog() {
                 List<Course> courses = findAllCourse();
                 List<CatalogDto> catalogDtoList = new ArrayList<>();
@@ -31,7 +33,8 @@ public class CatalogServiceImpl implements CatalogService {
                 }
                 return catalogDtoList;
         }
+
         public List<Course> findAllCourse() {
-                return  courseRepository.findAll().stream().toList();
+                return  courseRepository.findAllCatalog();
         }
 }

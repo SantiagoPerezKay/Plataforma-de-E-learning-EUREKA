@@ -42,5 +42,12 @@ public class Course {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    // TODO: add teacher
+
+    public Course(Long id, String title, String description, String image, Float avgStars){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.avgStars = avgStars;
+    }
 }
