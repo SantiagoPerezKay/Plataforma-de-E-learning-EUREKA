@@ -76,15 +76,13 @@ export default function Course() {
     //GENERAR LA RUTA DE CADA MODULO Y DE CADA CONTENIDO (urlContent)
     const [urlContent, setUrlContent] = useState([]);
     function generarContents(origen) {
-        let contents = 0
+        // let contents = 0
         let urlContent2 = []
         setUrlContent([])
         origen.modules.forEach((modulo) => {
         //   ESTO ES POR SI SE AGREGA CONTENIDO EN EL TITULO DEL MODULO
-        //   urlContent.push(`${modulo.id}`);
-          modulo.contents.forEach(() => {
-            contents ++ 
-            urlContent2.push(`${modulo.id}/${contents}`);
+          modulo.contents.forEach((contenido) => {
+            urlContent2.push(`${modulo.id}/${contenido.id}`);
           });
         });
         setUrlContent(urlContent2)
