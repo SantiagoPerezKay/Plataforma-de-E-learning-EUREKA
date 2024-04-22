@@ -5,14 +5,14 @@ import jaime from "./img/JaimeAngel.png";
 import gaston from "./img/GastonSalas.png";
 import tobi from "./img/TobiasOlveira.png";
 import luz from "./img/LuzTabraj.png";
-/* import tomas from "./img/hero12.png";
-import eliseo from "./img/hero13.png";
-import santiago from "./img/hero14.png";
-import mariana from "./img/hero15.png";
-import claudia from "./img/hero16.png";
-import luciana from "./img/hero22.png";
-import leandro from "./img/hero23.png";
-import alejandra from "./img/hero24.png"; */
+import tomas from "./img/TomasSoto.png";
+import eliseo from "./img/EliseoMontenegro.png";
+import santiago from "./img/SantiagoPerez.png";
+import mariana from "./img/MarianaCuba.png";
+import claudia from "./img/ClaudiaOrtizChi.png";
+import luciana from "./img/LucianaMazur.png";
+import leandro from "./img/LeandroDeferrari.png";
+import alejandra from "./img/AlejandraPanizza.png";
 
 export const equipo = [
   {
@@ -65,56 +65,56 @@ export const equipo = [
     pais: "Argentina",
   },
   {
-    foto: "/public/TomasSoto.png",
+    foto: tomas,
     nombre: "Tomás Soto",
     rol: "QA Tester",
     linkedin: "https://www.linkedin.com/in/tom%C3%A1s-soto-038709267/",
     pais: "Argentina",
   },
   {
-    foto: "/public/EliseoMontenegro.png",
+    foto: eliseo,
     nombre: "Eliseo Montenegro",
     rol: "Backend Developer",
     linkedin: "https://www.linkedin.com/in/eliseo-montenegro/",
     pais: "Argentina",
   },
   {
-    foto: "/public/MarianaCuba.png",
+    foto: mariana,
     nombre: "Mariana Cuba",
     rol: "Backend Developer",
     linkedin: "https://www.linkedin.com/in/mariana-cuba-72a901258/",
     pais: "Argentina",
   },
   {
-    foto: "/public/SantiagoPerez.png",
+    foto: santiago,
     nombre: "Santiago perez kay",
     rol: "Backend Developer",
     linkedin: "https://www.linkedin.com/in/santiagoperezkay/",
     pais: "Argentina",
   },
   {
-    foto: "/public/ClaudiaOrtizChi.png",
+    foto: claudia,
     nombre: "Claudia Ortiz",
     rol: "Backend Developer",
     linkedin: "https://www.linkedin.com/in/claudia-ortiz-backend/",
     pais: "Argentina",
   },
   {
-    foto: "/public/LucianaMazur.png",
+    foto: luciana,
     nombre: "Luciana Mazur",
     rol: "Backend Developer",
     linkedin: "https://www.linkedin.com/in/lucianamazur/",
     pais: "Argentina",
   },
   {
-    foto: "/public/LeandroDeferrari.png",
+    foto: leandro,
     nombre: "Leandro Deferrari Arevalo",
     rol: "Backend Developer",
     linkedin: "https://www.linkedin.com/in/leandrodeferrari/",
     pais: "Argentina",
   },
   {
-    foto: "/public/AlejandraPanizza.png",
+    foto: alejandra,
     nombre: "Alejandra Carla Panizza",
     rol: "Team Leader",
     linkedin: "https://www.linkedin.com/in/alejandra-carla-panizza/",
