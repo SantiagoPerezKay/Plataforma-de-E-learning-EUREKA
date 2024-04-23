@@ -27,7 +27,7 @@ public class CatalogServiceImpl implements CatalogService {
         private final CatalogMapper catalogMapper;
 
         @Override
-        // @Cacheable("catalog")
+        @Cacheable("catalog")
         public List<CatalogDto> findAllCatalog() {
 
                 long startTime = System.currentTimeMillis();
