@@ -111,14 +111,16 @@ function LandingPage() {
       <div className="main">
         <div className="grid px-10 py-10 gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:px-24 lg:py-10 lg:gap-12">
           {
-            catalogo.length !== 0 ?
-              catalogo?.map((data) => (
-                <CourseCard
+            Array.isArray(catalogo) &&
+            catalogo.length > 0 ?
+              catalogo.map((data) => {
+                console.log(data)
+                return <CourseCard
                   key={data.id}
                   title={data.title}
                   image={data.image}
                 />
-              ))
+              })
             :
               <Spinner/>
           }
