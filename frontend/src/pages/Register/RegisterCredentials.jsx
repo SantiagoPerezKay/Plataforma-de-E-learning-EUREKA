@@ -138,7 +138,7 @@ const RegisterCredentials = () => {
                         })}
                 >
                     <option value="De 0 a 1 año">De 0 a 1 año</option>
-                    <option value="De 1 a 5 añós">De 1 a 5 añós</option>
+                    <option value="De 1 a 5 añós">De 1 a 5 años</option>
                     <option value="Más de 5 años">Más de 5 años</option>
                 </select>
                 {errors.experience && (
