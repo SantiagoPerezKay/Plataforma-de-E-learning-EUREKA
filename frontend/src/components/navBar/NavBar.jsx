@@ -276,7 +276,7 @@ const NavBar = () => {
         </ul>
         {/* carga los cursos que trae de la bbdd */}
         {isSubMenuOpen && (
-          <div className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
+          <div ref={outsideMenuRef} className="submenu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg shadow-1 shadow-gray-500 shadow-opacity-25">
             <ul className="py-1">
               {
                 cursos.length !== 0 ?

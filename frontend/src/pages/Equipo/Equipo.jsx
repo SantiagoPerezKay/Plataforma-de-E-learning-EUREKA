@@ -14,7 +14,9 @@ const Equipo = () => {
                 nombre={member.nombre}
                 rol={member.rol}
                 // colocar otros links
+                github={member.github}
                 linkedin={member.linkedin}
+                web={member.web}
                 pais={member.pais}
               />
             </div>
