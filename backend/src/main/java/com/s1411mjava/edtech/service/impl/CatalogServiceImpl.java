@@ -9,6 +9,8 @@ import com.s1411mjava.edtech.repository.CourseRepository;
 import com.s1411mjava.edtech.service.CatalogService;
 import com.s1411mjava.edtech.service.EnrollmentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class CatalogServiceImpl implements CatalogService {
 
 
@@ -24,17 +27,25 @@ public class CatalogServiceImpl implements CatalogService {
         private final CatalogMapper catalogMapper;
 
         @Override
-        @Transactional
+        @Cacheable("catalog")
         public List<CatalogDto> findAllCatalog() {
-                List<Course> courses = findAllCourse();
+
+                long startTime = System.currentTimeMillis();
+
+                List<Course> courses = courseRepository.findAllCatalog();
+
+                long endTime = System.currentTimeMillis();
+
+                long duration = endTime - startTime;
+
+                double seconds = (double)duration / 1000;
+
+                log.info("Tiempo de ejecución: " + seconds + " segundos");
+
                 List<CatalogDto> catalogDtoList = new ArrayList<>();
                 for (Course course : courses) {
                         catalogDtoList.add(catalogMapper.toDto(course));
                 }
                 return catalogDtoList;
-        }
-
-        public List<Course> findAllCourse() {
-                return  courseRepository.findAllCatalog();
         }
 }

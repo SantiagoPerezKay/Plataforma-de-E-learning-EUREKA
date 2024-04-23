@@ -11,6 +11,6 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository <Course, Long> {
     List<Course> findAllByTeacherId(Long teacherId);
 
-    @Query("SELECT new com.s1411mjava.edtech.entity.Course(c.id, c.title, c.description, c.image, c.avgStars) FROM Course c")
+    @Query("SELECT new com.s1411mjava.edtech.entity.Course(c.id, c.title, c.image, c.avgStars) FROM Course c")
     List<Course> findAllCatalog();
 }
