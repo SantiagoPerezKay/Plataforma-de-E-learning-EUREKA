@@ -10,7 +10,7 @@ import IconAyudaTeacher from "../iconsSidebarTeacher/IconAyudaTeacher"
 export default function SidebarTeacher() {
     return (
         <>
-            <div className="w-full h-screen bg-[#FBD6C4]">
+            <div className="w-full bg-[#FBD6C4]">
                 <div className="p-10">
                     <NavLink to="mis-cursos">
                         <div className="cursor-pointer flex items-center font-[600] m-2">
@@ -26,33 +26,28 @@ export default function SidebarTeacher() {
                         </div>
                     </NavLink>
 
-                    <NavLink>
                         <div className="cursor-pointer flex items-center font-[600] m-2">
                             <IconNotificacionesTeacher/>
                             <label>Notificaciones</label>
                         </div>
-                    </NavLink>
 
-                    <NavLink>
+
                         <div className="cursor-pointer flex items-center font-[600] m-2">
                             <IconEditarCursoTeacher />
                             <label>Editar curso</label>
                         </div>
-                    </NavLink>
 
-                    <NavLink>
+
                         <div className="cursor-pointer flex items-center font-[600] m-2">
                             <IconEliminarCursoTeacher />
                             <label>Eliminar curso</label>
                         </div>
-                    </NavLink>
 
-                    <NavLink>
+
                         <div className="cursor-pointer flex items-center font-[600] m-2">
                             <IconAyudaTeacher />
                             <label>Ayuda</label>
                         </div>
-                    </NavLink>
                 </div>
             </div>
         </>

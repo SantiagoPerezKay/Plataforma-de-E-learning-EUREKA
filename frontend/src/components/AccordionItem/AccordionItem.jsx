@@ -57,7 +57,7 @@ export default function AccordionMenu() {
 
 
   return (
-    <div className='h-screen bg-pictonBlue'>
+    <div className='bg-pictonBlue'>
       {informacionCurso?.modules?.map((item, index) => (
         <AccordionItem title={item.title} content={item.contents} idModule={item.id} idCurso={id}/>
       ))}

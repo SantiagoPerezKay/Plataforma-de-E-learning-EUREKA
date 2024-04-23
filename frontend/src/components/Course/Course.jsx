@@ -140,24 +140,26 @@ export default function Course() {
                     </div>
                     
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
-                    <div className='flex justify-around text-xl my-6'>
+                    <div className='flex md:flex-row flex-col gap-4 w-full justify-center md:justify-around text-xl my-6'>
                         <button 
                             className={`${(infoContenido?.progress?.completed) || complete ? 'bg-green-600 text-white border font-bold border-transparent tracking-wider' :'bg-transparent font-bold hover:bg-green-600 hover:text-white border border-green-600 hover:border-transparent text-green-600' } cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base `} 
                             onClick={() => enviarDatos(infoContenido.progress.id)}
                         >
                             {`${(infoContenido?.progress?.completed || complete) ? 'Completado' :'Marcar como completo'}`}
                         </button>
-                        <div className='flex' onClick={urlAnterior}>
-                            <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
-                                <img className='w-[20px] h-[20px]' src={arrowLeft}/>
-                                Anterior
-                            </span>
-                        </div>
-                        <div className='flex' onClick={urlSiguiente}>
-                            <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
-                                Siguiente
-                                <img className='w-[20px] h-[20px]' src={arrowRight}/>
-                            </span>
+                        <div className='flex flex-row justify-between md:gap-5'>
+                            <div className='flex' onClick={urlAnterior}>
+                                <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                                    <img className='w-[20px] h-[20px]' src={arrowLeft}/>
+                                    Anterior
+                                </span>
+                            </div>
+                            <div className='flex' onClick={urlSiguiente}>
+                                <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                                    Siguiente
+                                    <img className='w-[20px] h-[20px]' src={arrowRight}/>
+                                </span>
+                            </div>
                         </div>
                     </div>
 

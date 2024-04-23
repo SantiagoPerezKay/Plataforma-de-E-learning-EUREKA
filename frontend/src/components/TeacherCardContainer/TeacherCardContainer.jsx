@@ -50,18 +50,18 @@ export default function TeacherCardContainer() {
   
         {
           cursos.length !== 0 && 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {
                 cursos.map(item =>(
                   <div className="hover:shadow-md w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4">
                     <img src={item.image} className="w-full" alt="Course" />
                     <h3 className="font-bold text-center">{item.title}</h3>
                     <div className="stars flex my-2">
-                      <img src={starFill} width="32" alt="Filled Star" />
-                      <img src={starFill} width="32" alt="Filled Star" />
-                      <img src={starFill} width="32" alt="Filled Star" />
-                      <img src={starFill} width="32" alt="Filled Star" />
-                      <img src={starLine} width="32" alt="Empty Star" />
+                      <img src={starFill} width="30" alt="Filled Star" />
+                      <img src={starFill} width="30" alt="Filled Star" />
+                      <img src={starFill} width="30" alt="Filled Star" />
+                      <img src={starFill} width="30" alt="Filled Star" />
+                      <img src={starLine} width="30" alt="Empty Star" />
                     </div>
                   </div>
                 ))

@@ -106,7 +106,7 @@ function Content() {
 
     return (
         <>
-            <div className="flex flex-row justify-between flex-wrap mt-2 items-center">
+            <div className="flex md:flex-row flex-col justify-between  mt-2 items-center">
                 <button
                     onClick={returnModulos}
                     className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -203,7 +203,7 @@ function Content() {
                         contenido?.map((item,index)=>(
                             <div
                                 key={index}
-                                className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
+                                className="border bg-white shadow rounded-md p-3 hover:shadow-lg cursor-pointer"
                             >
                                 <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
                                 <p className="font-semibold text-lg">{`Descripción: ${item.description}`}</p>
