@@ -59,7 +59,9 @@ const CursoCard = (props) => {
           to={`/dashboard/curso/${props.id}`}
           className="w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4"
         >
-          <img src={props.image} className="w-full" alt="Course" />
+          <div className="w-full h-40 overflow-hidden flex items-center">
+            <img src={props.image} className="w-full" alt="Course" />
+          </div>
           <div className="stars flex my-2">
             <img src={starFill} width="32" alt="Filled Star" />
             <img src={starFill} width="32" alt="Filled Star" />
