@@ -1,8 +1,11 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import { useEffect, useState } from "react";
 import CursoCard from "../CursoCard/CursoCard";
 import { useLocation } from "react-router-dom";
 import useCourse from "../../api/course/index";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CourseCardContainer = () => {
   const location = useLocation();
@@ -31,56 +34,58 @@ const CourseCardContainer = () => {
 
   return (
     <>
-      {dataLoaded ? (
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          {location.pathname.includes("inscripcion-cursos") ? (
-            catalogData &&
-            Array.isArray(catalogData) &&
-            catalogData.length > 0 ? (
-              catalogData.map((data) => (
+      <div className="relative">
+        {dataLoaded ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {location.pathname.includes("inscripcion-cursos") ? (
+              catalogData &&
+              Array.isArray(catalogData) &&
+              catalogData.length > 0 ? (
+                catalogData.map((data) => (
+                  <CursoCard
+                    key={data.id}
+                    id={data.id}
+                    title={data.title}
+                    image={data.image}
+                  />
+                ))
+              ) : (
+                <h1 className="text-center text-2xl text-red-500">
+                  No hay cursos disponibles en este momento
+                </h1>
+              )
+            ) : userCourses &&
+              Array.isArray(userCourses) &&
+              userCourses.length > 0 ? (
+              userCourses.map((data) => (
                 <CursoCard
                   key={data.id}
                   id={data.id}
                   title={data.title}
                   image={data.image}
-                  id={data.id}
                 />
               ))
             ) : (
-              <h1 className="text-center text-2xl text-red-500">
-                No hay cursos disponibles en este momento
+              <h1 className="text-center text-2xl text-blue-500">
+                No está inscripto en ningún curso
               </h1>
-            )
-          ) : userCourses &&
-            Array.isArray(userCourses) &&
-            userCourses.length > 0 ? (
-            userCourses.map((data) => (
-              <CursoCard
-                key={data.id}
-                id={data.id}
-                title={data.title}
-                image={data.image}
-              />
-            ))
-          ) : (
-            <h1 className="text-center text-2xl text-blue-500">
-              No está inscripto en ningún curso
-            </h1>
-          )}
-        </div>
-      ) : (
-        <div>
-          {location.pathname.includes("inscripcion-cursos") ? (
-            <h1 className="text-center text-2xl text-gray-500">
-              Cargando cursos de inscripción...
-            </h1>
-          ) : (
-            <h1 className="text-center text-2xl text-gray-500">
-              Cargando cursos del usuario...
-            </h1>
-          )}
-        </div>
-      )}
+            )}
+          </div>
+        ) : (
+          <div>
+            {location.pathname.includes("inscripcion-cursos") ? (
+              <h1 className="text-center text-2xl text-gray-500">
+                Cargando cursos de inscripción...
+              </h1>
+            ) : (
+              <h1 className="text-center text-2xl text-gray-500">
+                Cargando cursos del usuario...
+              </h1>
+            )}
+          </div>
+        )}
+        <ToastContainer position="top-right" />
+      </div>
     </>
   );
 };

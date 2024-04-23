@@ -16,6 +16,7 @@ const CursoCard = (props) => {
   const handleChange = async (event) => {
     const value = event.target.value;
     await postEnrollment(value);
+
     setSubscribed(true);
   };
 
@@ -23,7 +24,9 @@ const CursoCard = (props) => {
     <>
       {location.pathname.includes("inscripcion-cursos") ? (
         <div className="w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4">
-          <img src={props.image} className="w-full" alt="Course" />
+          <div className="w-full h-36 overflow-hidden flex items-center">
+            <img src={props.image} className="w-full" alt="Course" />
+          </div>
           <div className="stars flex my-2">
             <img src={starFill} width="32" alt="Filled Star" />
             <img src={starFill} width="32" alt="Filled Star" />
@@ -43,9 +46,11 @@ const CursoCard = (props) => {
                 Inscribirse
               </button>
             ) : (
-              <h3 className="bg-green-500 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
-                Inscrito
-              </h3>
+              <div>
+                <h3 className="bg-green-500 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
+                  Inscrito
+                </h3>
+              </div>
             )}
           </div>
         </div>
@@ -54,7 +59,9 @@ const CursoCard = (props) => {
           to={`/dashboard/curso/${props.id}`}
           className="w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4"
         >
-          <img src={props.image} className="w-full" alt="Course" />
+          <div className="w-full h-40 overflow-hidden flex items-center">
+            <img src={props.image} className="w-full" alt="Course" />
+          </div>
           <div className="stars flex my-2">
             <img src={starFill} width="32" alt="Filled Star" />
             <img src={starFill} width="32" alt="Filled Star" />

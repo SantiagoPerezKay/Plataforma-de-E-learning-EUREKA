@@ -63,7 +63,7 @@ function Modulos({
 
     return (
         <div className="w-full">
-            <div className="flex flex-row justify-between">
+            <div className="flex md:flex-row flex-col justify-between">
                 <button
                     onClick={()=>setOpen(true)}
                     className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -94,7 +94,7 @@ function Modulos({
                             type="text" 
                             className="border-2 bg-slate-200 border-gray-500 rounded-xl shadow py-1 px-5 outline-none"
                         />
-                        <div>
+                        <div className="flex md:flex-row flex-col">
                             <button
                                 onClick={handleCrearModulo}
                                 className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -119,7 +119,7 @@ function Modulos({
 
             {
                 stateModulos.modules.length !== 0 &&
-                <div className="grid grid-cols-2 gap-3 mt-3 px-5 py-3">
+                <div className="grid lg:grid-cols-2 grid-cols-1 gap-3 mt-3 px-5 py-3">
                     {
                         stateModulos.modules?.map((item)=>(
                             <div
