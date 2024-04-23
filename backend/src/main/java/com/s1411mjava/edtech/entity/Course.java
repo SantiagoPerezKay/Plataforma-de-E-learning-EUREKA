@@ -43,10 +43,9 @@ public class Course {
     private Teacher teacher;
 
 
-    public Course(Long id, String title, String description, String image, Float avgStars){
+    public Course(Long id, String title, String image, Float avgStars){
         this.id = id;
         this.title = title;
-        this.description = description;
         this.image = image;
         this.avgStars = avgStars;
     }
