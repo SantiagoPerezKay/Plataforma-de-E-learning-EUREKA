@@ -93,7 +93,7 @@ function DatosCourse({
     },[fileImagen])
 
     return (
-        <div className="lg:w-[70%] w-full mx-auto border-2 border-gray-400 shadow-xl rounded-lg py-5 px-5 bg-slate-200">
+        <div className="w-[70%] mx-auto border-2 border-gray-400 shadow-xl rounded-lg py-5 px-5 bg-slate-200">
             <h1 className="text-2xl font-bold italic text-center">Crea tu curso</h1>
             <Alertas err={alert} size={'md'}>
                 <form

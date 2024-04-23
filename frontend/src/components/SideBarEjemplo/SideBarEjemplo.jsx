@@ -7,7 +7,7 @@ import chatIcon from "./svg/chat.svg";
 
 function SideBarEjemplo() {
   return (
-    <div className="bg-pictonBlue text-gray-800 w-full h-full flex flex-col justify-between">
+    <div className="bg-pictonBlue text-gray-800 h-screen w-full flex flex-col justify-between">
       <div className="p-4">
         <Link to="mis-cursos" className="sidebar-item block mb-6">
           <div className="flex items-center">

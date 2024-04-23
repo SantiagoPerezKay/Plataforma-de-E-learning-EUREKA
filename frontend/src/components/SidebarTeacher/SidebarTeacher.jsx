@@ -10,7 +10,7 @@ import IconAyudaTeacher from "../iconsSidebarTeacher/IconAyudaTeacher"
 export default function SidebarTeacher() {
     return (
         <>
-            <div className="w-full h-full bg-[#FBD6C4]">
+            <div className="w-full h-screen bg-[#FBD6C4]">
                 <div className="p-10">
                     <NavLink to="mis-cursos">
                         <div className="cursor-pointer flex items-center font-[600] m-2">

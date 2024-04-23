@@ -36,7 +36,7 @@ const CourseCardContainer = () => {
     <>
       <div className="relative">
         {dataLoaded ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
             {location.pathname.includes("inscripcion-cursos") ? (
               catalogData &&
               Array.isArray(catalogData) &&
@@ -47,6 +47,7 @@ const CourseCardContainer = () => {
                     id={data.id}
                     title={data.title}
                     image={data.image}
+                    id={data.id}
                   />
                 ))
               ) : (
