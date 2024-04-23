@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Alertas, Spinner } from "../../index";
 import { useState } from "react";
 import axios from "axios";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 import { validateProfesor } from "../../utils/DecodificarToken";
 
@@ -34,8 +36,30 @@ const RegisterCredentials = () => {
             console.log('Archivo subido:', response.data);
             setSelectedFile(response.data.url)
             setUploaded('✔')
+            toast.success("Se ha subido el archivo correctamente", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+              });
         } catch (error) {
             console.error('Ocurrió un problema al subir el archivo', error);
+            toast.error('Ocurrió un problema al subir el archivo', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+              });
             setUploaded('❌')
         }
     }
@@ -74,46 +98,31 @@ const RegisterCredentials = () => {
             navigate(ruta)
         } catch (error) {
             setLoading(false)
-            handleError(error)
-            setTimeout(()=>{
-                resetError()
-            },3000)
+            handleError()
         }
     });
 
 
 
     // como manejar el error del fetch, esto se ejecuta en el handleSubmit
-    const [error,setError]= useState({
-        state:false,
-        msg:''
-    })
-
-    const handleError = (error) => {
-        if(error.detail){
-            setError({
-                state:true,
-                msg:'algo salio mal,intentalo mas tarde'
-            })
-        }else{
-            setError({
-                state:true,
-                msg:error.message
-            })
-        }
+    const handleError = () => {
+        toast.error('Algo salio mal, intentalo mas tarde', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+          });
     };
 
-    const resetError =()=>{
-        setError({
-        state:false,
-        msg:''
-        })
-    }
   return (
-    <div className="register-teacher flex flex-col items-center">
+    <div className="register-teacher flex flex-col items-center relative">
     <h2 className="text-center text-blue-500 font-bold text-xl">Registro como Profesor</h2>
     <h3 className="text-center font-bold text-xl">Adjunta tus credenciales</h3>
-    <Alertas err={error} size='xs'>
         <form className="cred-form space-y-6 max-md:w-[95dvw] md:w-80 mx-auto my-8" onSubmit={onSubmit}>
             {/* info que se espera 
             {
@@ -222,7 +231,7 @@ const RegisterCredentials = () => {
             </button>
             </div>
         </form>
-    </Alertas>
+        <ToastContainer position="top-right" />
   </div>
   )
 }
