@@ -41,8 +41,8 @@ export default function TeacherCardContainer() {
   return(
     <>
       {dataLoaded? (
-        <div className="w-full px-5 py-5">
-        <h1 className="font-bold text-3xl italic">Cursos creados</h1>
+        <div className="w-full mb-5">
+        <h1 className="font-bold text-3xl italic mb-5">Cursos creados</h1>
   
         {
           cursos.length === 0 && <h1 className="font-semibold text-2xl italic text-center">No tienes cursos creados</h1>
@@ -50,7 +50,7 @@ export default function TeacherCardContainer() {
   
         {
           cursos.length !== 0 && 
-            <div className="w-full grid grid-cols-3 gap-8 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {
                 cursos.map(item =>(
                   <div className="hover:shadow-md w-full h-full card-container flex flex-col items-center justify-between border border-gray-300 rounded-xl shadow-xl shadow-slate-300 cursor-pointer overflow-hidden mb-4">
@@ -69,7 +69,7 @@ export default function TeacherCardContainer() {
             </div>
         }
   
-      </div>
+       </div>
       ) : (
         <div>
           <h1 className="text-center text-2xl text-gray-500">
