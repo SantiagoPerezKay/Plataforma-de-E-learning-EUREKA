@@ -131,7 +131,7 @@ export default function Course() {
                     {/* VIDEO */}
                     <div>
                         <Link to={'/dashboard/student'}>
-                            <span className='w-[13rem] flex flex-row gap-5 py-1 px-3 cursor-pointer border rounded-md mb-5 shadow hover:shadow-md hover:bg-slate-100'>
+                            <span className='w-[13rem] flex flex-row gap-5 py-1 px-3 cursor-pointer border rounded-md mb-5 shadow-md hover:shadow-lg bg-white'>
                                 <img src={homeIcon} alt="home icon" />
                                 <p className='font-semibold italic'>Dashboard</p>
                             </span>
@@ -142,10 +142,10 @@ export default function Course() {
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex md:flex-row flex-col gap-4 w-full justify-center md:justify-around text-xl my-6'>
                         <button 
-                            className={`${(infoContenido?.progress?.completed) || complete ? 'bg-green-600 text-white border font-bold border-transparent tracking-wider' :'bg-transparent font-bold hover:bg-green-600 hover:text-white border border-green-600 hover:border-transparent text-green-600' } cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base `} 
+                            className={`${(infoContenido?.progress?.completed) || complete ? 'bg-green-600 text-white border font-bold border-transparent tracking-wider' :'bg-transparent font-bold hover:bg-green-600 hover:text-white border border-green-600 hover:border-transparent text-green-600' } cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base`} 
                             onClick={() => enviarDatos(infoContenido.progress.id)}
                         >
-                            {`${(infoContenido?.progress?.completed || complete) ? 'Completado' :'Marcar como completo'}`}
+                            <p>{`${(infoContenido?.progress?.completed || complete) ? 'Completado' :'Marcar como completo'}`}</p>
                         </button>
                         <div className='flex flex-row justify-between md:gap-5'>
                             <div className='flex' onClick={urlAnterior}>

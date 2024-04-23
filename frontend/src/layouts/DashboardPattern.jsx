@@ -60,7 +60,7 @@ function DashboardPattern({
             </div>
           }
         </div>
-        <div className="w-full md:w-[65%] lg:w-[70%] border md:px-10 px-5 py-2 md:overflow-y-scroll">
+        <div className="w-full md:w-[65%] lg:w-[70%] border md:px-10 px-5 py-2 md:overflow-y-scroll bg-[#ebebeb]">
           <Outlet/>
         </div>
       </div>

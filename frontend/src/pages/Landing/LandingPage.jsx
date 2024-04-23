@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import CursoCard from "../../components/CursoCard/CursoCard";
 import Spinner from "../../components/Loading/Spinner"
 
+import CourseCard from "../../components/CourseCard/CourseCard";
+
 import image1 from "./img/image1.png";
 import image2 from "./img/image2.png";
 import image3 from "./img/image3.png";
@@ -111,7 +113,7 @@ function LandingPage() {
           {
             catalogo.length !== 0 ?
               catalogo?.map((data) => (
-                <CursoCard
+                <CourseCard
                   key={data.id}
                   title={data.title}
                   image={data.image}

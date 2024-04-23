@@ -119,7 +119,7 @@ function Modulos({
 
             {
                 stateModulos.modules.length !== 0 &&
-                <div className="grid md:grid-cols-2 grid-cols-1 gap-3 mt-3 px-5 py-3">
+                <div className="grid lg:grid-cols-2 grid-cols-1 gap-3 mt-3 px-5 py-3">
                     {
                         stateModulos.modules?.map((item)=>(
                             <div

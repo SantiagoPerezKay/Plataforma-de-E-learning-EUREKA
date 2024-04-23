@@ -22,7 +22,7 @@ export const AccordionItem = ({title, content, idModule,idCurso}) => {
     <>
     <div className='w-full'>
       <div className="max-w-[90%] mx-auto cursor-pointer">
-        <div className="p-[5px]" onClick={toggleAccordion}>
+        <div className="p-[5px] font-bold text-black hover:text-[#2c2c2c]" onClick={toggleAccordion}>
           {title}
         </div>
         {isOpen && (
@@ -33,7 +33,7 @@ export const AccordionItem = ({title, content, idModule,idCurso}) => {
                       <div className="h-full w-12 flex justify-center items-center">
                         <IconCheck background={cont.progress.completed ? "#25f4e9" : "#fff"} />
                       </div>
-                      <li className='text-[#2d2f31]'>{cont.title}</li>
+                      <li className='text-[#282138] font-semibold'>{cont.title}</li>
                   </div>
                 </NavLink>
               )}
