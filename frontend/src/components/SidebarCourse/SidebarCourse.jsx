@@ -52,7 +52,14 @@ export default function SidebarCourse() {
 
     return (
         <>  
-            {dataLoaded? <AccordionMenu items={data}/> : <h1>Cargando contenido del curso...</h1> }
+            {dataLoaded? (
+            <AccordionMenu items={data}/>
+            ) : (
+                <div className='bg-pictonBlue h-screen flex flex-col items-center'>
+                    <h1>Cargando contenido del curso...</h1>
+                    <div class="border-gray-300 h-10 w-10 animate-spin rounded-full border-4 border-t-black" />
+                </div>
+            ) }
         </>
     )
 }

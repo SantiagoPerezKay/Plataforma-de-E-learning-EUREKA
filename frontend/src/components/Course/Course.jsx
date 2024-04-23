@@ -130,13 +130,13 @@ export default function Course() {
                     <div className='flex justify-around text-xl my-6'>
                         <buton className={"cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base bg-transparent hover:bg-internationalKleinBlue hover:text-white border border-internationalKleinBlue hover:border-transparent text-internationalKleinBlue"} onClick={() => enviarDatos(infoContenido.progress.id)}>Marcar como completo</buton>
                         <div className='flex' onClick={urlAnterior}>
-                            <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                            <span className='flex justify-center items-center cursor-pointer gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 <img className='w-[20px] h-[20px]' src={arrowLeft}/>
                                 Anterior
                             </span>
                         </div>
                         <div className='flex' onClick={urlSiguiente}>
-                            <span className='flex justify-center items-center gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
+                            <span className='flex justify-center items-center cursor-pointer gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 Siguiente
                                 <img className='w-[20px] h-[20px]' src={arrowRight}/>
                             </span>
