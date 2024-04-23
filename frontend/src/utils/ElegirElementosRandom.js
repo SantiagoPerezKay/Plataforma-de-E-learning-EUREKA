@@ -1,6 +1,11 @@
 function ElegirElementosRandom(lista, cantidad) {
+    if(lista.length === 0){
+        return lista
+    }
+
+    
     let elementosSeleccionados = [];
-    const copiaLista = lista.slice(); // Creamos una copia de la lista original
+    const copiaLista = lista?.slice(); // Creamos una copia de la lista original
     
     // Iteramos hasta que hayamos seleccionado la cantidad deseada de elementos
     while (elementosSeleccionados.length < cantidad) {
