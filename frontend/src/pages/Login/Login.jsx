@@ -8,9 +8,6 @@ import {Alertas,Spinner} from "../../index";
 
 import { redirectLoginByRol } from "../../utils/DecodificarToken";
 
-import { Bounce, ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
-
 function Login() {
 
   const [error,setError]= useState({
@@ -52,28 +49,25 @@ function Login() {
 
   // como manejar el error del fetch, esto se ejecuta en el handleSubmit
   const handleError = (error) => {
-    let rta = '';
-
-    if (error.detail) {
-      if (error.detail.password) {
-        rta = error.detail.password;
-      } else {
-        rta = 'Algo salió mal, inténtalo más tarde.';
+    if(error.detail){
+      if(error.detail.password){
+        const rta = error.detail.password
+        setError({
+          state:true,
+          msg:rta
+        })
+      }else{
+        setError({
+          state:true,
+          msg:'algo salio mal,intentalo mas tarde'
+        })
       }
-    } else {
-      rta = error.message || 'Algo salió mal, inténtalo más tarde.';
+    }else{
+      setError({
+        state:true,
+        msg:error.message
+      })
     }
-    toast.error(rta, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
   };
 
   const resetError =()=>{
@@ -86,7 +80,7 @@ function Login() {
 
   return (
     
-    <div className="login flex flex-wrap justify-evenly w-full 2xl:w-[60%] 2xl:mx-auto relative">
+    <div className="login flex flex-wrap justify-evenly w-full 2xl:w-[60%] 2xl:mx-auto">
         <div className="login-left max-md:mb-8">
           <Alertas err={error} size='xs'>
             <h2 className="font-bold text-center mb-4 mt-8">Ingresa a tu cuenta</h2>
@@ -180,8 +174,6 @@ function Login() {
           </button>
         </div>
         </div>
-        <ToastContainer position="top-right" />
-
     </div>
   )
 }

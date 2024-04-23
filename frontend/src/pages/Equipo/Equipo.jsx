@@ -1,6 +1,5 @@
 import EquipoCard from './EquipoCard'
 import { equipo } from './helper'
-import RegisterCredentials from '../Register/RegisterCredentials'
 
 const Equipo = () => {
   return (
@@ -21,7 +20,6 @@ const Equipo = () => {
             </div>
           ))}
         </div>
-        <RegisterCredentials />
     </div>
 
   )
