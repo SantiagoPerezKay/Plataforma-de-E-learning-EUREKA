@@ -9,7 +9,8 @@ import {
 import { Outlet } from "react-router";
 
 function DashboardPattern({
-  SideBarComponent
+  SideBarComponent,
+  type='azul'
 }){
 
   const [open,setOpen]=useState(false)
@@ -35,6 +36,11 @@ function DashboardPattern({
     };
   });
 
+  const colorBg ={
+    'azul':'bg-pictonBlue',
+    'pink':'bg-[#FBD6C4]'
+  }
+
   return (
     <div className="w-full h-screen flex flex-col">
       <NavBar/>
@@ -49,7 +55,7 @@ function DashboardPattern({
             }
           </div>
           { !open && 
-            <div className="w-full">
+            <div className={`w-full h-screen ${colorBg[type]}`}>
               <SideBarComponent/>
             </div>
           }
