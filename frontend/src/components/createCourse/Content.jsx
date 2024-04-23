@@ -206,12 +206,7 @@ function Content() {
                                 className="border bg-white shadow rounded-md p-5 hover:shadow-lg cursor-pointer"
                             >
                                 <p className="font-bold text-xl">{`Titulo: ${item.title}`}</p>
-                                <p className="font-bold text-xl">{`Descripción: ${item.description}`}</p>
-                                <p className="text-lg font-semibold break-words">{`url video : ${item.urlVideo}`}</p>
-                                {
-                                    item.urlPdf && 
-                                    <p className="text-lg font-semibold break-words">{`url pdf : ${item.urlPdf}`}</p>
-                                }
+                                <p className="font-semibold text-lg">{`Descripción: ${item.description}`}</p>
                             </div>
                         ))
                     }
