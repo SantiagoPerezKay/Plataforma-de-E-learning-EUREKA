@@ -12,7 +12,7 @@ function CreateCourse() {
 
     return (
         <CursoProvider>
-            <div className="lg:w-[90%] lg:mx-auto mt-10 w-full">
+            <div className="w-[90%] mx-auto mt-10">
                 {
                     step === 1 && <DatosCourse setStep={setStep}/>
                 }

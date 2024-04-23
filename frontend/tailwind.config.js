@@ -11,7 +11,7 @@ export default {
         "internationalKleinBlue" : "#0834C4",
         "pictonBlue" : "#4DA0EC"
       }
-    }
+    },
   },
   plugins: [],
 }

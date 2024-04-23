@@ -1,7 +1,6 @@
 import arrowLeft from './svg/arrowLeft.svg'
 import arrowRight from './svg/arrowRight.svg'
-import homeIcon from './svg/home.svg'
-import { useLocation, useParams, useNavigate,Link } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import svgDocument from './svg/svgDocument.svg'
 import axios from "axios";
 
@@ -22,7 +21,6 @@ export default function Course() {
 
     const [infoContenido,setInfoContenido]=useState([])
     const [infoModulo,setInfoModulo] = useState([])
-    const [complete,setComplete]=useState(false)
 
     const navigate = useNavigate();
     const params = useParams();
@@ -42,7 +40,6 @@ export default function Course() {
             const contentFiltered = infoModulo[0].contents.filter(contenido => parseInt(contenido.id) === parseInt(ID_CONTENIDO))
             setInfoContenido(contentFiltered[0])
         }
-        setComplete(false)
     },[location])
 
     console.log(ID_MODULO,ID_CONTENIDO)
@@ -67,16 +64,14 @@ export default function Course() {
                 moduloId:ID_MODULO, 
                 contentId:ID_CONTENIDO 
                 }))
-
-                setComplete(true)
             })
             .catch(error => {
               console.error(error);
             });
-    };
+        };
 
     //ARMAR LA RUTA DEL CURSO
-    const urlRoot=`/dashboard/curso/${informacionCurso?.id}/`
+    const urlRoot=`/dashboard/curso/${informacionCurso.id}/`
 
     //GENERAR LA RUTA DE CADA MODULO Y DE CADA CONTENIDO (urlContent)
     const [urlContent, setUrlContent] = useState([]);
@@ -84,7 +79,7 @@ export default function Course() {
         // let contents = 0
         let urlContent2 = []
         setUrlContent([])
-        origen?.modules.forEach((modulo) => {
+        origen.modules.forEach((modulo) => {
         //   ESTO ES POR SI SE AGREGA CONTENIDO EN EL TITULO DEL MODULO
           modulo.contents.forEach((contenido) => {
             urlContent2.push(`${modulo.id}/${contenido.id}`);
@@ -126,27 +121,14 @@ export default function Course() {
 
     return (
         <>  
-            <div className="w-full mt-5">
+            <div className="w-full">
                 <div className="w-full h-full mx-auto">
                     {/* VIDEO */}
-                    <div>
-                        <Link to={'/dashboard/student'}>
-                            <span className='w-[13rem] flex flex-row gap-5 py-1 px-3 cursor-pointer border rounded-md mb-5 shadow hover:shadow-md hover:bg-slate-100'>
-                                <img src={homeIcon} alt="home icon" />
-                                <p className='font-semibold italic'>Dashboard</p>
-                            </span>
-                        </Link>
-                        <iframe className="w-5/6 mx-auto lg:h-96 md:h-56 h-52 rounded-xl" src={infoContenido.urlVideo} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                    </div>
+                    <iframe className="w-5/6 mx-auto lg:h-96 md:h-56 h-52" src={infoContenido.urlVideo} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     
                     {/* BOTONES DE AVANZAR Y RETROCEDER */}
                     <div className='flex justify-around text-xl my-6'>
-                        <button 
-                            className={`${(infoContenido?.progress?.completed) || complete ? 'bg-green-600 text-white border font-bold border-transparent tracking-wider' :'bg-transparent font-bold hover:bg-green-600 hover:text-white border border-green-600 hover:border-transparent text-green-600' } cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base `} 
-                            onClick={() => enviarDatos(infoContenido.progress.id)}
-                        >
-                            {`${(infoContenido?.progress?.completed || complete) ? 'Completado' :'Marcar como completo'}`}
-                        </button>
+                        <buton className={"cursor-pointer flex justify-center items-center px-3 h-[40px] rounded-[10px] text-base bg-transparent hover:bg-internationalKleinBlue hover:text-white border border-internationalKleinBlue hover:border-transparent text-internationalKleinBlue"} onClick={() => enviarDatos(infoContenido.progress.id)}>Marcar como completo</buton>
                         <div className='flex' onClick={urlAnterior}>
                             <span className='flex justify-center items-center  gap-2 w-[150px] h-[40px] font-semibold bg-internationalKleinBlue hover:bg-[#496ce0] rounded-[10px] text-base text-white'>
                                 <img className='w-[20px] h-[20px]' src={arrowLeft}/>
@@ -161,8 +143,8 @@ export default function Course() {
                         </div>
                     </div>
 
-                    <h1 className="text-4xl text-center my-10 tracking-[0.7px] font-bold text-swamp">{infoContenido.title}</h1>
-                    <p className="text-xl  max-w-[80%] mx-auto text-swamp font-normal mb-5">{infoContenido.description}</p>
+                    <h1 className="text-5xl text-center my-10 tracking-[0.7px] font-bold text-swamp">{infoContenido.title}</h1>
+                    <p className="text-base max-w-[80%] mx-auto text-swamp font-normal mb-5">{infoContenido.description}</p>
                     
                     {
                         infoContenido.urlPdf !== null &&

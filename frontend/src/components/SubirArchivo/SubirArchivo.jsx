@@ -47,7 +47,7 @@ function SubirArchivo({
                         required && <span className="text-red-500 ml-2">*</span>
                     }
             </label>
-            <div className="flex flex-row flex-wrap justify-between items-center">
+            <div className="flex flex-row justify-between items-center">
                 <input
                     onChange={(e)=>callback(e.target.files[0])}
                     name="image" 

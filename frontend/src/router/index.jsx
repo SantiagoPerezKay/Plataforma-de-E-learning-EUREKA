@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "student",
-        element: <DashboardPattern type="azul" SideBarComponent={SideBarEjemplo} />,
+        element: <DashboardPattern SideBarComponent={SideBarEjemplo} />,
         children: [
           {
             path: "mis-cursos",
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "curso/:id-curso/",
-        element: <DashboardPattern type="azul" SideBarComponent={SidebarCourse} />,
+        element: <DashboardPattern SideBarComponent={SidebarCourse} />,
         children: [
           {
             path: ":moduloid/:contentid",
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
       },
       {
         path:"profesor",
-        element: <DashboardPattern type="pink" SideBarComponent={SidebarTeacher} />,
+        element: <DashboardPattern SideBarComponent={SidebarTeacher} />,
         children:[
           {
             path: "mis-cursos",
