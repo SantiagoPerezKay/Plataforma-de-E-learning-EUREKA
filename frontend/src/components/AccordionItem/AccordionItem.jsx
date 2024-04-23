@@ -6,7 +6,7 @@ import IconCheck from '../iconCheck/IconCheck';
 
 import { useSelector } from 'react-redux';
 
-export const AccordionItem = ({title, content, idModule,idCurso}) => {
+export const AccordionItem = ({title, content, idModule, idCurso}) => {
   
 
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +17,15 @@ export const AccordionItem = ({title, content, idModule,idCurso}) => {
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const currentIdModule = location.pathname.split('/')[4];
+    console.log('currentIdModule: ',currentIdModule)
+    console.log('idModule: ',idModule)
+    if (currentIdModule == idModule) {
+      setIsOpen(true);
+    }
+  }, [location]);
 
   return (
     <>
