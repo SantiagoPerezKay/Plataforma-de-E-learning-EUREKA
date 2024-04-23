@@ -16,6 +16,7 @@ const CursoCard = (props) => {
   const handleChange = async (event) => {
     const value = event.target.value;
     await postEnrollment(value);
+
     setSubscribed(true);
   };
 
@@ -43,9 +44,11 @@ const CursoCard = (props) => {
                 Inscribirse
               </button>
             ) : (
-              <h3 className="bg-green-500 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
-                Inscrito
-              </h3>
+              <div>
+                <h3 className="bg-green-500 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
+                  Inscrito
+                </h3>
+              </div>
             )}
           </div>
         </div>
