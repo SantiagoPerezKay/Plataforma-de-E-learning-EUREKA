@@ -3,7 +3,7 @@
 
 
 
-IMAGEN
+![Eureka](https://www.nemgf.com/wp-content/uploads/2024/04/Eureka-e1713949534278.png)
 ## Descripción del proyecto
 
 Eureka es una plataforma en línea de E-learning que ofrece una amplia variedad de cursos sobre diversos temas. Los profesores pueden crear cursos y agregarles contenido. Los estudiantes pueden inscribirse y estudiar el curso seleccionado.
