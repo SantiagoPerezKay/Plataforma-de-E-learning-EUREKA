@@ -1,6 +1,5 @@
 # Plataforma de E-learning: EUREKA
 
-![Eureka](https://www.nemgf.com/wp-content/uploads/2024/04/Eureka-e1713949534278.png)
 ![Eureka](./Eureka-logo.png)
 
 
@@ -11,7 +10,7 @@ Eureka es una plataforma en línea de E-learning que ofrece una amplia variedad 
 
 ## Mockups y Diseño prototipo
 
-VIDEO
+![Demo Video](video_demo.mp4)
 
 
 ## Minimum Viable Product (MVP)
@@ -84,15 +83,15 @@ Testing QA:
 | `UX/UI Designer`   | Fernando Vergel          | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/nemgf) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/fernandovergel/) [![Notion](https://img.shields.io/badge/-Portfolio-black?style=flat&logo=notion)](https://nemgf.notion.site/Fernando-Vergel-47d3f9dee2ab419aba7d9d1a186f686d)             |
 |  |  |  |
 | `Front End`            | Jaime Angel                 | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Jaimeangel/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/jaimeangeldev/)           |
-| `Front End`            | Emiliano Longo            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/EmiLongo) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/emilianojlongo/) [![Web](https://img.shields.io/badge/-Portfolio-black?style=flat)](https://emilianolongo-developer.netlify.app/)             |                         
+| `Front End`            | Emiliano Longo            | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/EmiLongo) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/emilianojlongo/) [![Portfolio](https://img.shields.io/badge/Portfolio-Perfil-black)](https://emilianolongo-developer.netlify.app/)            |                         
 | `Front End`            | Gaston Salas                | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Gaston095) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/gastonsalas095/)    
-| `Front End`            | Tobias Olveira              | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Kobi96) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/tobias-olveira-52a0311b7/) [![Web](https://img.shields.io/badge/-Portfolio-black?style=flat)](https://www.linkedin.com/in/tobias-olveira-52a0311b7/)             |
+| `Front End`            | Tobias Olveira              | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Kobi96) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/tobias-olveira-52a0311b7/) [![Portfolio](https://img.shields.io/badge/Portfolio-Perfil-black)](https://kobi-react-portfolio.onrender.com/)             |
 |  |  |  |
-| `Back End`             | Eliseo Montenegro       | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/montexbjeliseo) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/eliseo-montenegro/) [![Web](https://img.shields.io/badge/-Portfolio-black?style=flat)](https://montexbjeliseo.com.ar/)             |   
+| `Back End`             | Eliseo Montenegro       | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/montexbjeliseo) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/eliseo-montenegro/) [![Portfolio](https://img.shields.io/badge/Portfolio-Perfil-black)](https://montexbjeliseo.com.ar)            |   
 | `Back End`             | Claudia Ortiz                | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/Ninakiau) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/claudia-ortiz-backend/)               | 
 | `Back End`             | Mariana Cuba               | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/mariana-cuba/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/mariana-cuba-72a901258/)              |  
 | `Back End`             | Luciana Mazur              | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/LucianaMazur) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/lucianamazur/)               | 
-| `Back End`             | Leandro Deferrari         | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/leandrodeferrari) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/leandrodeferrari) [![Web](https://img.shields.io/badge/-Portfolio-black?style=flat)](https://leandro-deferrari-arevalo.web.app/)             |    
+| `Back End`             | Leandro Deferrari         | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/leandrodeferrari) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/leandrodeferrari) [![Portfolio](https://img.shields.io/badge/Portfolio-Perfil-black)](https://leandro-deferrari-arevalo.web.app)             |    
 | `Back End`             | Santiago Perez              | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/SantiagoPerezKay) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/santiago-perez-kay-636277268/)               |
 |  |  |  |
 | `QA Tester`            | Luz Tabraj                      | [![GitHub](https://img.shields.io/badge/GitHub-Perfil-lightgrey)](https://github.com/luz-tabraj/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-deepskyblue)](https://www.linkedin.com/in/luz-tabraj/)
