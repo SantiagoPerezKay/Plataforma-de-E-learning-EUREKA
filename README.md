@@ -10,6 +10,8 @@ Eureka es una plataforma en línea de E-learning que ofrece una amplia variedad 
 
 ## Mockups y Diseño prototipo
 
+[![Eureka](https://github.com/No-Country/s14-11-m-java/assets/146204093/ada5b57a-55db-4566-a497-171c54fc11d1)](https://www.nemgf.com/wp-content/uploads/2024/04/Eureka-clip.mp4)
+
 [Demo video](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/njfjxva0y4f12rmtw4g5)
 
 
