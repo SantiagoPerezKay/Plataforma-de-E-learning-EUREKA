@@ -8,7 +8,7 @@
 Eureka es una plataforma en línea de E-learning que ofrece una amplia variedad de cursos sobre diversos temas. Los profesores pueden crear cursos y agregarles contenido. Los estudiantes pueden inscribirse y estudiar el curso seleccionado.
 
 
-## Mockups y Diseño prototipo
+## Videoclip presentación
 
 [![Eureka](https://github.com/No-Country/s14-11-m-java/assets/146204093/ada5b57a-55db-4566-a497-171c54fc11d1)](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/njfjxva0y4f12rmtw4g5)
 
@@ -100,7 +100,7 @@ Testing QA:
 
 ## Video Demo Day
 
-[Demo Video](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/vucbvjijyazfvw9bw8vs)
+[![Eureka](https://github.com/No-Country/s14-11-m-java/assets/146204093/5fd1a95a-9fcc-4b53-9837-570f3e83bf4a)](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/vucbvjijyazfvw9bw8vs)
 
 
 ## Prototipo
