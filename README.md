@@ -10,9 +10,7 @@ Eureka es una plataforma en línea de E-learning que ofrece una amplia variedad 
 
 ## Mockups y Diseño prototipo
 
-[![Eureka](https://github.com/No-Country/s14-11-m-java/assets/146204093/ada5b57a-55db-4566-a497-171c54fc11d1)](https://www.nemgf.com/wp-content/uploads/2024/04/Eureka-clip.mp4)
-
-[Demo video](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/njfjxva0y4f12rmtw4g5)
+[![Eureka](https://github.com/No-Country/s14-11-m-java/assets/146204093/ada5b57a-55db-4566-a497-171c54fc11d1)](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/njfjxva0y4f12rmtw4g5)
 
 
 ## Minimum Viable Product (MVP)
@@ -107,7 +105,7 @@ Testing QA:
 
 ## Prototipo
 
- - Prototipo hecho en Figma [Link](https://www.figma.com/file/9Pqwgz3rr1Rtk47jgk8ive/No-Country-s14-11-m-java?type=design&node-id=93-2623&mode=design&t=881ex4jlYiZLbhWl-0)
+ - Prototipo hecho en Figma [Link](https://www.figma.com/proto/9Pqwgz3rr1Rtk47jgk8ive/No-Country-s14-11-m-java?page-id=538%3A4274&type=design&node-id=538-4275&viewport=400%2C429%2C0.02&t=weOojAbFn1dGYgIk-1&scaling=min-zoom&starting-point-node-id=538%3A4275&mode=design)
 
 
 ## Deploy
