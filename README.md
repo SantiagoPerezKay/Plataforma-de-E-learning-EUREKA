@@ -113,6 +113,16 @@ Testing QA:
  - Deploy del Front End hecho en Vercel [Link](https://s14-11-m-java-e5su.vercel.app/) 
  - Deploy del Back End hecho en Railway [Link]()
 
+### Datos de prueba
+
+#### Usuarios
+
+| email                 | contraseña  |
+|-----------------------|-------------|
+| jperz@tmail.com       | Chiave1234! |
+| plavchernv@tmail.com  | allQuiz@+1  |
+
+
 ## Documentación del Proyecto
  - [Proyecto en Miro](https://miro.com/app/board/uXjVKby_wLs=/)
  - [Documentación de errores](https://github.com/No-Country/s14-11-m-java/tree/main/qa)
