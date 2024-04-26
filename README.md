@@ -10,7 +10,7 @@ Eureka es una plataforma en línea de E-learning que ofrece una amplia variedad 
 
 ## Mockups y Diseño prototipo
 
-![Demo Video](video_demo.mp4)
+[Demo video](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/njfjxva0y4f12rmtw4g5)
 
 
 ## Minimum Viable Product (MVP)
@@ -100,7 +100,7 @@ Testing QA:
 
 ## Video Demo Day
 
-![Demo Video](video_demo.mp4)
+[Demo Video](https://res.cloudinary.com/dunjzopgf/video/upload/f_auto:video,q_auto/v1/courses/vucbvjijyazfvw9bw8vs)
 
 
 ## Prototipo
