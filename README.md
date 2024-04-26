@@ -100,7 +100,7 @@ Testing QA:
 
 ## Video Demo Day
 
-<img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/>
+![Demo Video](video_demo.mp4)
 
 
 ## Prototipo
